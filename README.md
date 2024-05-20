@@ -117,7 +117,7 @@ seq  name             file
 1    temp
 ```
 
-### Creating and choosing database
+### Creating and choosing databases
 
 **MySQL**
 
@@ -173,4 +173,30 @@ seq  name             file
 ---  ---------------  ----------------------------------------------------------
 0    main             /home/katheroine/quote_sql_lab.db
 1    temp             /var/tmp/sqlite_4bgECn3Em2x6p9V
+```
+
+## Working with tables
+
+### Displaying tables
+
+**MySQL**
+
+```bash
+mysql> show tables;
+Empty set (0,00 sec)
+
+```
+
+**PostgreSQL**
+
+```bash
+quote_sql_lab=# \dt
+Did not find any relations.
+
+```
+
+**SQLite**
+
+```bash
+sqlite> .tables
 ```
