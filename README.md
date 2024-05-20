@@ -242,3 +242,34 @@ sqlite> CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256)
 sqlite> .tables
 cover_type
 ```
+
+#### Datatypes
+
+The set of data types available depends on the particular database. Different databases support different data types, and some databases support more data types than others.
+
+**MySQL**
+
+* **Numeric**: TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT, FLOAT, DOUBLE, DECIMAL
+* **String**: CHAR, VARCHAR, BINARY, VARBINARY, TEXT, BLOB
+* **Date and time**: DATE, TIME, DATETIME, TIMESTAMP
+* **Other**: ENUM, SET, BIT
+
+**PostgreSQL**
+
+* **Numeric**: SMALLINT, INTEGER, BIGINT, NUMERIC, DECIMAL, REAL, DOUBLE PRECISION
+* **String**: CHAR, VARCHAR, TEXT
+* **Binary**: BYTEA
+* **Date and time**: DATE, TIME, TIMESTAMP, INTERVAL
+* **Boolean**: BOOLEAN
+* **Geometric**: POINT, LINE, POLYGON, CIRCLE
+* **Network**: MACADDR, INET, CIDR
+* **Other**: UUID, XML, JSON
+
+**SQLite**
+
+* **Numeric**: INTEGER, REAL, NUMERIC
+* **String**: TEXT, BLOB
+* **Date and time**: DATE, TIME, DATETIME
+* **Boolean**: BOOLEAN
+
+The set of data types available in MySQL, PostgreSQL, and SQLite is different. This is because the three databases have different underlying architectures and different design goals.
