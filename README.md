@@ -200,3 +200,45 @@ Did not find any relations.
 ```bash
 sqlite> .tables
 ```
+
+### Creating tables
+
+#### Simple case
+
+**MySQL**
+
+```bash
+mysql> CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
+Query OK, 0 rows affected (0,07 sec)
+
+mysql> show tables;
++-------------------------+
+| Tables_in_quote_sql_lab |
++-------------------------+
+| cover_type              |
++-------------------------+
+1 row in set (0,01 sec)
+
+```
+
+**PostgreSQL**
+
+```bash
+quote_sql_lab=# CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
+CREATE TABLE
+quote_sql_lab=# \dt
+           List of relations
+ Schema |    Name    | Type  |  Owner
+--------+------------+-------+----------
+ public | cover_type | table | postgres
+(1 row)
+
+```
+
+**SQLite**
+
+```bash
+sqlite> CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
+sqlite> .tables
+cover_type
+```
