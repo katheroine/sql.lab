@@ -69,7 +69,7 @@ $ sudo aptitude install sqlite
 
 **MySQL**
 
-```sql
+```bash
 mysql> SHOW DATABASES;
 +-------------------------+
 | Database                |
@@ -79,13 +79,13 @@ mysql> SHOW DATABASES;
 | performance_schema      |
 | sys                     |
 +-------------------------+
-15 rows in set (0,00 sec)
+4 rows in set (0,00 sec)
 
 ```
 
 **PostgreSQL**
 
-```sql
+```bash
 postgres=# \db
        List of tablespaces
     Name    |  Owner   | Location
@@ -103,16 +103,74 @@ postgres=# \list
                |          |          |             |             | postgres=CTc/postgres
  template1     | postgres | UTF8     | en_GB.UTF-8 | en_GB.UTF-8 | =c/postgres          +
                |          |          |             |             | postgres=CTc/postgres
-(4 rows)
+(3 rows)
 
 ```
 
 **SQLite**
 
-```sql
+```bash
 sqlite> .databases
 seq  name             file
 ---  ---------------  ----------------------------------------------------------
 0    main
 1    temp
+```
+
+### Creating and choosing database
+
+**MySQL**
+
+```bash
+mysql> CREATE DATABASE quote_sql_lab;
+Query OK, 1 row affected (0,03 sec)
+
+mysql> show databases;
++-------------------------+
+| Database                |
++-------------------------+
+| information_schema      |
+| mysql                   |
+| performance_schema      |
+| quote_sql_lab           |
+| sys                     |
++-------------------------+
+5 rows in set (0,01 sec)
+
+mysql> USE quote_sql_lab;
+Database changed
+```
+
+**PostgreSQL**
+
+```bash
+postgres=# CREATE DATABASE quote_sql_lab;
+CREATE DATABASE
+postgres=# \list
+                                    List of databases
+     Name      |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges
+---------------+----------+----------+-------------+-------------+-----------------------
+ postgres      | postgres | UTF8     | en_GB.UTF-8 | en_GB.UTF-8 |
+ quote_sql_lab | postgres | UTF8     | en_GB.UTF-8 | en_GB.UTF-8 |
+ template0     | postgres | UTF8     | en_GB.UTF-8 | en_GB.UTF-8 | =c/postgres          +
+               |          |          |             |             | postgres=CTc/postgres
+ template1     | postgres | UTF8     | en_GB.UTF-8 | en_GB.UTF-8 | =c/postgres          +
+               |          |          |             |             | postgres=CTc/postgres
+(4 rows)
+
+postgres=# \connect quote_sql_lab
+You are now connected to database "quote_sql_lab" as user "postgres".
+```
+
+**SQLite**
+
+```bash
+$ sqlite quote_sql_lab.db
+SQLite version 2.8.17
+Enter ".help" for instructions
+sqlite> .databases
+seq  name             file
+---  ---------------  ----------------------------------------------------------
+0    main             /home/katheroine/quote_sql_lab.db
+1    temp             /var/tmp/sqlite_4bgECn3Em2x6p9V
 ```
