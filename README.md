@@ -203,7 +203,38 @@ sqlite> .tables
 
 ### Creating tables
 
-#### Simple case
+#### Datatypes
+
+The set of datatypes available depends on the particular database. Different databases support different data types, and some databases support more data types than others.
+
+**MySQL**
+
+* **Numeric**: TINYINT, SMALLINT, MEDIUMINT, INTEGER, INT, BIGINT, FLOAT, DOUBLE, DECIMAL
+* **String**: CHAR, VARCHAR, BINARY, VARBINARY, TEXT, BLOB
+* **Date and time**: DATE, TIME, DATETIME, TIMESTAMP
+* **Other**: ENUM, SET, BIT
+
+**PostgreSQL**
+
+* **Numeric**: SMALLINT, INTEGER, BIGINT, NUMERIC, DECIMAL, REAL, DOUBLE PRECISION
+* **String**: CHAR, VARCHAR, TEXT
+* **Binary**: BYTEA
+* **Date and time**: DATE, TIME, TIMESTAMP, INTERVAL
+* **Boolean**: BOOLEAN
+* **Geometric**: POINT, LINE, POLYGON, CIRCLE
+* **Network**: MACADDR, INET, CIDR
+* **Other**: UUID, XML, JSON
+
+**SQLite**
+
+* **Numeric**: INTEGER, REAL, NUMERIC
+* **String**: TEXT, BLOB
+* **Date and time**: DATE, TIME, DATETIME
+* **Boolean**: BOOLEAN
+
+The set of data types available in MySQL, PostgreSQL, and SQLite is different. This is because the three databases have different underlying architectures and different design goals.
+
+#### Columns & datatypes
 
 **MySQL**
 
@@ -243,33 +274,110 @@ sqlite> .tables
 cover_type
 ```
 
-#### Datatypes
-
-The set of data types available depends on the particular database. Different databases support different data types, and some databases support more data types than others.
+#### Primary key
 
 **MySQL**
 
-* **Numeric**: TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT, FLOAT, DOUBLE, DECIMAL
-* **String**: CHAR, VARCHAR, BINARY, VARBINARY, TEXT, BLOB
-* **Date and time**: DATE, TIME, DATETIME, TIMESTAMP
-* **Other**: ENUM, SET, BIT
+```bash
+mysql> CREATE TABLE quote
+    -> (
+    ->     ID INTEGER PRIMARY KEY,
+    ->     owner VARCHAR(256),
+    ->     author VARCHAR(256),
+    ->     source VARCHAR(512),
+    ->     rating INTEGER
+    -> );
+Query OK, 0 rows affected (0,09 sec)
+
+mysql> SHOW TABLES;
++-------------------------+
+| Tables_in_quote_sql_lab |
++-------------------------+
+| cover_type              |
+| quote                   |
++-------------------------+
+2 rows in set (0,01 sec)
+
+mysql> DESCRIBE quote;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| ID     | int          | NO   | PRI | NULL    |       |
+| owner  | varchar(256) | YES  |     | NULL    |       |
+| author | varchar(256) | YES  |     | NULL    |       |
+| source | varchar(512) | YES  |     | NULL    |       |
+| rating | int          | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0,01 sec)
+
+```
 
 **PostgreSQL**
 
-* **Numeric**: SMALLINT, INTEGER, BIGINT, NUMERIC, DECIMAL, REAL, DOUBLE PRECISION
-* **String**: CHAR, VARCHAR, TEXT
-* **Binary**: BYTEA
-* **Date and time**: DATE, TIME, TIMESTAMP, INTERVAL
-* **Boolean**: BOOLEAN
-* **Geometric**: POINT, LINE, POLYGON, CIRCLE
-* **Network**: MACADDR, INET, CIDR
-* **Other**: UUID, XML, JSON
+```bash
+quote_sql_lab=# CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
+CREATE TABLE
+quote_sql_lab=# \dt
+           List of relations
+ Schema |    Name    | Type  |  Owner
+--------+------------+-------+----------
+ public | cover_type | table | postgres
+(1 row)
+
+quote_sql_lab=# CREATE TABLE quote
+quote_sql_lab-# (
+quote_sql_lab(#     ID INTEGER PRIMARY KEY,
+quote_sql_lab(#     owner VARCHAR(256),
+quote_sql_lab(#     author VARCHAR(256),
+quote_sql_lab(#     source VARCHAR(512),
+quote_sql_lab(#     rating INTEGER
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \dt
+           List of relations
+ Schema |    Name    | Type  |  Owner
+--------+------------+-------+----------
+ public | cover_type | table | postgres
+ public | quote      | table | postgres
+(2 rows)
+
+quote_sql_lab=# \d+ quote
+                                           Table "public.quote"
+ Column |          Type          | Collation | Nullable | Default | Storage  | Stats target | Description
+--------+------------------------+-----------+----------+---------+----------+--------------+-------------
+ id     | integer                |           | not null |         | plain    |              |
+ owner  | character varying(256) |           |          |         | extended |              |
+ author | character varying(256) |           |          |         | extended |              |
+ source | character varying(512) |           |          |         | extended |              |
+ rating | integer                |           |          |         | plain    |              |
+Indexes:
+    "quote_pkey" PRIMARY KEY, btree (id)
+Access method: heap
+
+```
 
 **SQLite**
 
-* **Numeric**: INTEGER, REAL, NUMERIC
-* **String**: TEXT, BLOB
-* **Date and time**: DATE, TIME, DATETIME
-* **Boolean**: BOOLEAN
-
-The set of data types available in MySQL, PostgreSQL, and SQLite is different. This is because the three databases have different underlying architectures and different design goals.
+```bash
+sqlite> .tables
+cover_type
+sqlite> CREATE TABLE quote
+   ...> (
+   ...>     ID INTEGER PRIMARY KEY,
+   ...>     owner VARCHAR(256),
+   ...>     author VARCHAR(256),
+   ...>     source VARCHAR(512),
+   ...>     rating INTEGER
+   ...> );
+sqlite> .tables
+cover_type  quote
+sqlite> .schema quote
+CREATE TABLE quote
+(
+    ID INTEGER PRIMARY KEY,
+    owner VARCHAR(256),
+    author VARCHAR(256),
+    source VARCHAR(512),
+    rating INTEGER
+);
+```
