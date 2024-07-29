@@ -105,171 +105,53 @@ Remember: There's no one-size-fits-all answer. The best database depends on your
 
 -- [Gemini](https://g.co/gemini/share/6412becd3dd9)
 
-## Installation & running
+## Index
 
-### Installation
+1. [Installation and running](#installation-and-running)
+    1. Installation
+    2. Running client
+2. [Working with databases](#working-with-databases)
+    1. Displaying databases
+    2. Creating and choosing databases
+3. [Working with tables](#working-with-tables)
+    1. Displaying tables
+    2. Creating tables
+        1. Datatypes
+        2. Columns and datatypes
+        3. Primary key
 
-**SQLite**
+### Installation and running
 
-```bash
-$ sudo aptitude install sqlite
-```
+|-------------------------------------------------|SQLite -------|MySQL -------|MariaDB ------|PostgreSQL ---|
+|--|--|--|--|--|
+|**Installation**|[✤](databases/sqlite/README.md#installation)|[✤](databases/mysql/README.md#installation)|[✤](databases/mariadb/README.md#installation)|[✤](databases/postgresql/README.md#installation)|
 
-**MySQL**
+### Working with databases
 
-```bash
-$ sudo aptitude install mysql-server mysql-client
-```
+|-------------------------------------------------|SQLite -------|MySQL -------|MariaDB ------|PostgreSQL ---|
+|--|--|--|--|--|
+|**Displaying databases**|[✤](databases/sqlite/README.md#displaying-databases)|[✤](databases/mysql/README.md#displaying-databases)|[✤](databases/mariadb/README.md#displaying-databases)|[✤](databases/postgresql/README.md#displaying-databases)|
+|**Creating and choosing databases**|[✤](databases/sqlite/README.md#creating-and-choosing-databases)|[✤](databases/mysql/README.md#creating-and-choosing-databases)|[✤](databases/mariadb/README.md#creating-and-choosing-databases)|[✤](databases/postgresql/README.md#creating-and-choosing-databases)|
 
-**MariaDB**
+### Working with tables
 
-```bash
-$ sudo aptitude install mariadb-server mariadb-client
-```
-
-**PostgreSQL**
-
-```bash
-$ sudo aptitude install postgresql
-```
-
-### Running client
-
-**SQLite**
-
-```bash
-$ sudo aptitude install sqlite
-```
-
-**MySQL**
-
-```bash
-$ sudo mysql -u root
-```
-
-**PostgreSQL**
-
-```bash
-$ sudo -u postgres psql
-```
-
-
-
-## Working with databases
-
-### Displaying databases
-
-**MySQL**
-
-```bash
-mysql> SHOW DATABASES;
-+-------------------------+
-| Database                |
-+-------------------------+
-| information_schema      |
-| mysql                   |
-| performance_schema      |
-| sys                     |
-+-------------------------+
-4 rows in set (0,00 sec)
-
-```
-
-**PostgreSQL**
-
-```bash
-postgres=# \db
-       List of tablespaces
-    Name    |  Owner   | Location
-------------+----------+----------
- pg_default | postgres |
- pg_global  | postgres |
-(2 rows)
-
-postgres=# \list
-                                    List of databases
-     Name      |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges
----------------+----------+----------+-------------+-------------+-----------------------
- postgres      | postgres | UTF8     | en_GB.UTF-8 | en_GB.UTF-8 |
- template0     | postgres | UTF8     | en_GB.UTF-8 | en_GB.UTF-8 | =c/postgres          +
-               |          |          |             |             | postgres=CTc/postgres
- template1     | postgres | UTF8     | en_GB.UTF-8 | en_GB.UTF-8 | =c/postgres          +
-               |          |          |             |             | postgres=CTc/postgres
-(3 rows)
-
-```
-
-**SQLite**
-
-```bash
-sqlite> .databases
-seq  name             file
----  ---------------  ----------------------------------------------------------
-0    main
-1    temp
-```
-
-### Creating and choosing databases
-
-**MySQL**
-
-```bash
-mysql> CREATE DATABASE quote_sql_lab;
-Query OK, 1 row affected (0,03 sec)
-
-mysql> show databases;
-+-------------------------+
-| Database                |
-+-------------------------+
-| information_schema      |
-| mysql                   |
-| performance_schema      |
-| quote_sql_lab           |
-| sys                     |
-+-------------------------+
-5 rows in set (0,01 sec)
-
-mysql> USE quote_sql_lab;
-Database changed
-```
-
-**PostgreSQL**
-
-```bash
-postgres=# CREATE DATABASE quote_sql_lab;
-CREATE DATABASE
-postgres=# \list
-                                    List of databases
-     Name      |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges
----------------+----------+----------+-------------+-------------+-----------------------
- postgres      | postgres | UTF8     | en_GB.UTF-8 | en_GB.UTF-8 |
- quote_sql_lab | postgres | UTF8     | en_GB.UTF-8 | en_GB.UTF-8 |
- template0     | postgres | UTF8     | en_GB.UTF-8 | en_GB.UTF-8 | =c/postgres          +
-               |          |          |             |             | postgres=CTc/postgres
- template1     | postgres | UTF8     | en_GB.UTF-8 | en_GB.UTF-8 | =c/postgres          +
-               |          |          |             |             | postgres=CTc/postgres
-(4 rows)
-
-postgres=# \connect quote_sql_lab
-You are now connected to database "quote_sql_lab" as user "postgres".
-```
-
-**SQLite**
-
-```bash
-$ sqlite quote_sql_lab.db
-SQLite version 2.8.17
-Enter ".help" for instructions
-sqlite> .databases
-seq  name             file
----  ---------------  ----------------------------------------------------------
-0    main             /home/katheroine/quote_sql_lab.db
-1    temp             /var/tmp/sqlite_4bgECn3Em2x6p9V
-```
+|-------------------------------------------------|SQLite -------|MySQL -------|MariaDB ------|PostgreSQL ---|
+|--|--|--|--|--|
+|**Displaying tables**|[✤](databases/sqlite/README.md#displaying-tables)|[✤](databases/mysql/README.md#displaying-tables)|[✤](databases/mariadb/README.md#displaying-tables)|[✤](databases/postgresql/README.md#displaying-tables)|
+|**Creating tables**|
+|Datatypes|[✤](databases/sqlite/README.md#datatypes)|[✤](databases/mysql/README.md#datatypes)|[✤](databases/mariadb/README.md#datatypes)|[✤](databases/postgresql/README.md#datatypes)|
+|Columns and datatypes|[✤](databases/sqlite/README.md#columns-and-datatypes)|[✤](databases/mysql/README.md#columns-and-datatypes)|[✤](databases/mariadb/README.md#columns-and-datatypes)|[✤](databases/postgresql/README.md#columns-and-datatypes)|
+|Primary key|[✤](databases/sqlite/README.md#primary-key)|[✤](databases/mysql/README.md#primary-key)|[✤](databases/mariadb/README.md#primary-key)|[✤](databases/postgresql/README.md#primary-key)|
 
 ## Working with tables
 
 ### Displaying tables
+
+**SQLite**
+
+```bash
+sqlite> .tables
+```
 
 **MySQL**
 
@@ -287,17 +169,18 @@ Did not find any relations.
 
 ```
 
-**SQLite**
-
-```bash
-sqlite> .tables
-```
-
 ### Creating tables
 
 #### Datatypes
 
 The set of datatypes available depends on the particular database. Different databases support different data types, and some databases support more data types than others.
+
+**SQLite**
+
+* **Numeric**: INTEGER, REAL, NUMERIC
+* **String**: TEXT, BLOB
+* **Date and time**: DATE, TIME, DATETIME
+* **Boolean**: BOOLEAN
 
 **MySQL**
 
@@ -317,16 +200,17 @@ The set of datatypes available depends on the particular database. Different dat
 * **Network**: MACADDR, INET, CIDR
 * **Other**: UUID, XML, JSON
 
-**SQLite**
-
-* **Numeric**: INTEGER, REAL, NUMERIC
-* **String**: TEXT, BLOB
-* **Date and time**: DATE, TIME, DATETIME
-* **Boolean**: BOOLEAN
-
 The set of data types available in MySQL, PostgreSQL, and SQLite is different. This is because the three databases have different underlying architectures and different design goals.
 
 #### Columns & datatypes
+
+**SQLite**
+
+```bash
+sqlite> CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
+sqlite> .tables
+cover_type
+```
 
 **MySQL**
 
@@ -358,15 +242,33 @@ quote_sql_lab=# \dt
 
 ```
 
+#### Primary key
+
 **SQLite**
 
 ```bash
-sqlite> CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
 sqlite> .tables
 cover_type
+sqlite> CREATE TABLE quote
+   ...> (
+   ...>     ID INTEGER PRIMARY KEY,
+   ...>     owner VARCHAR(256),
+   ...>     author VARCHAR(256),
+   ...>     source VARCHAR(512),
+   ...>     rating INTEGER
+   ...> );
+sqlite> .tables
+cover_type  quote
+sqlite> .schema quote
+CREATE TABLE quote
+(
+    ID INTEGER PRIMARY KEY,
+    owner VARCHAR(256),
+    author VARCHAR(256),
+    source VARCHAR(512),
+    rating INTEGER
+);
 ```
-
-#### Primary key
 
 **MySQL**
 
@@ -446,30 +348,4 @@ Indexes:
     "quote_pkey" PRIMARY KEY, btree (id)
 Access method: heap
 
-```
-
-**SQLite**
-
-```bash
-sqlite> .tables
-cover_type
-sqlite> CREATE TABLE quote
-   ...> (
-   ...>     ID INTEGER PRIMARY KEY,
-   ...>     owner VARCHAR(256),
-   ...>     author VARCHAR(256),
-   ...>     source VARCHAR(512),
-   ...>     rating INTEGER
-   ...> );
-sqlite> .tables
-cover_type  quote
-sqlite> .schema quote
-CREATE TABLE quote
-(
-    ID INTEGER PRIMARY KEY,
-    owner VARCHAR(256),
-    author VARCHAR(256),
-    source VARCHAR(512),
-    rating INTEGER
-);
 ```
