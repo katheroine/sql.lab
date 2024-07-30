@@ -143,37 +143,72 @@ Remember: There's no one-size-fits-all answer. The best database depends on your
 |Columns and datatypes|[✤](databases/sqlite/README.md#columns-and-datatypes)|[✤](databases/mysql/README.md#columns-and-datatypes)|[✤](databases/mariadb/README.md#columns-and-datatypes)|[✤](databases/postgresql/README.md#columns-and-datatypes)|
 |Primary key|[✤](databases/sqlite/README.md#primary-key)|[✤](databases/mysql/README.md#primary-key)|[✤](databases/mariadb/README.md#primary-key)|[✤](databases/postgresql/README.md#primary-key)|
 
-## Working with tables
-
-### Displaying tables
-
-**SQLite**
-
-```bash
-sqlite> .tables
-```
-
-**MySQL**
-
-```bash
-mysql> show tables;
-Empty set (0,00 sec)
-
-```
-
-**PostgreSQL**
-
-```bash
-quote_sql_lab=# \dt
-Did not find any relations.
-
-```
-
 ### Creating tables
 
 #### Datatypes
 
 The set of datatypes available depends on the particular database. Different databases support different data types, and some databases support more data types than others.
+
+SQLite Data Types
+
+INTEGER
+REAL
+TEXT
+BLOB
+NULL
+
+MySQL/MariaDB Data Types
+
+TINYINT
+SMALLINT
+MEDIUMINT
+INT
+BIGINT
+FLOAT
+DOUBLE
+DECIMAL
+CHAR
+VARCHAR
+TEXT
+BLOB
+DATE
+TIME
+DATETIME
+TIMESTAMP
+YEAR
+BOOLEAN
+ENUM
+SET
+JSON (MySQL 5.7+, MariaDB 10.2+)
+UUID (MariaDB 10.2+)
+
+PostgreSQL Data Types
+
+SMALLINT
+INTEGER
+BIGINT
+REAL
+DOUBLE PRECISION
+NUMERIC
+DECIMAL
+CHAR
+VARCHAR
+TEXT
+BYTEA
+DATE
+TIME
+TIMESTAMP
+INTERVAL
+BOOLEAN
+JSONB
+UUID
+ARRAY
+ENUM
+GEOMETRY
+GEOGRAPHY
+and many more...
+
+-- [Gemini](https://gemini.google.com/share/4a7cf5139a36)
 
 **SQLite**
 

@@ -77,6 +77,8 @@ Did not find any relations.
 
 The set of datatypes available depends on the particular database. Different databases support different data types, and some databases support more data types than others.
 
+The set of data types available in MySQL, PostgreSQL, and SQLite is different. This is because the three databases have different underlying architectures and different design goals.
+
 * **Numeric**: SMALLINT, INTEGER, BIGINT, NUMERIC, DECIMAL, REAL, DOUBLE PRECISION
 * **String**: CHAR, VARCHAR, TEXT
 * **Binary**: BYTEA
