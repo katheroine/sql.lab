@@ -313,15 +313,6 @@ quote_sql_lab=# \dt
 #### Primary key
 
 ```bash
-quote_sql_lab=# CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
-CREATE TABLE
-quote_sql_lab=# \dt
-           List of relations
- Schema |    Name    | Type  |  Owner
---------+------------+-------+----------
- public | cover_type | table | postgres
-(1 row)
-
 quote_sql_lab=# CREATE TABLE quote
 quote_sql_lab-# (
 quote_sql_lab(#     ID INTEGER PRIMARY KEY,

@@ -136,3 +136,55 @@ The set of data types available in MySQL, PostgreSQL, and SQLite is different. T
 * **NULL** - NULL represents an unknown value.
 
 -- [MariaDB documentation](https://mariadb.com/kb/en/data-types/)
+
+#### Columns and datatypes
+
+```bash
+MariaDB [quote_sql_lab]> CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
+Query OK, 0 rows affected (0,052 sec)
+
+MariaDB [quote_sql_lab]> SHOW TABLES;
++-------------------------+
+| Tables_in_quote_sql_lab |
++-------------------------+
+| cover_type              |
++-------------------------+
+1 row in set (0,001 sec)
+
+```
+
+#### Primary key
+
+```bash
+MariaDB [quote_sql_lab]> CREATE TABLE quote
+    -> (
+    ->     ID INTEGER PRIMARY KEY,
+    ->     owner VARCHAR(256),
+    ->     author VARCHAR(256),
+    ->     source VARCHAR(512),
+    ->     rating INTEGER
+    -> );
+Query OK, 0 rows affected (0,081 sec)
+
+MariaDB [quote_sql_lab]> SHOW TABLES;
++-------------------------+
+| Tables_in_quote_sql_lab |
++-------------------------+
+| cover_type              |
+| quote                   |
++-------------------------+
+2 rows in set (0,009 sec)
+
+MariaDB [quote_sql_lab]> DESCRIBE quote;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| ID     | int(11)      | NO   | PRI | NULL    |       |
+| owner  | varchar(256) | YES  |     | NULL    |       |
+| author | varchar(256) | YES  |     | NULL    |       |
+| source | varchar(512) | YES  |     | NULL    |       |
+| rating | int(11)      | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0,012 sec)
+
+```
