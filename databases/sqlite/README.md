@@ -57,10 +57,10 @@ The set of data types available in MySQL, PostgreSQL, and SQLite is different. T
 
 **SQLite Data Types**
 
+* **Boolean**: BOOLEAN
 * **Numeric**: INTEGER, REAL, NUMERIC
 * **String**: TEXT, BLOB
 * **Date and time**: DATE, TIME, DATETIME
-* **Boolean**: BOOLEAN
 
 Most SQL database engines (every SQL database engine other than SQLite, as far as we know) uses static, rigid typing. With static typing, the datatype of a value is determined by its container - the particular column in which the value is stored.
 

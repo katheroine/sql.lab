@@ -72,6 +72,11 @@ The set of data types available in MySQL, PostgreSQL, and SQLite is different. T
 
 **MariaDB Data Types**
 
+* **Numeric**: TINYINT, SMALLINT, MEDIUMINT, INTEGER, INT, BIGINT, FLOAT, DOUBLE, DECIMAL
+* **String**: CHAR, VARCHAR, BINARY, VARBINARY, TEXT, BLOB
+* **Date and time**: DATE, TIME, DATETIME, TIMESTAMP
+* **Other**: ENUM, SET, BIT
+
 ##### Numeric
 
 * **TINYINT** - Tiny integer, -128 to 127 signed.
@@ -129,3 +134,5 @@ The set of data types available in MySQL, PostgreSQL, and SQLite is different. T
 ##### Other
 
 * **NULL** - NULL represents an unknown value.
+
+-- [MariaDB documentation](https://mariadb.com/kb/en/data-types/)

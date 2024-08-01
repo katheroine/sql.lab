@@ -103,24 +103,6 @@ The date and time data types for representing temporal values are **DATE**, **TI
 
 -- [MySQL documentation](https://dev.mysql.com/doc/refman/8.4/en/date-and-time-types.html)
 
-##### Spatial
-
-The Open Geospatial Consortium (OGC) is an international consortium of more than 250 companies, agencies, and universities participating in the development of publicly available conceptual solutions that can be useful with all kinds of applications that manage **spatial data**.
-
-The Open Geospatial Consortium publishes the OpenGIS® Implementation Standard for Geographic information - Simple feature access - Part 2: SQL option, a document that proposes several conceptual ways for extending an SQL RDBMS to support spatial data. This specification is available from the OGC website at [http://www.opengeospatial.org/standards/sfs](http://www.opengeospatial.org/standards/sfs).
-
-Following the OGC specification, MySQL implements spatial extensions as a subset of the SQL with Geometry Types environment. This term refers to an SQL environment that has been extended with a set of geometry types. A geometry-valued SQL column is implemented as a column that has a geometry type. The specification describes a set of SQL geometry types, as well as functions on those types to create and analyze geometry values.
-
-MySQL spatial extensions enable the generation, storage, and analysis of geographic features:
-
-* Data types for representing spatial values
-* Functions for manipulating spatial values
-* Spatial indexing for improved access times to spatial columns
-
-The spatial data types and functions are available for MyISAM, InnoDB, NDB, and ARCHIVE tables. For indexing spatial columns, *MyISAM* and *InnoDB* support both SPATIAL and non-SPATIAL indexes. The other storage engines support non-SPATIAL indexes.
-
--- [MySQL documentation](https://dev.mysql.com/doc/refman/8.4/en/spatial-types.html)
-
 ##### JSON
 
 MySQL supports a native **JSON** data type defined by RFC 7159 that enables efficient access to data in JSON (JavaScript Object Notation) documents. The JSON data type provides these advantages over storing JSON-format strings in a string column:
@@ -146,6 +128,24 @@ The *InnoDB* storage engine supports multi-valued indexes on JSON arrays. See Mu
 MySQL *NDB* Cluster supports *JSON* columns and MySQL JSON functions, including creation of an index on a column generated from a *JSON* column as a workaround for being unable to index a *JSON* column. A maximum of 3 *JSON* columns per *NDB* table is supported.
 
 -- [MySQL documentation](https://dev.mysql.com/doc/refman/8.4/en/json.html)
+
+##### Spatial
+
+The Open Geospatial Consortium (OGC) is an international consortium of more than 250 companies, agencies, and universities participating in the development of publicly available conceptual solutions that can be useful with all kinds of applications that manage **spatial data**.
+
+The Open Geospatial Consortium publishes the OpenGIS® Implementation Standard for Geographic information - Simple feature access - Part 2: SQL option, a document that proposes several conceptual ways for extending an SQL RDBMS to support spatial data. This specification is available from the OGC website at [http://www.opengeospatial.org/standards/sfs](http://www.opengeospatial.org/standards/sfs).
+
+Following the OGC specification, MySQL implements spatial extensions as a subset of the SQL with Geometry Types environment. This term refers to an SQL environment that has been extended with a set of geometry types. A geometry-valued SQL column is implemented as a column that has a geometry type. The specification describes a set of SQL geometry types, as well as functions on those types to create and analyze geometry values.
+
+MySQL spatial extensions enable the generation, storage, and analysis of geographic features:
+
+* Data types for representing spatial values
+* Functions for manipulating spatial values
+* Spatial indexing for improved access times to spatial columns
+
+The spatial data types and functions are available for MyISAM, InnoDB, NDB, and ARCHIVE tables. For indexing spatial columns, *MyISAM* and *InnoDB* support both SPATIAL and non-SPATIAL indexes. The other storage engines support non-SPATIAL indexes.
+
+-- [MySQL documentation](https://dev.mysql.com/doc/refman/8.4/en/spatial-types.html)
 
 #### Columns and datatypes
 
