@@ -153,7 +153,7 @@ The spatial data types and functions are available for MyISAM, InnoDB, NDB, and 
 mysql> CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
 Query OK, 0 rows affected (0,07 sec)
 
-mysql> show tables;
+mysql> SHOW TABLES;
 +-------------------------+
 | Tables_in_quote_sql_lab |
 +-------------------------+
