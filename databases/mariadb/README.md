@@ -1,3 +1,5 @@
+[⌂ Home](../../README.md)
+
 # MariaDB
 
 ## Installation and running
