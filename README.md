@@ -9,7 +9,8 @@ Laboratory of SQL & most popular SQL databases:
 ## Index
 
 1. [Databases](databases/databases.md)
-2. [Installation and running](#installation-and-running)
+2. [SQL](sql/sql.md)
+2. [Installation and running databases](#installation-and-running)
     1. Installation
     2. Running client
 3. [Working with databases](#working-with-databases)
@@ -18,8 +19,8 @@ Laboratory of SQL & most popular SQL databases:
 4. [Working with tables](#working-with-tables)
     1. Displaying tables
     2. Creating tables
-        1. Datatypes
-        2. Columns and datatypes
+        1. [Data types](sql/data_types.md)
+        2. Columns and data types
         3. Primary key
 
 ### Installation and running
