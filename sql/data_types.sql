@@ -26,6 +26,23 @@ SELECT * FROM user WHERE active = 1;
 SELECT * FROM user WHERE active = 0;
 SELECT * FROM user WHERE active IS NULL;
 
+CREATE TABLE rating
+(
+    quote_id INTEGER PRIMARY KEY,
+    rate INTEGER,
+    class SMALLINT,
+    points BIGINT
+);
+
+INSERT INTO rating VALUES
+    (1, 1, 3, 1356),
+    (2, 3, 2, 2741),
+    (3, 5, 1, 6420);
+
+SELECT * FROM rating;
+SELECT * FROM rating WHERE class >= 2;
+SELECT * FROM rating WHERE points > (10000 / 3);
+
 CREATE TABLE physical_property
 (
     medium_id INTEGER PRIMARY KEY,
@@ -45,3 +62,18 @@ SELECT * FROM physical_property;
 SELECT * FROM physical_property WHERE weight = 2;
 SELECT * FROM physical_property WHERE weight = 2.5;
 SELECT * FROM physical_property WHERE weight > 2;
+
+CREATE TABLE storage_conditions
+(
+    medium_id INTEGER PRIMARY KEY,
+    humidity FLOAT,
+    temperature FLOAT(4),
+    air_pressure REAL
+);
+
+DESCRIBE storage_conditions;
+
+INSERT INTO storage_conditions VALUES
+    (1, 40.532, 19.75, 1054.5),
+    (2, 30.95, 15.6, 1020),
+    (3, 35, 16, 1036.455);
