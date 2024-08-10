@@ -77,3 +77,59 @@ INSERT INTO storage_conditions VALUES
     (1, 40.532, 19.75, 1054.5),
     (2, 30.95, 15.6, 1020),
     (3, 35, 16, 1036.455);
+
+SELECT * FROM storage_conditions WHERE humidity = 40.532;
+SELECT * FROM storage_conditions WHERE humidity > 40.4 AND humidity < 40.6;
+
+CREATE TABLE file
+(
+    ID INTEGER PRIMARY KEY,
+    mode BINARY(3)
+);
+
+DESCRIBE file;
+
+INSERT INTO file VALUES
+    (1, 777),
+    (2, 755),
+    (3, 740);
+
+SELECT * FROM file;
+
+CREATE TABLE medium_type
+(
+    codename CHAR(8) PRIMARY KEY,
+    description VARCHAR(256)
+);
+
+DESCRIBE medium_type;
+
+INSERT INTO medium_type VALUES
+    ('BOOK', 'A book'),
+    ('CD', 'A CD'),
+    ('VHS', 'A VHS tape');
+
+SELECT * FROM medium_type;
+SELECT * FROM medium_type WHERE description LIKE '%tape';
+
+CREATE TABLE points
+(
+    user_id INTEGER,
+    quote_id INTEGER,
+    quantity INTEGER,
+    date DATE,
+    time TIME,
+    datetime DATETIME,
+    timestamp TIMESTAMP,
+    PRIMARY KEY (user_id, quote_id)
+);
+
+DESCRIBE points;
+
+INSERT INTO points VALUES
+    (1, 2, 5, '2016/12/12', '12:00', '2016/12/12 12:00', '2016/12/12 12:00'),
+    (2, 3, 3, '2017-2-1', '10:20:5', '2017-2-1T10:20:5', '2017-2-1T10:20:5'),
+    (3, 1, 1, "2018.5.20", "9:15:0.10", "2018.5.20 9:15:0.10", "2018.5.20 9:15:0.10");
+
+
+SELECT * FROM points;
