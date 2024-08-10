@@ -35,7 +35,7 @@ The SQL standard defines three kinds of data types:
 * [Datetime types (DATE, TIME, TIMESTAMP)](#datetime)
 * Interval type (INTERVAL)
 * XML
-* JSON
+* [JSON](#json)
 
 --[Wikipedia](https://en.wikipedia.org/wiki/SQL#SQL_data_types)
 
@@ -667,5 +667,58 @@ INSERT INTO points VALUES
 |       2 |        3 |        3 | 2017-02-01 | 10:20:05 | 2017-02-01 10:20:05 | 2017-02-01 10:20:05 |
 |       3 |        1 |        1 | 2018-05-20 | 09:15:00 | 2018-05-20 09:15:00 | 2018-05-20 09:15:00 |
 +---------+----------+----------+------------+----------+---------------------+---------------------+
+3 rows in set
+```
+
+### JSON
+
+The new native **`JSON`** data type that stores JSON documents in a native binary format.
+
+The `JSON` type provides a high-fidelity storage of JSON documents optimized for easy querying and manipulation, and provides the following benefits over storing JSON data in varchar or nvarchar:
+
+* More efficient reads, as the document is already parsed
+* More efficient writes, as the query can update individual values without accessing the entire document
+* More efficient storage, optimized for compression
+* No change in compatibility with existing code
+
+The json type internally stores data using UTF-8 encoding, Latin1_General_100_BIN2_UTF8. This behavior matches the JSON specification.
+
+-- [SQL Server documentation](https://learn.microsoft.com/en-us/sql/t-sql/data-types/json-data-type)
+
+```sql
+CREATE TABLE structured_data
+(
+    id INTEGER PRIMARY KEY,
+    content JSON
+);
+```
+
+```
+> DESCRIBE structured_data;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| id      | int(11)  | NO   | PRI | NULL    |       |
+| content | longtext | YES  |     | NULL    |       |
++---------+----------+------+-----+---------+-------+
+2 rows in set
+```
+
+```sql
+INSERT INTO structured_data VALUES
+    (1, '{"genre": "thriller", "rating": 5}'),
+    (2, '{"hobby": "painting"}'),
+    (3, '{"interests": ["programming", "rock music"]}');
+```
+
+```
+> SELECT * FROM structured_data;
++----+----------------------------------------------+
+| id | content                                      |
++----+----------------------------------------------+
+|  1 | {"genre": "thriller", "rating": 5}           |
+|  2 | {"hobby": "painting"}                        |
+|  3 | {"interests": ["programming", "rock music"]} |
++----+----------------------------------------------+
 3 rows in set
 ```

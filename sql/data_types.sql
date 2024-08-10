@@ -133,3 +133,18 @@ INSERT INTO points VALUES
 
 
 SELECT * FROM points;
+
+CREATE TABLE structured_data
+(
+    id INTEGER PRIMARY KEY,
+    content JSON
+);
+
+DESCRIBE structured_data;
+
+INSERT INTO structured_data VALUES
+    (1, '{"genre": "thriller", "rating": 5}'),
+    (2, '{"hobby": "painting"}'),
+    (3, '{"interests": ["programming", "rock music"]}');
+
+SELECT * FROM structured_data;
