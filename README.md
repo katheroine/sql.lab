@@ -10,13 +10,13 @@ Laboratory of SQL & most popular SQL databases:
 
 1. [Databases](databases/databases.md)
 2. [SQL](sql/sql.md)
-2. [Installation and running databases](#installation-and-running)
+3. [Installation and running databases](#installation-and-running)
     1. Installation
     2. Running client
-3. [Managing databases](#managing-databases)
+4. [Managing databases](#managing-databases)
     1. Displaying databases
     2. Creating and choosing databases
-4. [Managing tables](#managing-tables)
+5. [Managing tables](#managing-tables)
     1. Displaying tables
     2. Creating tables
         1. [Data types](sql/data_types.md)

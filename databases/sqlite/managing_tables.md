@@ -12,7 +12,13 @@ sqlite> .tables
 
 ### Creating tables
 
-#### Datatypes
+```
+sqlite> CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
+sqlite> .tables
+cover_type
+```
+
+#### Data types
 
 The set of datatypes available depends on the particular database. Different databases support different data types, and some databases support more data types than others.
 
@@ -47,17 +53,167 @@ A storage class is more general than a datatype. The INTEGER storage class, for 
 
 -- [SQLite documentation](https://www.sqlite.org/datatype3.html)
 
-#### Columns and datatypes
+#### Columns and data types
 
-```bash
-sqlite> CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
-sqlite> .tables
-cover_type
+##### Boolean & bit
+
+```
+sqlite> CREATE TABLE user
+   ...> (
+   ...>     ID INTEGER PRIMARY KEY,
+   ...>     confirmed BOOLEAN,
+   ...>     active BIT
+   ...> );
+sqlite> .schema user
+CREATE TABLE user
+(
+    ID INTEGER PRIMARY KEY,
+    confirmed BOOLEAN,
+    active BIT
+);
+```
+
+##### Integer
+
+```
+sqlite> CREATE TABLE rating
+   ...> (
+   ...>     quote_id INTEGER PRIMARY KEY,
+   ...>     rate INTEGER,
+   ...>     class SMALLINT,
+   ...>     points BIGINT
+   ...> );
+sqlite> .schema rating
+CREATE TABLE rating
+(
+    quote_id INTEGER PRIMARY KEY,
+    rate INTEGER,
+    class SMALLINT,
+    points BIGINT
+);
+```
+
+##### Decimal
+
+```
+sqlite> CREATE TABLE physical_property
+   ...> (
+   ...>     medium_id INTEGER PRIMARY KEY,
+   ...>     weight DECIMAL,
+   ...>     length NUMERIC,
+   ...>     height NUMERIC(2),
+   ...>     depth NUMERIC(2, 1)
+   ...> );
+sqlite> .schema physical_property
+CREATE TABLE physical_property
+(
+    medium_id INTEGER PRIMARY KEY,
+    weight DECIMAL,
+    length NUMERIC,
+    height NUMERIC(2),
+    depth NUMERIC(2, 1)
+);
+```
+
+##### Floating point
+
+```
+sqlite> CREATE TABLE storage_conditions
+   ...> (
+   ...>     medium_id INTEGER PRIMARY KEY,
+   ...>     humidity FLOAT,
+   ...>     temperature FLOAT(4),
+   ...>     air_pressure REAL
+   ...> );
+sqlite> .schema storage_conditions
+CREATE TABLE storage_conditions
+(
+    medium_id INTEGER PRIMARY KEY,
+    humidity FLOAT,
+    temperature FLOAT(4),
+    air_pressure REAL
+);
+```
+
+###### Binary
+
+```
+sqlite> CREATE TABLE file
+   ...> (
+   ...>     ID INTEGER PRIMARY KEY,
+   ...>     mode BINARY(3)
+   ...> );
+sqlite> .schema file
+CREATE TABLE file
+(
+    ID INTEGER PRIMARY KEY,
+    mode BINARY(3)
+);
+```
+
+##### Character
+
+```
+sqlite> CREATE TABLE medium_type
+   ...> (
+   ...>     codename CHAR(8) PRIMARY KEY,
+   ...>     description VARCHAR(256)
+   ...> );
+sqlite> .schema medium_type
+CREATE TABLE medium_type
+(
+    codename CHAR(8) PRIMARY KEY,
+    description VARCHAR(256)
+);
+```
+
+###### Date & time
+
+```
+sqlite> CREATE TABLE points
+   ...> (
+   ...>     user_id INTEGER,
+   ...>     quote_id INTEGER,
+   ...>     quantity INTEGER,
+   ...>     date DATE,
+   ...>     time TIME,
+   ...>     datetime DATETIME,
+   ...>     timestamp TIMESTAMP,
+   ...>     PRIMARY KEY (user_id, quote_id)
+   ...> );
+sqlite> .schema points
+CREATE TABLE points
+(
+    user_id INTEGER,
+    quote_id INTEGER,
+    quantity INTEGER,
+    date DATE,
+    time TIME,
+    datetime DATETIME,
+    timestamp TIMESTAMP,
+    PRIMARY KEY (user_id, quote_id)
+);
+```
+
+##### JSON
+
+```
+sqlite> CREATE TABLE structured_data
+   ...> (
+   ...>     id INTEGER PRIMARY KEY,
+   ...>     content JSON
+   ...> );
+sqlite> .schema structured_data
+CREATE TABLE structured_data
+(
+    id INTEGER PRIMARY KEY,
+    content JSON
+);
 ```
 
 #### Primary key
 
-```bash
+```
 sqlite> .tables
 cover_type
 sqlite> CREATE TABLE quote

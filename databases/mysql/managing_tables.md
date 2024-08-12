@@ -14,6 +14,20 @@ Empty set (0,00 sec)
 
 ### Creating tables
 
+```
+mysql> CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
+Query OK, 0 rows affected (0,07 sec)
+
+mysql> SHOW TABLES;
++-------------------------+
+| Tables_in_quote_sql_lab |
++-------------------------+
+| cover_type              |
++-------------------------+
+1 row in set (0,01 sec)
+
+```
+
 #### Datatypes
 
 The set of datatypes available depends on the particular database. Different databases support different data types, and some databases support more data types than others.
@@ -97,17 +111,196 @@ The spatial data types and functions are available for MyISAM, InnoDB, NDB, and 
 
 #### Columns and datatypes
 
-```bash
-mysql> CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
-Query OK, 0 rows affected (0,07 sec)
+##### Boolean & bit
 
-mysql> SHOW TABLES;
-+-------------------------+
-| Tables_in_quote_sql_lab |
-+-------------------------+
-| cover_type              |
-+-------------------------+
-1 row in set (0,01 sec)
+```
+mysql> CREATE TABLE user
+    -> (
+    ->     ID INTEGER PRIMARY KEY,
+    ->     confirmed BOOLEAN,
+    ->     active BIT
+    -> );
+Query OK, 0 rows affected (0,036 sec)
+
+mysql> DESCRIBE user;
++-----------+------------+------+-----+---------+-------+
+| Field     | Type       | Null | Key | Default | Extra |
++-----------+------------+------+-----+---------+-------+
+| ID        | int(11)    | NO   | PRI | NULL    |       |
+| confirmed | tinyint(1) | YES  |     | NULL    |       |
+| active    | bit(1)     | YES  |     | NULL    |       |
++-----------+------------+------+-----+---------+-------+
+3 rows in set (0,008 sec)
+
+```
+
+##### Integer
+
+```
+mysql> CREATE TABLE rating
+    -> (
+    ->     quote_id INTEGER PRIMARY KEY,
+    ->     rate INTEGER,
+    ->     class SMALLINT,
+    ->     points BIGINT
+    -> );
+Query OK, 0 rows affected (0,037 sec)
+
+mysql> DESCRIBE rating;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| quote_id | int(11)     | NO   | PRI | NULL    |       |
+| rate     | int(11)     | YES  |     | NULL    |       |
+| class    | smallint(6) | YES  |     | NULL    |       |
+| points   | bigint(20)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0,005 sec)
+
+```
+
+##### Decimal
+
+```
+mysql> CREATE TABLE physical_property
+    -> (
+    ->     medium_id INTEGER PRIMARY KEY,
+    ->     weight DECIMAL,
+    ->     length NUMERIC,
+    ->     height NUMERIC(2),
+    ->     depth NUMERIC(2, 1)
+    -> );
+Query OK, 0 rows affected (0,018 sec)
+
+mysql> DESCRIBE physical_property;
++-----------+---------------+------+-----+---------+-------+
+| Field     | Type          | Null | Key | Default | Extra |
++-----------+---------------+------+-----+---------+-------+
+| medium_id | int(11)       | NO   | PRI | NULL    |       |
+| weight    | decimal(10,0) | YES  |     | NULL    |       |
+| length    | decimal(10,0) | YES  |     | NULL    |       |
+| height    | decimal(2,0)  | YES  |     | NULL    |       |
+| depth     | decimal(2,1)  | YES  |     | NULL    |       |
++-----------+---------------+------+-----+---------+-------+
+5 rows in set (0,008 sec)
+
+```
+
+##### Floating point
+
+```
+mysql> CREATE TABLE storage_conditions
+    -> (
+    ->     medium_id INTEGER PRIMARY KEY,
+    ->     humidity FLOAT,
+    ->     temperature FLOAT(4),
+    ->     air_pressure REAL
+    -> );
+Query OK, 0 rows affected (0,068 sec)
+
+mysql> DESCRIBE storage_conditions;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| medium_id    | int(11) | NO   | PRI | NULL    |       |
+| humidity     | float   | YES  |     | NULL    |       |
+| temperature  | float   | YES  |     | NULL    |       |
+| air_pressure | double  | YES  |     | NULL    |       |
++--------------+---------+------+-----+---------+-------+
+4 rows in set (0,018 sec)
+
+```
+
+##### Binary
+
+```
+mysql> CREATE TABLE file
+    -> (
+    ->     ID INTEGER PRIMARY KEY,
+    ->     mode BINARY(3)
+    -> );
+Query OK, 0 rows affected (0,020 sec)
+
+mysql> DESCRIBE file;
++-------+-----------+------+-----+---------+-------+
+| Field | Type      | Null | Key | Default | Extra |
++-------+-----------+------+-----+---------+-------+
+| ID    | int(11)   | NO   | PRI | NULL    |       |
+| mode  | binary(3) | YES  |     | NULL    |       |
++-------+-----------+------+-----+---------+-------+
+2 rows in set (0,002 sec)
+
+```
+
+##### Character
+
+```
+mysql> CREATE TABLE medium_type
+    -> (
+    ->     codename CHAR(8),
+    ->     description VARCHAR(256)
+    -> );
+Query OK, 0 rows affected (0,070 sec)
+
+mysql> DESCRIBE medium_type;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| codename    | char(8)      | YES  |     | NULL    |       |
+| description | varchar(256) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+2 rows in set (0,012 sec)
+
+```
+
+###### Date & time
+
+```
+mysql> CREATE TABLE points
+    -> (
+    ->     user_id INTEGER,
+    ->     quote_id INTEGER,
+    ->     date DATE,
+    ->     time TIME,
+    ->     datetime DATETIME,
+    ->     timestamp TIMESTAMP,
+    ->     PRIMARY KEY (user_id, quote_id)
+    -> );
+Query OK, 0 rows affected (0,100 sec)
+
+mysql> DESCRIBE points;
++-----------+-----------+------+-----+---------------------+-------------------------------+
+| Field     | Type      | Null | Key | Default             | Extra                         |
++-----------+-----------+------+-----+---------------------+-------------------------------+
+| user_id   | int(11)   | NO   | PRI | NULL                |                               |
+| quote_id  | int(11)   | NO   | PRI | NULL                |                               |
+| date      | date      | YES  |     | NULL                |                               |
+| time      | time      | YES  |     | NULL                |                               |
+| datetime  | datetime  | YES  |     | NULL                |                               |
+| timestamp | timestamp | NO   |     | current_timestamp() | on update current_timestamp() |
++-----------+-----------+------+-----+---------------------+-------------------------------+
+6 rows in set (0,011 sec)
+
+```
+
+##### JSON
+
+```
+mysql> INSERT INTO structured_data VALUES
+    ->     (1, '{"genre": "thriller", "rating": 5}'),
+    ->     (2, '{"hobby": "painting"}'),
+    ->     (3, '{"interests": ["programming", "rock music"]}');
+Query OK, 3 rows affected (0,012 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE structured_data;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| id      | int(11)  | NO   | PRI | NULL    |       |
+| content | longtext | YES  |     | NULL    |       |
++---------+----------+------+-----+---------+-------+
+2 rows in set (0,010 sec)
 
 ```
 

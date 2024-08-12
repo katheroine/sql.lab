@@ -34,6 +34,8 @@ CREATE TABLE rating
     points BIGINT
 );
 
+DESCRIBE rating;
+
 INSERT INTO rating VALUES
     (1, 1, 3, 1356),
     (2, 3, 2, 2741),
