@@ -13,10 +13,10 @@ Laboratory of SQL & most popular SQL databases:
 2. [Installation and running databases](#installation-and-running)
     1. Installation
     2. Running client
-3. [Working with databases](#working-with-databases)
+3. [Managing databases](#managing-databases)
     1. Displaying databases
     2. Creating and choosing databases
-4. [Working with tables](#working-with-tables)
+4. [Managing tables](#managing-tables)
     1. Displaying tables
     2. Creating tables
         1. [Data types](sql/data_types.md)
@@ -27,24 +27,24 @@ Laboratory of SQL & most popular SQL databases:
 
 |-----------------------------------------------|SQLite -------|MySQL -------|MariaDB ------|PostgreSQL ---|
 |--|--|--|--|--|
-|**Installation**|[✤](databases/sqlite/README.md#installation)|[✤](databases/mysql/README.md#installation)|[✤](databases/mariadb/README.md#installation)|[✤](databases/postgresql/README.md#installation)|
+|**Installation**|[✤](databases/sqlite/installation_and_running.md)|[✤](databases/mysql/installation_and_running.md)|[✤](databases/mariadb/installation_and_running.md)|[✤](databases/postgresql/installation_and_running.md)|
 
-### Working with databases
-
-|-----------------------------------------------|SQLite -------|MySQL -------|MariaDB ------|PostgreSQL ---|
-|--|--|--|--|--|
-|**Displaying databases**|[✤](databases/sqlite/README.md#displaying-databases)|[✤](databases/mysql/README.md#displaying-databases)|[✤](databases/mariadb/README.md#displaying-databases)|[✤](databases/postgresql/README.md#displaying-databases)|
-|**Creating and choosing databases**|[✤](databases/sqlite/README.md#creating-and-choosing-databases)|[✤](databases/mysql/README.md#creating-and-choosing-databases)|[✤](databases/mariadb/README.md#creating-and-choosing-databases)|[✤](databases/postgresql/README.md#creating-and-choosing-databases)|
-
-### Working with tables
+### Managing databases
 
 |-----------------------------------------------|SQLite -------|MySQL -------|MariaDB ------|PostgreSQL ---|
 |--|--|--|--|--|
-|**Displaying tables**|[✤](databases/sqlite/README.md#displaying-tables)|[✤](databases/mysql/README.md#displaying-tables)|[✤](databases/mariadb/README.md#displaying-tables)|[✤](databases/postgresql/README.md#displaying-tables)|
+|**Displaying databases**|[✤](databases/sqlite/managing_databases.md#displaying-databases)|[✤](databases/mysql/managing_databases.md#displaying-databases)|[✤](databases/mariadb/managing_databases.md#displaying-databases)|[✤](databases/postgresql/managing_databases.md#displaying-databases)|
+|**Creating and choosing databases**|[✤](databases/sqlite/managing_databases.md#creating-and-choosing-databases)|[✤](databases/mysql/managing_databases.md#creating-and-choosing-databases)|[✤](databases/mariadb/managing_databases.md#creating-and-choosing-databases)|[✤](databases/postgresql/managing_databases.md#creating-and-choosing-databases)|
+
+### Managing tables
+
+|-----------------------------------------------|SQLite -------|MySQL -------|MariaDB ------|PostgreSQL ---|
+|--|--|--|--|--|
+|**Displaying tables**|[✤](databases/sqlite/managing_tables.md#displaying-tables)|[✤](databases/mysql/managing_tables.md#displaying-tables)|[✤](databases/mariadb/managing_tables.md#displaying-tables)|[✤](databases/postgresql/managing_tables.md#displaying-tables)|
 |**Creating tables**|
-|Datatypes|[✤](databases/sqlite/README.md#datatypes)|[✤](databases/mysql/README.md#datatypes)|[✤](databases/mariadb/README.md#datatypes)|[✤](databases/postgresql/README.md#datatypes)|
-|Columns and datatypes|[✤](databases/sqlite/README.md#columns-and-datatypes)|[✤](databases/mysql/README.md#columns-and-datatypes)|[✤](databases/mariadb/README.md#columns-and-datatypes)|[✤](databases/postgresql/README.md#columns-and-datatypes)|
-|Primary key|[✤](databases/sqlite/README.md#primary-key)|[✤](databases/mysql/README.md#primary-key)|[✤](databases/mariadb/README.md#primary-key)|[✤](databases/postgresql/README.md#primary-key)|
+|Datatypes|[✤](databases/sqlite/managing_tables.md#datatypes)|[✤](databases/mysql/managing_tables.md#datatypes)|[✤](databases/mariadb/managing_tables.md#datatypes)|[✤](databases/postgresql/managing_tables.md#datatypes)|
+|Columns and datatypes|[✤](databases/sqlite/managing_tables.md#columns-and-datatypes)|[✤](databases/mysql/managing_tables.md#columns-and-datatypes)|[✤](databases/mariadb/managing_tables.md#columns-and-datatypes)|[✤](databases/postgresql/managing_tables.md#columns-and-datatypes)|
+|Primary key|[✤](databases/sqlite/managing_tables.md#primary-key)|[✤](databases/mysql/managing_tables.md#primary-key)|[✤](databases/mariadb/managing_tables.md#primary-key)|[✤](databases/postgresql/managing_tables.md#primary-key)|
 
 ## Basic commands
 
