@@ -6,7 +6,7 @@
 
 ### Displaying tables
 
-```bash
+```
 sqlite> .tables
 ```
 

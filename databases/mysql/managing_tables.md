@@ -6,7 +6,7 @@
 
 ### Displaying tables
 
-```bash
+```
 mysql> SHOW TABLES;
 Empty set (0,00 sec)
 
