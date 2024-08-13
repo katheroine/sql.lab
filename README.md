@@ -20,8 +20,7 @@ Laboratory of SQL & most popular SQL databases:
     1. Displaying tables
     2. Creating tables
         1. [Data types](sql/data_types.md)
-        2. Columns and data types
-        3. Primary key
+        3. [Constraints](sql/constraints.md)
 
 ### Installation and running
 

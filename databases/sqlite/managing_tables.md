@@ -53,8 +53,6 @@ A storage class is more general than a datatype. The INTEGER storage class, for 
 
 -- [SQLite documentation](https://www.sqlite.org/datatype3.html)
 
-#### Columns and data types
-
 ##### Boolean & bit
 
 ```
@@ -211,11 +209,13 @@ CREATE TABLE structured_data
 );
 ```
 
-#### Primary key
+#### Constraints
+
+##### Primary key
+
+**Single-column primary key**
 
 ```
-sqlite> .tables
-cover_type
 sqlite> CREATE TABLE quote
    ...> (
    ...>     ID INTEGER PRIMARY KEY,
@@ -224,8 +224,6 @@ sqlite> CREATE TABLE quote
    ...>     source VARCHAR(512),
    ...>     rating INTEGER
    ...> );
-sqlite> .tables
-cover_type  quote
 sqlite> .schema quote
 CREATE TABLE quote
 (
@@ -234,5 +232,33 @@ CREATE TABLE quote
     author VARCHAR(256),
     source VARCHAR(512),
     rating INTEGER
+);
+```
+
+**Multiple-column primary key**
+
+```
+sqlite> CREATE TABLE points
+   ...> (
+   ...>     user_id INTEGER,
+   ...>     quote_id INTEGER,
+   ...>     quantity INTEGER,
+   ...>     date DATE,
+   ...>     time TIME,
+   ...>     datetime DATETIME,
+   ...>     timestamp TIMESTAMP,
+   ...>     PRIMARY KEY (user_id, quote_id)
+   ...> );
+sqlite> .schema points
+CREATE TABLE points
+(
+    user_id INTEGER,
+    quote_id INTEGER,
+    quantity INTEGER,
+    date DATE,
+    time TIME,
+    datetime DATETIME,
+    timestamp TIMESTAMP,
+    PRIMARY KEY (user_id, quote_id)
 );
 ```

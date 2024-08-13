@@ -249,8 +249,6 @@ The PostgreSQL type system contains a number of special-purpose entries that are
 
 -- [PostgreSQL documentation](https://www.postgresql.org/docs/current/datatype-pseudo.html)
 
-#### Columns and datatypes
-
 ##### Boolean & bit
 
 ```
@@ -433,12 +431,15 @@ quote_sql_lab=# \d+ structured_data;
 Indexes:
     "structured_data_pkey" PRIMARY KEY, btree (id)
 Access method: heap
-
 ```
 
-#### Primary key
+#### Constraints
 
-```bash
+##### Primary key
+
+**Single-column primary key**
+
+```
 quote_sql_lab=# CREATE TABLE quote
 quote_sql_lab-# (
 quote_sql_lab(#     ID INTEGER PRIMARY KEY,
@@ -467,6 +468,35 @@ quote_sql_lab=# \d+ quote
  rating | integer                |           |          |         | plain    |              |
 Indexes:
     "quote_pkey" PRIMARY KEY, btree (id)
+Access method: heap
+
+```
+
+**Multiple-column primary key**
+
+```
+quote_sql_lab=# CREATE TABLE points (
+quote_sql_lab(#     user_id INTEGER,
+quote_sql_lab(#     quote_id INTEGER,
+quote_sql_lab(#     quantity INTEGER,
+quote_sql_lab(#     date DATE,
+quote_sql_lab(#     time TIME,
+quote_sql_lab(#     timestamp TIMESTAMP WITH TIME ZONE,
+quote_sql_lab(#     PRIMARY KEY (user_id, quote_id)
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ points;
+                                            Table "public.points"
+  Column   |           Type           | Collation | Nullable | Default | Storage | Stats target | Description
+-----------+--------------------------+-----------+----------+---------+---------+--------------+-------------
+ user_id   | integer                  |           | not null |         | plain   |              |
+ quote_id  | integer                  |           | not null |         | plain   |              |
+ quantity  | integer                  |           |          |         | plain   |              |
+ date      | date                     |           |          |         | plain   |              |
+ time      | time without time zone   |           |          |         | plain   |              |
+ timestamp | timestamp with time zone |           |          |         | plain   |              |
+Indexes:
+    "points_pkey" PRIMARY KEY, btree (user_id, quote_id)
 Access method: heap
 
 ```

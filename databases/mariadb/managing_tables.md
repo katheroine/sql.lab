@@ -101,8 +101,6 @@ The set of data types available in MySQL, PostgreSQL, and SQLite is different. T
 
 -- [MariaDB documentation](https://mariadb.com/kb/en/data-types/)
 
-#### Columns and datatypes
-
 ##### Boolean & bit
 
 ```
@@ -296,9 +294,13 @@ MariaDB [quote_sql_lab]> DESCRIBE structured_data;
 
 ```
 
-#### Primary key
+#### Constraints
 
-```bash
+##### Primary key
+
+**Single-column primary key**
+
+```
 MariaDB [quote_sql_lab]> CREATE TABLE quote
     -> (
     ->     ID INTEGER PRIMARY KEY,
@@ -329,5 +331,35 @@ MariaDB [quote_sql_lab]> DESCRIBE quote;
 | rating | int(11)      | YES  |     | NULL    |       |
 +--------+--------------+------+-----+---------+-------+
 5 rows in set (0,012 sec)
+
+```
+
+**Multiple-column primary key**
+
+```
+MariaDB [quote_sql_lab]> CREATE TABLE points
+    -> (
+    ->     user_id INTEGER,
+    ->     quote_id INTEGER,
+    ->     date DATE,
+    ->     time TIME,
+    ->     datetime DATETIME,
+    ->     timestamp TIMESTAMP,
+    ->     PRIMARY KEY (user_id, quote_id)
+    -> );
+Query OK, 0 rows affected (0,100 sec)
+
+MariaDB [quote_sql_lab]> DESCRIBE points;
++-----------+-----------+------+-----+---------------------+-------------------------------+
+| Field     | Type      | Null | Key | Default             | Extra                         |
++-----------+-----------+------+-----+---------------------+-------------------------------+
+| user_id   | int(11)   | NO   | PRI | NULL                |                               |
+| quote_id  | int(11)   | NO   | PRI | NULL                |                               |
+| date      | date      | YES  |     | NULL                |                               |
+| time      | time      | YES  |     | NULL                |                               |
+| datetime  | datetime  | YES  |     | NULL                |                               |
+| timestamp | timestamp | NO   |     | current_timestamp() | on update current_timestamp() |
++-----------+-----------+------+-----+---------------------+-------------------------------+
+6 rows in set (0,011 sec)
 
 ```

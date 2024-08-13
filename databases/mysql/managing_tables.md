@@ -109,8 +109,6 @@ The spatial data types and functions are available for MyISAM, InnoDB, NDB, and 
 
 -- [MySQL documentation](https://dev.mysql.com/doc/refman/8.4/en/spatial-types.html)
 
-#### Columns and datatypes
-
 ##### Boolean & bit
 
 ```
@@ -304,9 +302,13 @@ mysql> DESCRIBE structured_data;
 
 ```
 
-#### Primary key
+#### Constraints
 
-```bash
+##### Primary key
+
+**Single-column primary key**
+
+```
 mysql> CREATE TABLE quote
     -> (
     ->     ID INTEGER PRIMARY KEY,
@@ -316,15 +318,6 @@ mysql> CREATE TABLE quote
     ->     rating INTEGER
     -> );
 Query OK, 0 rows affected (0,09 sec)
-
-mysql> SHOW TABLES;
-+-------------------------+
-| Tables_in_quote_sql_lab |
-+-------------------------+
-| cover_type              |
-| quote                   |
-+-------------------------+
-2 rows in set (0,01 sec)
 
 mysql> DESCRIBE quote;
 +--------+--------------+------+-----+---------+-------+
@@ -337,5 +330,37 @@ mysql> DESCRIBE quote;
 | rating | int          | YES  |     | NULL    |       |
 +--------+--------------+------+-----+---------+-------+
 5 rows in set (0,01 sec)
+
+```
+
+**Multiple-column primary key**
+
+```
+mysql> CREATE TABLE points
+    -> (
+    ->     user_id INTEGER,
+    ->     quote_id INTEGER,
+    ->     quantity INTEGER,
+    ->     date DATE,
+    ->     time TIME,
+    ->     datetime DATETIME,
+    ->     timestamp TIMESTAMP,
+    ->     PRIMARY KEY (user_id, quote_id)
+    -> );
+Query OK, 0 rows affected (0,021 sec)
+
+mysql> DESCRIBE points;
++-----------+-----------+------+-----+---------------------+-------------------------------+
+| Field     | Type      | Null | Key | Default             | Extra                         |
++-----------+-----------+------+-----+---------------------+-------------------------------+
+| user_id   | int(11)   | NO   | PRI | NULL                |                               |
+| quote_id  | int(11)   | NO   | PRI | NULL                |                               |
+| quantity  | int(11)   | YES  |     | NULL                |                               |
+| date      | date      | YES  |     | NULL                |                               |
+| time      | time      | YES  |     | NULL                |                               |
+| datetime  | datetime  | YES  |     | NULL                |                               |
+| timestamp | timestamp | NO   |     | current_timestamp() | on update current_timestamp() |
++-----------+-----------+------+-----+---------------------+-------------------------------+
+7 rows in set (0,006 sec)
 
 ```
