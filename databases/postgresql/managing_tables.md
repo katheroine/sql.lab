@@ -6,13 +6,25 @@
 
 ### Displaying tables
 
-```bash
+```
 quote_sql_lab=# \dt
 Did not find any relations.
 
 ```
 
 ### Creating tables
+
+```
+quote_sql_lab=# CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
+CREATE TABLE
+quote_sql_lab=# \dt
+           List of relations
+ Schema |    Name    | Type  |  Owner
+--------+------------+-------+----------
+ public | cover_type | table | postgres
+(1 row)
+
+```
 
 #### Datatypes
 
@@ -239,15 +251,188 @@ The PostgreSQL type system contains a number of special-purpose entries that are
 
 #### Columns and datatypes
 
-```bash
-quote_sql_lab=# CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
+##### Boolean & bit
+
+```
+quote_sql_lab=# CREATE TABLE user_account
+(
+    ID INTEGER PRIMARY KEY,
+    confirmed BOOLEAN,
+    active BIT
+);
 CREATE TABLE
-quote_sql_lab=# \dt
-           List of relations
- Schema |    Name    | Type  |  Owner
---------+------------+-------+----------
- public | cover_type | table | postgres
-(1 row)
+quote_sql_lab=# \d+ user_account;
+                                 Table "public.user_account"
+  Column   |  Type   | Collation | Nullable | Default | Storage  | Stats target | Description
+-----------+---------+-----------+----------+---------+----------+--------------+-------------
+ id        | integer |           | not null |         | plain    |              |
+ confirmed | boolean |           |          |         | plain    |              |
+ active    | bit(1)  |           |          |         | extended |              |
+Indexes:
+    "user_account_pkey" PRIMARY KEY, btree (id)
+Access method: heap
+```
+
+##### Integer
+
+```
+quote_sql_lab=# CREATE TABLE rating
+quote_sql_lab-# (
+quote_sql_lab(#     quote_id INTEGER PRIMARY KEY,
+quote_sql_lab(#     rate INTEGER,
+quote_sql_lab(#     class SMALLINT,
+quote_sql_lab(#     points BIGINT
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ rating
+                                    Table "public.rating"
+  Column  |   Type   | Collation | Nullable | Default | Storage | Stats target | Description
+----------+----------+-----------+----------+---------+---------+--------------+-------------
+ quote_id | integer  |           | not null |         | plain   |              |
+ rate     | integer  |           |          |         | plain   |              |
+ class    | smallint |           |          |         | plain   |              |
+ points   | bigint   |           |          |         | plain   |              |
+Indexes:
+    "rating_pkey" PRIMARY KEY, btree (quote_id)
+Access method: heap
+```
+
+##### Decimal
+
+```
+quote_sql_lab=# CREATE TABLE physical_property
+quote_sql_lab-# (
+quote_sql_lab(#     medium_id INTEGER PRIMARY KEY,
+quote_sql_lab(#     weight DECIMAL,
+quote_sql_lab(#     length NUMERIC,
+quote_sql_lab(#     height NUMERIC(2),
+quote_sql_lab(#     depth NUMERIC(2, 1)
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ physical_property;
+                                 Table "public.physical_property"
+  Column   |     Type     | Collation | Nullable | Default | Storage | Stats target | Description
+-----------+--------------+-----------+----------+---------+---------+--------------+-------------
+ medium_id | integer      |           | not null |         | plain   |              |
+ weight    | numeric      |           |          |         | main    |              |
+ length    | numeric      |           |          |         | main    |              |
+ height    | numeric(2,0) |           |          |         | main    |              |
+ depth     | numeric(2,1) |           |          |         | main    |              |
+Indexes:
+    "physical_property_pkey" PRIMARY KEY, btree (medium_id)
+Access method: heap
+```
+
+##### Floating point
+
+```
+quote_sql_lab=# CREATE TABLE storage_conditions
+quote_sql_lab-# (
+quote_sql_lab(#     medium_id INTEGER PRIMARY KEY,
+quote_sql_lab(#     humidity FLOAT,
+quote_sql_lab(#     temperature FLOAT(4),
+quote_sql_lab(#     air_pressure REAL
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ storage_conditions;
+                                    Table "public.storage_conditions"
+    Column    |       Type       | Collation | Nullable | Default | Storage | Stats target | Description
+--------------+------------------+-----------+----------+---------+---------+--------------+-------------
+ medium_id    | integer          |           | not null |         | plain   |              |
+ humidity     | double precision |           |          |         | plain   |              |
+ temperature  | real             |           |          |         | plain   |              |
+ air_pressure | real             |           |          |         | plain   |              |
+Indexes:
+    "storage_conditions_pkey" PRIMARY KEY, btree (medium_id)
+Access method: heap
+```
+
+##### Binary
+
+```
+quote_sql_lab=# CREATE TABLE file
+(
+    ID INTEGER PRIMARY KEY,
+    mode BYTEA
+);
+CREATE TABLE
+quote_sql_lab=# \d+ file
+                                    Table "public.file"
+ Column |  Type   | Collation | Nullable | Default | Storage  | Stats target | Description
+--------+---------+-----------+----------+---------+----------+--------------+-------------
+ id     | integer |           | not null |         | plain    |              |
+ mode   | bytea   |           |          |         | extended |              |
+Indexes:
+    "file_pkey" PRIMARY KEY, btree (id)
+Access method: heap
+```
+
+##### Character
+
+```
+quote_sql_lab=# CREATE TABLE medium_type
+quote_sql_lab-# (
+quote_sql_lab(#     codename CHAR(8) PRIMARY KEY,
+quote_sql_lab(#     description VARCHAR(256)
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ medium_type;
+                                          Table "public.medium_type"
+   Column    |          Type          | Collation | Nullable | Default | Storage  | Stats target | Description
+-------------+------------------------+-----------+----------+---------+----------+--------------+-------------
+ codename    | character(8)           |           | not null |         | extended |              |
+ description | character varying(256) |           |          |         | extended |              |
+Indexes:
+    "medium_type_pkey" PRIMARY KEY, btree (codename)
+Access method: heap
+```
+
+###### Date & time
+
+```
+quote_sql_lab=# CREATE TABLE points (
+quote_sql_lab(#     user_id INTEGER,
+quote_sql_lab(#     quote_id INTEGER,
+quote_sql_lab(#     quantity INTEGER,
+quote_sql_lab(#     date DATE,
+quote_sql_lab(#     time TIME,
+quote_sql_lab(#     timestamp TIMESTAMP WITH TIME ZONE,
+quote_sql_lab(#     PRIMARY KEY (user_id, quote_id)
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ points;
+                                            Table "public.points"
+  Column   |           Type           | Collation | Nullable | Default | Storage | Stats target | Description
+-----------+--------------------------+-----------+----------+---------+---------+--------------+-------------
+ user_id   | integer                  |           | not null |         | plain   |              |
+ quote_id  | integer                  |           | not null |         | plain   |              |
+ quantity  | integer                  |           |          |         | plain   |              |
+ date      | date                     |           |          |         | plain   |              |
+ time      | time without time zone   |           |          |         | plain   |              |
+ timestamp | timestamp with time zone |           |          |         | plain   |              |
+Indexes:
+    "points_pkey" PRIMARY KEY, btree (user_id, quote_id)
+Access method: heap
+```
+
+##### JSON
+
+```
+quote_sql_lab=# CREATE TABLE structured_data
+quote_sql_lab-# (
+quote_sql_lab(#     id INTEGER PRIMARY KEY,
+quote_sql_lab(#     content JSON
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ structured_data;
+                               Table "public.structured_data"
+ Column  |  Type   | Collation | Nullable | Default | Storage  | Stats target | Description
+---------+---------+-----------+----------+---------+----------+--------------+-------------
+ id      | integer |           | not null |         | plain    |              |
+ content | json    |           |          |         | extended |              |
+Indexes:
+    "structured_data_pkey" PRIMARY KEY, btree (id)
+Access method: heap
 
 ```
 
