@@ -363,3 +363,39 @@ MariaDB [quote_sql_lab]> DESCRIBE points;
 6 rows in set (0,011 sec)
 
 ```
+
+##### Foreign key
+
+```
+MariaDB [quote_sql_lab]> CREATE TABLE quote
+    -> (
+    ->     ID INTEGER PRIMARY KEY,
+    ->     owner VARCHAR(256),
+    ->     author VARCHAR(256),
+    ->     source VARCHAR(512),
+    ->     rating INTEGER
+    -> );
+Query OK, 0 rows affected (0,09 sec)
+
+MariaDB [quote_sql_lab]> CREATE TABLE user
+    -> (
+    ->     ID INTEGER PRIMARY KEY,
+    ->     confirmed BOOLEAN,
+    ->     active BIT
+    -> );
+Query OK, 0 rows affected (0,036 sec)
+
+MariaDB [quote_sql_lab]> CREATE TABLE points
+    -> (
+    ->     user_id INTEGER,
+    ->     quote_id INTEGER,
+    ->     quantity INTEGER,
+    ->     date DATE,
+    ->     time TIME,
+    ->     datetime DATETIME,
+    ->     timestamp TIMESTAMP,
+    ->     PRIMARY KEY (user_id, quote_id)
+    -> );
+Query OK, 0 rows affected (0,021 sec)
+
+```

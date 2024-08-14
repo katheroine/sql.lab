@@ -224,15 +224,6 @@ sqlite> CREATE TABLE quote
    ...>     source VARCHAR(512),
    ...>     rating INTEGER
    ...> );
-sqlite> .schema quote
-CREATE TABLE quote
-(
-    ID INTEGER PRIMARY KEY,
-    owner VARCHAR(256),
-    author VARCHAR(256),
-    source VARCHAR(512),
-    rating INTEGER
-);
 ```
 
 **Multiple-column primary key**
@@ -249,16 +240,34 @@ sqlite> CREATE TABLE points
    ...>     timestamp TIMESTAMP,
    ...>     PRIMARY KEY (user_id, quote_id)
    ...> );
-sqlite> .schema points
-CREATE TABLE points
-(
-    user_id INTEGER,
-    quote_id INTEGER,
-    quantity INTEGER,
-    date DATE,
-    time TIME,
-    datetime DATETIME,
-    timestamp TIMESTAMP,
-    PRIMARY KEY (user_id, quote_id)
-);
+```
+
+##### Foreign key
+
+```
+sqlite> CREATE TABLE quote
+   ...> (
+   ...>     ID INTEGER PRIMARY KEY,
+   ...>     owner VARCHAR(256),
+   ...>     author VARCHAR(256),
+   ...>     source VARCHAR(512),
+   ...>     rating INTEGER
+   ...> );
+sqlite> CREATE TABLE user
+   ...> (
+   ...>     ID INTEGER PRIMARY KEY,
+   ...>     confirmed BOOLEAN,
+   ...>     active BIT
+   ...> );
+sqlite> CREATE TABLE points
+   ...> (
+   ...>     user_id INTEGER,
+   ...>     quote_id INTEGER,
+   ...>     quantity INTEGER,
+   ...>     date DATE,
+   ...>     time TIME,
+   ...>     datetime DATETIME,
+   ...>     timestamp TIMESTAMP,
+   ...>     PRIMARY KEY (user_id, quote_id)
+   ...> );
 ```

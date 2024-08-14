@@ -319,18 +319,6 @@ mysql> CREATE TABLE quote
     -> );
 Query OK, 0 rows affected (0,09 sec)
 
-mysql> DESCRIBE quote;
-+--------+--------------+------+-----+---------+-------+
-| Field  | Type         | Null | Key | Default | Extra |
-+--------+--------------+------+-----+---------+-------+
-| ID     | int          | NO   | PRI | NULL    |       |
-| owner  | varchar(256) | YES  |     | NULL    |       |
-| author | varchar(256) | YES  |     | NULL    |       |
-| source | varchar(512) | YES  |     | NULL    |       |
-| rating | int          | YES  |     | NULL    |       |
-+--------+--------------+------+-----+---------+-------+
-5 rows in set (0,01 sec)
-
 ```
 
 **Multiple-column primary key**
@@ -349,18 +337,40 @@ mysql> CREATE TABLE points
     -> );
 Query OK, 0 rows affected (0,021 sec)
 
-mysql> DESCRIBE points;
-+-----------+-----------+------+-----+---------------------+-------------------------------+
-| Field     | Type      | Null | Key | Default             | Extra                         |
-+-----------+-----------+------+-----+---------------------+-------------------------------+
-| user_id   | int(11)   | NO   | PRI | NULL                |                               |
-| quote_id  | int(11)   | NO   | PRI | NULL                |                               |
-| quantity  | int(11)   | YES  |     | NULL                |                               |
-| date      | date      | YES  |     | NULL                |                               |
-| time      | time      | YES  |     | NULL                |                               |
-| datetime  | datetime  | YES  |     | NULL                |                               |
-| timestamp | timestamp | NO   |     | current_timestamp() | on update current_timestamp() |
-+-----------+-----------+------+-----+---------------------+-------------------------------+
-7 rows in set (0,006 sec)
+```
+
+##### Foreign key
+
+```
+mysql> CREATE TABLE quote
+    -> (
+    ->     ID INTEGER PRIMARY KEY,
+    ->     owner VARCHAR(256),
+    ->     author VARCHAR(256),
+    ->     source VARCHAR(512),
+    ->     rating INTEGER
+    -> );
+Query OK, 0 rows affected (0,09 sec)
+
+mysql> CREATE TABLE user
+    -> (
+    ->     ID INTEGER PRIMARY KEY,
+    ->     confirmed BOOLEAN,
+    ->     active BIT
+    -> );
+Query OK, 0 rows affected (0,036 sec)
+
+mysql> CREATE TABLE points
+    -> (
+    ->     user_id INTEGER,
+    ->     quote_id INTEGER,
+    ->     quantity INTEGER,
+    ->     date DATE,
+    ->     time TIME,
+    ->     datetime DATETIME,
+    ->     timestamp TIMESTAMP,
+    ->     PRIMARY KEY (user_id, quote_id)
+    -> );
+Query OK, 0 rows affected (0,021 sec)
 
 ```

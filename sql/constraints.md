@@ -20,6 +20,34 @@ The following constraints are commonly used in SQL:
 
 -- [W3C SQL Tutorial](https://www.w3schools.com/sql/sql_constraints.asp)
 
+## Superkey
+
+In the relational data model a **superkey** is any set of attributes that *uniquely identifies each tuple of a relation*. Because superkey values are unique, tuples with the same superkey value must also have the same non-key attribute values. That is, non-key attributes are functionally dependent on the superkey.
+
+*The set of all attributes is always a superkey* (the **trivial superkey**). Tuples in a relation are by definition unique, with duplicates removed after each operation, so the set of all attributes is always uniquely valued for every tuple. A **candidate key** (or **minimal superkey**) is *a superkey that can't be reduced to a simpler superkey by removing an attribute*.
+
+For example, in an employee schema with attributes employeeID, name, job, and departmentID, if employeeID values are unique then employeeID combined with any or all of the other attributes can uniquely identify tuples in the table. Each combination, {employeeID}, {employeeID, name}, {employeeID, name, job}, and so on is a superkey. {employeeID} is a candidate key, since no subset of its attributes is also a superkey. {employeeID, name, job, departmentID} is the trivial superkey.
+
+If attribute set K is a superkey of relation R, then at all times it is the case that the projection of R over K has the same cardinality as R itself.
+
+-- [Wikipedia](https://en.wikipedia.org/wiki/Superkey)
+
+## Candidate key
+
+A **candidate key**, or simply a **key**, of a relational database is *any set of columns that have a unique combination of values in each row*, with the additional constraint that removing any column could produce duplicate combinations of values.
+
+A candidate key is a minimal **superkey**, i.e., *a superkey that doesn't contain a smaller one*. Therefore, a relation can have multiple candidate keys, each with a different number of attributes.
+
+Specific candidate keys are sometimes called **primary keys**, **secondary keys** or **alternate keys**. The columns in a candidate key are called *prime attributes*, and a column that does not occur in any candidate key is called a *non-prime attribute*.
+
+Every relation without NULL values will have at least one candidate key: Since there cannot be duplicate rows, the set of all columns is a superkey, and if that isn't minimal, some subset of that will be minimal.
+
+There is a functional dependency from the candidate key to all the attributes in the relation.
+
+The superkeys of a relation are all the possible ways we can identify a row. The candidate keys are the minimal subsets of each superkey and as such, they are an important concept for the design of database schema.
+
+-- [Wikipedia](https://en.wikipedia.org/wiki/Candidate_key)
+
 ## Primary key
 
 In the relational model of databases, a **primary key** is a designated attribute (column) that can reliably identify and distinguish between each individual record in a table. The database creator can choose an existing unique attribute or combination of attributes from the table (a **natural key**) to act as its primary key, or create a new attribute containing a unique ID that exists solely for this purpose (a **surrogate key**).
@@ -60,3 +88,17 @@ CREATE TABLE table_name (
    ...
 )
 ```
+
+-- [Wikipedia](https://en.wikipedia.org/wiki/Primary_key)
+
+## Foreign key
+
+A **foreign key** is a set of attributes in a table that refers to the **primary key** of another table, linking these two tables. In the context of relational databases, a *foreign key* is subject to an inclusion dependency constraint that the tuples consisting of the *foreign key* attributes in one relation, R, must also exist in some other (not necessarily distinct) relation, S; furthermore that those attributes must also be a *candidate key* in S.
+
+In other words, a *foreign key* is a set of attributes that references a *candidate key*. For example, a table called `TEAM` may have an attribute, `MEMBER_NAME`, which is a foreign key referencing a candidate key, `PERSON_NAME`, in the `PERSON` table. Since `MEMBER_NAME` is a foreign key, any value existing as the name of a member in `TEAM` must also exist as a person's name in the `PERSON` table; in other words, every member of a `TEAM` is also a `PERSON`.
+
+The reference relation should already be created.
+The referenced attribute must be a part of *primary key* of the referenced relation.
+Data type and size of referenced and referencing attribute must be same.
+
+-- [Wikipedia](https://en.wikipedia.org/wiki/Foreign_key)
