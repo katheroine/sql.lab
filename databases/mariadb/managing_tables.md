@@ -296,6 +296,191 @@ MariaDB [quote_sql_lab]> DESCRIBE structured_data;
 
 #### Constraints
 
+##### Not NULL
+
+```
+MariaDB [quote_sql_lab]> CREATE TABLE medium_type
+    -> (
+    ->     codename CHAR(8) PRIMARY KEY,
+    ->     description VARCHAR(256) NOT NULL
+    -> );
+Query OK, 0 rows affected (0,033 sec)
+
+MariaDB [quote_sql_lab]> DESCRIBE medium_type;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| codename    | char(8)      | NO   | PRI | NULL    |       |
+| description | varchar(256) | NO   |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+2 rows in set (0,019 sec)
+
+MariaDB [quote_sql_lab]> INSERT INTO medium_type VALUES
+    ->     ('BOOK', 'A book'),
+    ->     ('CD', 'A CD'),
+    ->     ('VHS', 'A VHS tape');
+Query OK, 3 rows affected (0,007 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+MariaDB [quote_sql_lab]> SELECT * FROM medium_type;
++----------+-------------+
+| codename | description |
++----------+-------------+
+| BOOK     | A book      |
+| CD       | A CD        |
+| VHS      | A VHS tape  |
++----------+-------------+
+3 rows in set (0,001 sec)
+
+MariaDB [quote_sql_lab]> INSERT INTO medium_type VALUES
+    ->     ('DVD', '');
+Query OK, 1 row affected (0,008 sec)
+
+MariaDB [quote_sql_lab]> INSERT INTO medium_type VALUES
+    ->     ('AUDIOCST', NULL);
+ERROR 1048 (23000): Column 'description' cannot be null
+MariaDB [quote_sql_lab]> INSERT INTO medium_type (codename) VALUES
+    ->     ('AUDIOCST');
+ERROR 1364 (HY000): Field 'description' doesn't have a default value
+
+MariaDB [quote_sql_lab]> SELECT * FROM medium_type;
++----------+-------------+
+| codename | description |
++----------+-------------+
+| BOOK     | A book      |
+| CD       | A CD        |
+| DVD      |             |
+| VHS      | A VHS tape  |
++----------+-------------+
+4 rows in set (0,002 sec)
+
+```
+
+##### Unique
+
+```
+MariaDB [quote_sql_lab]> CREATE TABLE user
+    -> (
+    ->     ID INTEGER PRIMARY KEY,
+    ->     personal_data_id INTEGER UNIQUE,
+    ->     confirmed BOOLEAN,
+    ->     active BIT
+    -> );
+Query OK, 0 rows affected (0,026 sec)
+
+MariaDB [quote_sql_lab]> DESCRIBE user;
++------------------+------------+------+-----+---------+-------+
+| Field            | Type       | Null | Key | Default | Extra |
++------------------+------------+------+-----+---------+-------+
+| ID               | int(11)    | NO   | PRI | NULL    |       |
+| personal_data_id | int(11)    | YES  | UNI | NULL    |       |
+| confirmed        | tinyint(1) | YES  |     | NULL    |       |
+| active           | bit(1)     | YES  |     | NULL    |       |
++------------------+------------+------+-----+---------+-------+
+4 rows in set (0,006 sec)
+
+MariaDB [quote_sql_lab]> SELECT * FROM user;
+Empty set (0,001 sec)
+
+MariaDB [quote_sql_lab]> INSERT INTO user (ID, personal_data_id) VALUES (1, 1);
+Query OK, 1 row affected (0,006 sec)
+
+MariaDB [quote_sql_lab]> INSERT INTO user (ID, personal_data_id) VALUES (2, 1);
+ERROR 1062 (23000): Duplicate entry '1' for key 'personal_data_id'
+MariaDB [quote_sql_lab]> INSERT INTO user (ID, personal_data_id) VALUES (2, 2);
+Query OK, 1 row affected (0,006 sec)
+
+MariaDB [quote_sql_lab]> SELECT * FROM user;
++----+------------------+-----------+--------+
+| ID | personal_data_id | confirmed | active |
++----+------------------+-----------+--------+
+|  1 |                1 |      NULL | NULL   |
+|  2 |                2 |      NULL | NULL   |
++----+------------------+-----------+--------+
+2 rows in set (0,001 sec)
+
+```
+
+##### Default
+
+```
+MariaDB [quote_sql_lab]> CREATE TABLE storage_conditions
+    -> (
+    ->     medium_id INTEGER PRIMARY KEY,
+    ->     humidity FLOAT DEFAULT 40,
+    ->     temperature FLOAT(4) DEFAULT 23,
+    ->     air_pressure REAL DEFAULT 1013.25
+    -> );
+Query OK, 0 rows affected (0,023 sec)
+
+MariaDB [quote_sql_lab]> DESCRIBE storage_conditions;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| medium_id    | int(11) | NO   | PRI | NULL    |       |
+| humidity     | float   | YES  |     | 40      |       |
+| temperature  | float   | YES  |     | 23      |       |
+| air_pressure | double  | YES  |     | 1013.25 |       |
++--------------+---------+------+-----+---------+-------+
+4 rows in set (0,013 sec)
+
+MariaDB [quote_sql_lab]> INSERT INTO storage_conditions (medium_id) VALUES (1);
+Query OK, 1 row affected (0,005 sec)
+
+MariaDB [quote_sql_lab]> SELECT * FROM storage_conditions;
++-----------+----------+-------------+--------------+
+| medium_id | humidity | temperature | air_pressure |
++-----------+----------+-------------+--------------+
+|         1 |       40 |          23 |      1013.25 |
++-----------+----------+-------------+--------------+
+1 row in set (0,001 sec)
+
+```
+
+##### Check
+
+```
+MariaDB [quote_sql_lab]> CREATE TABLE physical_property
+    -> (
+    ->     medium_id INTEGER PRIMARY KEY,
+    ->     weight DECIMAL CHECK (weight >= 0),
+    ->     length NUMERIC,
+    ->     height NUMERIC(2) CHECK (height <= length),
+    ->     depth NUMERIC(2, 1) CHECK (depth <= height)
+    -> );
+Query OK, 0 rows affected (0,017 sec)
+
+MariaDB [quote_sql_lab]> DESCRIBE physical_property;
++-----------+---------------+------+-----+---------+-------+
+| Field     | Type          | Null | Key | Default | Extra |
++-----------+---------------+------+-----+---------+-------+
+| medium_id | int(11)       | NO   | PRI | NULL    |       |
+| weight    | decimal(10,0) | YES  |     | NULL    |       |
+| length    | decimal(10,0) | YES  |     | NULL    |       |
+| height    | decimal(2,0)  | YES  |     | NULL    |       |
+| depth     | decimal(2,1)  | YES  |     | NULL    |       |
++-----------+---------------+------+-----+---------+-------+
+5 rows in set (0,002 sec)
+
+MariaDB [quote_sql_lab]> INSERT INTO physical_property VALUES (1, 0.5, 3, 2, 1);
+Query OK, 1 row affected, 1 warning (0,008 sec)
+
+MariaDB [quote_sql_lab]> INSERT INTO physical_property VALUES (2, -0.5, 3, 2, 1);
+ERROR 4025 (23000): CONSTRAINT `physical_property.weight` failed for `quote_sql_lab`.`physical_property`
+MariaDB [quote_sql_lab]> INSERT INTO physical_property VALUES (3, 0.5, 3, 3.5, 1);
+ERROR 4025 (23000): CONSTRAINT `physical_property.height` failed for `quote_sql_lab`.`physical_property`
+MariaDB [quote_sql_lab]> INSERT INTO physical_property VALUES (4, 0.5, 3, 2, 3);
+ERROR 4025 (23000): CONSTRAINT `physical_property.depth` failed for `quote_sql_lab`.`physical_property`
+MariaDB [quote_sql_lab]> SELECT * FROM physical_property;
++-----------+--------+--------+--------+-------+
+| medium_id | weight | length | height | depth |
++-----------+--------+--------+--------+-------+
+|         1 |      1 |      3 |      2 |   1.0 |
++-----------+--------+--------+--------+-------+
+1 row in set (0,001 sec)
+
+```
+
 ##### Primary key
 
 **Single-column primary key**
@@ -310,15 +495,6 @@ MariaDB [quote_sql_lab]> CREATE TABLE quote
     ->     rating INTEGER
     -> );
 Query OK, 0 rows affected (0,081 sec)
-
-MariaDB [quote_sql_lab]> SHOW TABLES;
-+-------------------------+
-| Tables_in_quote_sql_lab |
-+-------------------------+
-| cover_type              |
-| quote                   |
-+-------------------------+
-2 rows in set (0,009 sec)
 
 MariaDB [quote_sql_lab]> DESCRIBE quote;
 +--------+--------------+------+-----+---------+-------+
@@ -362,6 +538,22 @@ MariaDB [quote_sql_lab]> DESCRIBE points;
 +-----------+-----------+------+-----+---------------------+-------------------------------+
 6 rows in set (0,011 sec)
 
+```
+
+**Conditions**
+
+Primary key cannot be `NULL`.
+
+```
+MariaDB [quote_sql_lab]> INSERT INTO user (confirmed, active) VALUES (1, 1);
+ERROR 1364 (HY000): Field 'ID' doesn't have a default value
+```
+
+Primary key must be *unique*.
+
+```
+MariaDB [quote_sql_lab]> INSERT INTO user (ID, confirmed, active) VALUES (1, 1, 1);
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
 ```
 
 ##### Foreign key
