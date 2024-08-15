@@ -211,6 +211,89 @@ CREATE TABLE structured_data
 
 #### Constraints
 
+##### NOT NULL
+
+```
+sqlite> CREATE TABLE medium_type
+   ...> (
+   ...>     codename CHAR(8) PRIMARY KEY,
+   ...>     description VARCHAR(256) NOT NULL
+   ...> );
+sqlite> INSERT INTO medium_type VALUES ('BOOK', 'A book');
+sqlite> INSERT INTO medium_type VALUES ('CD', 'A CD');
+sqlite> SELECT * FROM medium_type;
+BOOK|A book
+CD|A CD
+VHS|A VHS tape
+sqlite> INSERT INTO medium_type VALUES ('DVD', '');
+sqlite> INSERT INTO medium_type VALUES ('AUDIOCST', NULL);
+SQL error: medium_type.description may not be NULL
+sqlite> INSERT INTO medium_type (codename) VALUES ('AUDIOCST');
+SQL error: medium_type.description may not be NULL
+BOOK|A book
+CD|A CD
+VHS|A VHS tape
+DVD|
+```
+
+##### Unique
+
+```
+sqlite> CREATE TABLE user
+   ...> (
+   ...>     ID INTEGER PRIMARY KEY,
+   ...>     personal_data_id INTEGER UNIQUE,
+   ...>     confirmed BOOLEAN,
+   ...>     active BIT
+   ...> );
+sqlite> INSERT INTO user (ID, personal_data_id) VALUES (1, 1);
+sqlite> INSERT INTO user (ID, personal_data_id) VALUES (2, 1);
+SQL error: column personal_data_id is not unique
+sqlite> INSERT INTO user (ID, personal_data_id) VALUES (2, 2);
+sqlite> SELECT * FROM user;
+1|1||
+2|2||
+```
+
+##### Default
+
+```
+sqlite> CREATE TABLE storage_conditions
+   ...> (
+   ...>     medium_id INTEGER PRIMARY KEY,
+   ...>     humidity FLOAT DEFAULT 40,
+   ...>     temperature FLOAT(4) DEFAULT 23,
+   ...>     air_pressure REAL DEFAULT 1013.25
+   ...> );
+sqlite> INSERT INTO storage_conditions (medium_id) VALUES (1);
+sqlite> SELECT * FROM storage_conditions;
+1|40|23|1013.25
+```
+
+##### Check
+
+**It doesn't work in SQLite.**
+
+```
+sqlite> CREATE TABLE physical_property
+   ...> (
+   ...>     medium_id INTEGER PRIMARY KEY,
+   ...>     weight DECIMAL CHECK (weight >= 0),
+   ...>     length NUMERIC,
+   ...>     height NUMERIC(2) CHECK (height <= length),
+   ...>     depth NUMERIC(2, 1) CHECK (depth <= height)
+   ...> );
+sqlite> INSERT INTO physical_property VALUES (1, 0.5, 3, 2, 1);
+sqlite> INSERT INTO physical_property VALUES (2, -0.5, 3, 2, 1);
+sqlite> INSERT INTO physical_property VALUES (3, 0.5, 3, 3.5, 1);
+sqlite> INSERT INTO physical_property VALUES (4, 0.5, 3, 2, 3);
+sqlite> SELECT * FROM physical_property;
+1|0.5|3|2|1
+2|-0.5|3|2|1
+3|0.5|3|3.5|1
+4|0.5|3|2|3
+```
+
 ##### Primary key
 
 **Single-column primary key**

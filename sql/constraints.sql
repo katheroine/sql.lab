@@ -13,12 +13,9 @@ INSERT INTO medium_type VALUES
 
 SELECT * FROM medium_type;
 
-INSERT INTO medium_type VALUES
-    ('DVD', '');
-INSERT INTO medium_type VALUES
-    ('AUDIOCST', NULL);
-INSERT INTO medium_type (codename) VALUES
-    ('AUDIOCST');
+INSERT INTO medium_type VALUES ('DVD', '');
+INSERT INTO medium_type VALUES ('AUDIOCST', NULL);
+INSERT INTO medium_type (codename) VALUES ('AUDIOCST');
 
 SELECT * FROM medium_type;
 
