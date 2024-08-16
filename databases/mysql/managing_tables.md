@@ -566,3 +566,43 @@ mysql> CREATE TABLE points
 Query OK, 0 rows affected (0,021 sec)
 
 ```
+
+##### Autoincrement
+
+```
+mysql> CREATE TABLE personal_data
+    -> (
+    ->     id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    ->     name VARCHAR(256),
+    ->     surname VARCHAR(256)
+    -> );
+Query OK, 0 rows affected (0,017 sec)
+
+mysql> DESCRIBE personal_data;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(256) | YES  |     | NULL    |                |
+| surname | varchar(256) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+3 rows in set (0,002 sec)
+
+mysql> INSERT INTO personal_data (name, surname) VALUES
+    ->     ('John', 'Kowalsky'),
+    ->     ('Vivienne', 'Morgenstein'),
+    ->     ('Lisa', 'Pumpkinshire');
+Query OK, 3 rows affected (0,007 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM personal_data;
++----+----------+--------------+
+| id | name     | surname      |
++----+----------+--------------+
+|  1 | John     | Kowalsky     |
+|  2 | Vivienne | Morgenstein  |
+|  3 | Lisa     | Pumpkinshire |
++----+----------+--------------+
+3 rows in set (0,001 sec)
+
+```

@@ -66,3 +66,19 @@ INSERT INTO physical_property VALUES (3, 0.5, 3, 3.5, 1);
 INSERT INTO physical_property VALUES (4, 0.5, 3, 2, 3);
 
 SELECT * FROM physical_property;
+
+CREATE TABLE personal_data
+(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(256),
+    surname VARCHAR(256)
+);
+
+DESCRIBE personal_data;
+
+INSERT INTO personal_data (name, surname) VALUES
+    ('John', 'Kowalsky'),
+    ('Vivienne', 'Morgenstein'),
+    ('Lisa', 'Pumpkinshire');
+
+SELECT * FROM personal_data;
