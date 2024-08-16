@@ -663,3 +663,53 @@ quote_sql_lab(#     PRIMARY KEY (user_id, quote_id)
 quote_sql_lab(# );
 CREATE TABLE
 ```
+
+##### Autoincrement
+
+**PostgreSQL has the data types SMALLSERIAL, SERIAL and BIGSERIAL; these are not true types, but merely a notational convenience for creating unique identifier columns. These are similar to AUTO_INCREMENT property supported by some other databases.**
+
+If you wish a serial column to have a *unique* constraint or be a *primary key*, it must now be specified, just like any other data type.
+
+-- [TutorialsPoint PostgreSQL Tutirial](https://www.tutorialspoint.com/postgresql/postgresql_using_autoincrement.htm)
+
+```
+quote_sql_lab=# CREATE TABLE personal_data
+quote_sql_lab-# (
+quote_sql_lab(#     id INTEGER PRIMARY KEY AUTO_INCREMENT,
+quote_sql_lab(#     name VARCHAR(256),
+quote_sql_lab(#     surname VARCHAR(256)
+quote_sql_lab(# );
+ERROR:  syntax error at or near "AUTO_INCREMENT"
+LINE 3:     id INTEGER PRIMARY KEY AUTO_INCREMENT,
+                                   ^
+quote_sql_lab=# CREATE TABLE personal_data
+quote_sql_lab-# (
+quote_sql_lab(#     id SERIAL PRIMARY KEY,
+quote_sql_lab(#     name VARCHAR(256),
+quote_sql_lab(#     surname VARCHAR(256)
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ personal_data;
+                                                        Table "public.personal_data"
+ Column  |          Type          | Collation | Nullable |                  Default                  | Storage  | Stats target | Description
+---------+------------------------+-----------+----------+-------------------------------------------+----------+--------------+-------------
+ id      | integer                |           | not null | nextval('personal_data_id_seq'::regclass) | plain    |              |
+ name    | character varying(256) |           |          |                                           | extended |              |
+ surname | character varying(256) |           |          |                                           | extended |              |
+Indexes:
+    "personal_data_pkey" PRIMARY KEY, btree (id)
+Access method: heap
+
+quote_sql_lab=# INSERT INTO personal_data (name, surname) VALUES
+quote_sql_lab-#     ('John', 'Kowalsky'),
+quote_sql_lab-#     ('Vivienne', 'Morgenstein'),
+quote_sql_lab-#     ('Lisa', 'Pumpkinshire');
+INSERT 0 3
+quote_sql_lab=# SELECT * FROM personal_data;
+ id |   name   |   surname
+----+----------+--------------
+  1 | John     | Kowalsky
+  2 | Vivienne | Morgenstein
+  3 | Lisa     | Pumpkinshire
+(3 rows)
+```

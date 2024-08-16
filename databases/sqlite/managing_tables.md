@@ -354,3 +354,30 @@ sqlite> CREATE TABLE points
    ...>     PRIMARY KEY (user_id, quote_id)
    ...> );
 ```
+
+##### Autoincrement
+
+**There's no autoincrement in SQLite but PRIMARY KEY coulmn is autoincremented if the value is given as NULL.**
+
+```
+sqlite> CREATE TABLE personal_data
+   ...> (
+   ...>     id INTEGER PRIMARY KEY AUTO_INCREMENT,
+   ...>     name VARCHAR(256),
+   ...>     surname VARCHAR(256)
+   ...> );
+SQL error: near "AUTO_INCREMENT": syntax error
+sqlite> CREATE TABLE personal_data
+   ...> (
+   ...>     id INTEGER PRIMARY KEY,
+   ...>     name VARCHAR(256),
+   ...>     surname VARCHAR(256)
+   ...> );
+sqlite> INSERT INTO personal_data VALUES (NULL, 'John', 'Kowalsky');
+sqlite> INSERT INTO personal_data VALUES (NULL, 'Vivienne', 'Morgenstein');
+sqlite> INSERT INTO personal_data VALUES (NULL, 'Lisa', 'Pumpkinshire');
+sqlite> SELECT * FROM personal_data;
+1|John|Kowalsky
+2|Vivienne|Morgenstein
+3|Lisa|Pumpkinshire
+```
