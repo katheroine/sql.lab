@@ -435,6 +435,173 @@ Access method: heap
 
 #### Constraints
 
+##### Not NULL
+
+```
+quote_sql_lab=# CREATE TABLE medium_type
+quote_sql_lab-# (
+quote_sql_lab(#     codename CHAR(8) PRIMARY KEY,
+quote_sql_lab(#     description VARCHAR(256) NOT NULL
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ medium_type;
+                                          Table "public.medium_type"
+   Column    |          Type          | Collation | Nullable | Default | Storage  | Stats target | Description
+-------------+------------------------+-----------+----------+---------+----------+--------------+-------------
+ codename    | character(8)           |           | not null |         | extended |              |
+ description | character varying(256) |           | not null |         | extended |              |
+Indexes:
+    "medium_type_pkey" PRIMARY KEY, btree (codename)
+Access method: heap
+
+quote_sql_lab=# INSERT INTO medium_type VALUES
+quote_sql_lab-#     ('BOOK', 'A book'),
+quote_sql_lab-#     ('CD', 'A CD'),
+quote_sql_lab-#     ('VHS', 'A VHS tape');
+INSERT 0 3
+quote_sql_lab=# SELECT * FROM medium_type;
+ codename | description
+----------+-------------
+ BOOK     | A book
+ CD       | A CD
+ VHS      | A VHS tape
+(3 rows)
+
+quote_sql_lab=# INSERT INTO medium_type VALUES ('DVD', '');
+INSERT 0 1
+quote_sql_lab=# INSERT INTO medium_type VALUES ('AUDIOCST', NULL);
+ERROR:  null value in column "description" violates not-null constraint
+DETAIL:  Failing row contains (AUDIOCST, null).
+quote_sql_lab=# INSERT INTO medium_type (codename) VALUES ('AUDIOCST');
+ERROR:  null value in column "description" violates not-null constraint
+DETAIL:  Failing row contains (AUDIOCST, null).
+quote_sql_lab=# SELECT * FROM medium_type;
+ codename | description
+----------+-------------
+ BOOK     | A book
+ CD       | A CD
+ VHS      | A VHS tape
+ DVD      |
+(4 rows)
+```
+
+##### Unique
+
+```
+quote_sql_lab=# CREATE TABLE user_account
+quote_sql_lab-# (
+quote_sql_lab(#     ID INTEGER PRIMARY KEY,
+quote_sql_lab(#     personal_data_id INTEGER UNIQUE,
+quote_sql_lab(#     confirmed BOOLEAN,
+quote_sql_lab(#     active BIT
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ user_account;
+                                     Table "public.user_account"
+      Column      |  Type   | Collation | Nullable | Default | Storage  | Stats target | Description
+------------------+---------+-----------+----------+---------+----------+--------------+-------------
+ id               | integer |           | not null |         | plain    |              |
+ personal_data_id | integer |           |          |         | plain    |              |
+ confirmed        | boolean |           |          |         | plain    |              |
+ active           | bit(1)  |           |          |         | extended |              |
+Indexes:
+    "user_account_pkey" PRIMARY KEY, btree (id)
+    "user_account_personal_data_id_key" UNIQUE CONSTRAINT, btree (personal_data_id)
+Access method: heap
+
+quote_sql_lab=# INSERT INTO user_account (ID, personal_data_id) VALUES (1, 1);
+INSERT 0 1
+quote_sql_lab=# INSERT INTO user_account (ID, personal_data_id) VALUES (2, 1);
+ERROR:  duplicate key value violates unique constraint "user_account_personal_data_id_key"
+DETAIL:  Key (personal_data_id)=(1) already exists.
+quote_sql_lab=# INSERT INTO user_account (ID, personal_data_id) VALUES (2, 2);
+INSERT 0 1
+quote_sql_lab=# SELECT * FROM user_account;
+ id | personal_data_id | confirmed | active
+----+------------------+-----------+--------
+  1 |                1 |           |
+  2 |                2 |           |
+(2 rows)
+```
+
+##### Default
+
+```
+quote_sql_lab=# CREATE TABLE storage_conditions
+quote_sql_lab-# (
+quote_sql_lab(#     medium_id INTEGER PRIMARY KEY,
+quote_sql_lab(#     humidity FLOAT DEFAULT 40,
+quote_sql_lab(#     temperature FLOAT(4) DEFAULT 23,
+quote_sql_lab(#     air_pressure REAL DEFAULT 1013.25
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ storage_conditions;
+                                    Table "public.storage_conditions"
+    Column    |       Type       | Collation | Nullable | Default | Storage | Stats target | Description
+--------------+------------------+-----------+----------+---------+---------+--------------+-------------
+ medium_id    | integer          |           | not null |         | plain   |              |
+ humidity     | double precision |           |          | 40      | plain   |              |
+ temperature  | real             |           |          | 23      | plain   |              |
+ air_pressure | real             |           |          | 1013.25 | plain   |              |
+Indexes:
+    "storage_conditions_pkey" PRIMARY KEY, btree (medium_id)
+Access method: heap
+
+quote_sql_lab=# INSERT INTO storage_conditions (medium_id) VALUES (1);
+INSERT 0 1
+quote_sql_lab=# SELECT * FROM storage_conditions;
+ medium_id | humidity | temperature | air_pressure
+-----------+----------+-------------+--------------
+         1 |       40 |          23 |      1013.25
+(1 row)
+```
+
+##### Check
+
+```
+quote_sql_lab=# CREATE TABLE physical_property
+quote_sql_lab-# (
+quote_sql_lab(#     medium_id INTEGER PRIMARY KEY,
+quote_sql_lab(#     weight DECIMAL CHECK (weight >= 0),
+quote_sql_lab(#     length NUMERIC,
+quote_sql_lab(#     height NUMERIC(2) CHECK (height <= length),
+quote_sql_lab(#     depth NUMERIC(2, 1) CHECK (depth <= height)
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ physical_property;
+                                 Table "public.physical_property"
+  Column   |     Type     | Collation | Nullable | Default | Storage | Stats target | Description
+-----------+--------------+-----------+----------+---------+---------+--------------+-------------
+ medium_id | integer      |           | not null |         | plain   |              |
+ weight    | numeric      |           |          |         | main    |              |
+ length    | numeric      |           |          |         | main    |              |
+ height    | numeric(2,0) |           |          |         | main    |              |
+ depth     | numeric(2,1) |           |          |         | main    |              |
+Indexes:
+    "physical_property_pkey" PRIMARY KEY, btree (medium_id)
+Check constraints:
+    "physical_property_check" CHECK (height <= length)
+    "physical_property_check1" CHECK (depth <= height)
+    "physical_property_weight_check" CHECK (weight >= 0::numeric)
+Access method: heap
+
+quote_sql_lab=# INSERT INTO physical_property VALUES (1, 0.5, 3, 2, 1);
+INSERT 0 1
+quote_sql_lab=# INSERT INTO physical_property VALUES (2, -0.5, 3, 2, 1);
+ERROR:  new row for relation "physical_property" violates check constraint "physical_property_weight_check"
+DETAIL:  Failing row contains (2, -0.5, 3, 2, 1.0).
+quote_sql_lab=# INSERT INTO physical_property VALUES (3, 0.5, 3, 3.5, 1);
+ERROR:  new row for relation "physical_property" violates check constraint "physical_property_check"
+DETAIL:  Failing row contains (3, 0.5, 3, 4, 1.0).
+quote_sql_lab=# INSERT INTO physical_property VALUES (4, 0.5, 3, 2, 3);
+ERROR:  new row for relation "physical_property" violates check constraint "physical_property_check1"
+DETAIL:  Failing row contains (4, 0.5, 3, 2, 3.0).
+quote_sql_lab=# SELECT * FROM physical_property;
+ medium_id | weight | length | height | depth
+-----------+--------+--------+--------+-------
+         1 |    0.5 |      3 |      2 |   1.0
+```
+
 ##### Primary key
 
 **Single-column primary key**
