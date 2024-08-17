@@ -606,3 +606,74 @@ mysql> SELECT * FROM personal_data;
 3 rows in set (0,001 sec)
 
 ```
+
+##### Indexes
+
+**Single-column index**
+
+```
+mysql> CREATE TABLE author
+    -> (
+    ->     id INTEGER PRIMARY KEY,
+    ->     name VARCHAR(256),
+    ->     surname VARCHAR(256),
+    ->     penname VARCHAR(256),
+    ->     INDEX penname_idx (penname)
+    -> );
+Query OK, 0 rows affected (0,103 sec)
+
+mysql> DESCRIBE author;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | NO   | PRI | NULL    |       |
+| name    | varchar(256) | YES  |     | NULL    |       |
+| surname | varchar(256) | YES  |     | NULL    |       |
+| penname | varchar(256) | YES  | MUL | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+4 rows in set (0,002 sec)
+
+mysql> SHOW INDEXES FROM author;
++--------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table  | Non_unique | Key_name    | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++--------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| author |          0 | PRIMARY     |            1 | id          | A         |           0 |     NULL | NULL   |      | BTREE      |         |               |
+| author |          1 | penname_idx |            1 | penname     | A         |           0 |     NULL | NULL   | YES  | BTREE      |         |               |
++--------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+2 rows in set (0,004 sec)
+
+```
+
+**Multiple-column-index**
+
+```
+mysql> CREATE TABLE translator
+    -> (
+    ->     id INTEGER PRIMARY KEY,
+    ->     name VARCHAR(256),
+    ->     surname VARCHAR(256),
+    ->     INDEX fullname_idx (name, surname)
+    -> );
+Query OK, 0 rows affected (0,019 sec)
+
+mysql> DESCRIBE translator;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | NO   | PRI | NULL    |       |
+| name    | varchar(256) | YES  | MUL | NULL    |       |
+| surname | varchar(256) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0,002 sec)
+
+mysql> SHOW INDEXES FROM translator;
++------------+------------+--------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table      | Non_unique | Key_name     | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++------------+------------+--------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| translator |          0 | PRIMARY      |            1 | id          | A         |           0 |     NULL | NULL   |      | BTREE      |         |               |
+| translator |          1 | fullname_idx |            1 | name        | A         |           0 |     NULL | NULL   | YES  | BTREE      |         |               |
+| translator |          1 | fullname_idx |            2 | surname     | A         |           0 |     NULL | NULL   | YES  | BTREE      |         |               |
++------------+------------+--------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+3 rows in set (0,001 sec)
+
+```
