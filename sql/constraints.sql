@@ -82,3 +82,23 @@ INSERT INTO personal_data (name, surname) VALUES
     ('Lisa', 'Pumpkinshire');
 
 SELECT * FROM personal_data;
+
+CREATE TABLE author
+(
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(256),
+    surname VARCHAR(256),
+    penname VARCHAR(256),
+    INDEX penname_idx (penname)
+);
+
+DESCRIBE author;
+SHOW INDEXES FROM author;
+
+CREATE TABLE translator
+(
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(256),
+    surname VARCHAR(256),
+    INDEX fullname_idx (name, surname)
+)
