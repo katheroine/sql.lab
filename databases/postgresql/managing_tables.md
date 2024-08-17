@@ -713,3 +713,7 @@ quote_sql_lab=# SELECT * FROM personal_data;
   3 | Lisa     | Pumpkinshire
 (3 rows)
 ```
+
+##### Indexes
+
+**There is no possibility of adding indexes in PostgreSQL during the database creation.**

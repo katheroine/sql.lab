@@ -381,3 +381,7 @@ sqlite> SELECT * FROM personal_data;
 2|Vivienne|Morgenstein
 3|Lisa|Pumpkinshire
 ```
+
+##### Indexes
+
+**There is no possibility of adding indexes in SQLite during the database creation.**
