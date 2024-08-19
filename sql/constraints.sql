@@ -101,4 +101,7 @@ CREATE TABLE translator
     name VARCHAR(256),
     surname VARCHAR(256),
     INDEX fullname_idx (name, surname)
-)
+);
+
+DESCRIBE translator;
+SHOW INDEXES FROM translator;
