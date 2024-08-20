@@ -62,4 +62,70 @@ ALTER TABLE quote_usage
 
 DESCRIBE quote_usage;
 
+ALTER TABLE quote_usage
+    ALTER COLUMN document_id DROP NOT NULL;
 
+ALTER TABLE quote_usage
+    MODIFY COLUMN document_id INTEGER;
+
+DESCRIBE quote_usage;
+
+CREATE TABLE quote_collection
+(
+    id INTEGER PRIMARY KEY,
+    codename VARCHAR(256),
+    name VARCHAR(256)
+);
+
+DESCRIBE quote_collection;
+
+ALTER TABLE quote_collection
+    ADD CONSTRAINT codename_uqe UNIQUE (codename);
+
+DESCRIBE quote_collection;
+
+ALTER TABLE quote_collection
+    DROP CONSTRAINT codename_uqe;
+
+DESCRIBE quote_collection;
+
+CREATE TABLE favourities
+(
+    id INTEGER PRIMARY KEY,
+    author_id INTEGER,
+    item_type VARCHAR(128),
+    item_id INTEGER
+);
+
+DESCRIBE favourities;
+
+ALTER TABLE favourities
+    ALTER COLUMN item_type SET DEFAULT "quote";
+
+DESCRIBE favourities;
+
+ALTER TABLE favourities
+    ALTER COLUMN item_type DROP DEFAULT;
+
+DESCRIBE favourities;
+
+CREATE TABLE author_popularity
+(
+    author_id INTEGER,
+    popularity_points BIGINT
+);
+
+DESCRIBE author_popularity;
+
+ALTER TABLE author_popularity
+    ALTER COLUMN author_id ADD PRIMARY KEY;
+
+ALTER TABLE author_popularity
+    ADD CONSTRAINT id_pk PRIMARY KEY (author_id);
+
+DESCRIBE author_popularity;
+
+ALTER TABLE author_popularity
+    ALTER COLUMN author_id DROP PRIMARY KEY;
+
+DESCRIBE author_popularity;
