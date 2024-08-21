@@ -210,3 +210,159 @@ Indexes:
 Access method: heap
 
 ```
+
+##### Adding *unique* constraint
+
+```
+quote_sql_lab=# CREATE TABLE quote_collection
+quote_sql_lab-# (
+quote_sql_lab(#     id INTEGER PRIMARY KEY,
+quote_sql_lab(#     codename VARCHAR(256),
+quote_sql_lab(#     name VARCHAR(256)
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ quote_collection;
+                                      Table "public.quote_collection"
+  Column  |          Type          | Collation | Nullable | Default | Storage  | Stats target | Description
+----------+------------------------+-----------+----------+---------+----------+--------------+-------------
+ id       | integer                |           | not null |         | plain    |              |
+ codename | character varying(256) |           |          |         | extended |              |
+ name     | character varying(256) |           |          |         | extended |              |
+Indexes:
+    "quote_collection_pkey" PRIMARY KEY, btree (id)
+Access method: heap
+
+quote_sql_lab=# ALTER TABLE quote_collection
+quote_sql_lab-#     ADD CONSTRAINT codename_uqe UNIQUE (codename);
+ALTER TABLE
+quote_sql_lab=# \d+ quote_collection;
+                                      Table "public.quote_collection"
+  Column  |          Type          | Collation | Nullable | Default | Storage  | Stats target | Description
+----------+------------------------+-----------+----------+---------+----------+--------------+-------------
+ id       | integer                |           | not null |         | plain    |              |
+ codename | character varying(256) |           |          |         | extended |              |
+ name     | character varying(256) |           |          |         | extended |              |
+Indexes:
+    "quote_collection_pkey" PRIMARY KEY, btree (id)
+    "codename_uqe" UNIQUE CONSTRAINT, btree (codename)
+Access method: heap
+
+```
+
+##### Removing *unique* constraint
+
+```
+quote_sql_lab=# CREATE TABLE quote_collection
+quote_sql_lab-# (
+quote_sql_lab(#     id INTEGER PRIMARY KEY,
+quote_sql_lab(#     codename VARCHAR(256) UNIQUE,
+quote_sql_lab(#     name VARCHAR(256)
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ quote_collection;
+                                      Table "public.quote_collection"
+  Column  |          Type          | Collation | Nullable | Default | Storage  | Stats target | Description
+----------+------------------------+-----------+----------+---------+----------+--------------+-------------
+ id       | integer                |           | not null |         | plain    |              |
+ codename | character varying(256) |           |          |         | extended |              |
+ name     | character varying(256) |           |          |         | extended |              |
+Indexes:
+    "quote_collection_pkey" PRIMARY KEY, btree (id)
+    "codename_uqe" UNIQUE CONSTRAINT, btree (codename)
+Access method: heap
+
+quote_sql_lab=# ALTER TABLE quote_collection
+quote_sql_lab-#     DROP CONSTRAINT codename_uqe;
+ALTER TABLE
+quote_sql_lab=# \d+ quote_collection;
+                                      Table "public.quote_collection"
+  Column  |          Type          | Collation | Nullable | Default | Storage  | Stats target | Description
+----------+------------------------+-----------+----------+---------+----------+--------------+-------------
+ id       | integer                |           | not null |         | plain    |              |
+ codename | character varying(256) |           |          |         | extended |              |
+ name     | character varying(256) |           |          |         | extended |              |
+Indexes:
+    "quote_collection_pkey" PRIMARY KEY, btree (id)
+Access method: heap
+
+```
+
+##### Adding *default* constraint
+
+```
+quote_sql_lab=# CREATE TABLE favourities
+quote_sql_lab-# (
+quote_sql_lab(#     id INTEGER PRIMARY KEY,
+quote_sql_lab(#     author_id INTEGER,
+quote_sql_lab(#     item_type VARCHAR(128),
+quote_sql_lab(#     item_id INTEGER
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ favourities;
+                                         Table "public.favourities"
+  Column   |          Type          | Collation | Nullable | Default | Storage  | Stats target | Description
+-----------+------------------------+-----------+----------+---------+----------+--------------+-------------
+ id        | integer                |           | not null |         | plain    |              |
+ author_id | integer                |           |          |         | plain    |              |
+ item_type | character varying(128) |           |          |         | extended |              |
+ item_id   | integer                |           |          |         | plain    |              |
+Indexes:
+    "favourities_pkey" PRIMARY KEY, btree (id)
+Access method: heap
+
+quote_sql_lab=# ALTER TABLE favourities
+quote_sql_lab-#     ALTER COLUMN item_type SET DEFAULT 'quote';
+ALTER TABLE
+quote_sql_lab=# \d+ favourities;
+                                                   Table "public.favourities"
+  Column   |          Type          | Collation | Nullable |          Default           | Storage  | Stats target | Description
+-----------+------------------------+-----------+----------+----------------------------+----------+--------------+-------------
+ id        | integer                |           | not null |                            | plain    |              |
+ author_id | integer                |           |          |                            | plain    |              |
+ item_type | character varying(128) |           |          | 'quote'::character varying | extended |              |
+ item_id   | integer                |           |          |                            | plain    |              |
+Indexes:
+    "favourities_pkey" PRIMARY KEY, btree (id)
+Access method: heap
+
+```
+
+##### Removing *default* constraint
+
+```
+quote_sql_lab=# CREATE TABLE favourities
+quote_sql_lab-# (
+quote_sql_lab(#     id INTEGER PRIMARY KEY,
+quote_sql_lab(#     author_id INTEGER,
+quote_sql_lab(#     item_type VARCHAR(128) DEFAULT 'quote',
+quote_sql_lab(#     item_id INTEGER
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ favourities;
+                                                   Table "public.favourities"
+  Column   |          Type          | Collation | Nullable |          Default           | Storage  | Stats target | Description
+-----------+------------------------+-----------+----------+----------------------------+----------+--------------+-------------
+ id        | integer                |           | not null |                            | plain    |              |
+ author_id | integer                |           |          |                            | plain    |              |
+ item_type | character varying(128) |           |          | 'quote'::character varying | extended |              |
+ item_id   | integer                |           |          |                            | plain    |              |
+Indexes:
+    "favourities_pkey" PRIMARY KEY, btree (id)
+Access method: heap
+
+quote_sql_lab=# ALTER TABLE favourities
+quote_sql_lab-#     ALTER COLUMN item_type DROP DEFAULT;
+ALTER TABLE
+quote_sql_lab=# \d+ favourities;
+                                         Table "public.favourities"
+  Column   |          Type          | Collation | Nullable | Default | Storage  | Stats target | Description
+-----------+------------------------+-----------+----------+---------+----------+--------------+-------------
+ id        | integer                |           | not null |         | plain    |              |
+ author_id | integer                |           |          |         | plain    |              |
+ item_type | character varying(128) |           |          |         | extended |              |
+ item_id   | integer                |           |          |         | plain    |              |
+Indexes:
+    "favourities_pkey" PRIMARY KEY, btree (id)
+Access method: heap
+
+```

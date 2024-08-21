@@ -100,7 +100,7 @@ CREATE TABLE favourities
 DESCRIBE favourities;
 
 ALTER TABLE favourities
-    ALTER COLUMN item_type SET DEFAULT "quote";
+    ALTER COLUMN item_type SET DEFAULT 'quote';
 
 DESCRIBE favourities;
 

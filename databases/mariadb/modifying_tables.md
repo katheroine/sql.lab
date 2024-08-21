@@ -327,7 +327,7 @@ MariaDB [quote_sql_lab]> DESCRIBE favourities;
 4 rows in set (0,003 sec)
 
 MariaDB [quote_sql_lab]> ALTER TABLE favourities
-    ->     ALTER COLUMN item_type SET DEFAULT "quote";
+    ->     ALTER COLUMN item_type SET DEFAULT 'quote';
 Query OK, 0 rows affected (0,005 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
@@ -351,7 +351,7 @@ MariaDB [quote_sql_lab]> CREATE TABLE favourities
     -> (
     ->     id INTEGER PRIMARY KEY,
     ->     author_id INTEGER,
-    ->     item_type VARCHAR(128) DEFAULT "quote",
+    ->     item_type VARCHAR(128) DEFAULT 'quote',
     ->     item_id INTEGER
     -> );
 Query OK, 0 rows affected (0,024 sec)
