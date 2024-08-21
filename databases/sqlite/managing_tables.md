@@ -6,3 +6,4 @@
 
 1. [Displaying tables](displaying_tables.md)
 2. [Creating tables](creating_tables.md)
+3. [Modifying tables](modifying_tables.md)

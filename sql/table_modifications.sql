@@ -118,7 +118,7 @@ CREATE TABLE author_popularity
 DESCRIBE author_popularity;
 
 ALTER TABLE author_popularity
-    ALTER COLUMN author_id ADD PRIMARY KEY;
+    ADD PRIMARY KEY (author_id);
 
 ALTER TABLE author_popularity
     ADD CONSTRAINT id_pk PRIMARY KEY (author_id);
@@ -126,6 +126,6 @@ ALTER TABLE author_popularity
 DESCRIBE author_popularity;
 
 ALTER TABLE author_popularity
-    ALTER COLUMN author_id DROP PRIMARY KEY;
+    DROP PRIMARY KEY;
 
 DESCRIBE author_popularity;
