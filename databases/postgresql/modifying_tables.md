@@ -366,3 +366,97 @@ Indexes:
 Access method: heap
 
 ```
+
+##### Adding *primary key* constraint
+
+```
+quote_sql_lab=# CREATE TABLE author_popularity
+quote_sql_lab-# (
+quote_sql_lab(#     author_id INTEGER,
+quote_sql_lab(#     popularity_points BIGINT
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ author_popularity;
+                                  Table "public.author_popularity"
+      Column       |  Type   | Collation | Nullable | Default | Storage | Stats target | Description
+-------------------+---------+-----------+----------+---------+---------+--------------+-------------
+ author_id         | integer |           |          |         | plain   |              |
+ popularity_points | bigint  |           |          |         | plain   |              |
+Access method: heap
+
+quote_sql_lab=# ALTER TABLE author_popularity
+quote_sql_lab-#     ADD PRIMARY KEY (author_id);
+ALTER TABLE
+quote_sql_lab=# \d+ author_popularity;
+                                  Table "public.author_popularity"
+      Column       |  Type   | Collation | Nullable | Default | Storage | Stats target | Description
+-------------------+---------+-----------+----------+---------+---------+--------------+-------------
+ author_id         | integer |           | not null |         | plain   |              |
+ popularity_points | bigint  |           |          |         | plain   |              |
+Indexes:
+    "author_popularity_pkey" PRIMARY KEY, btree (author_id)
+Access method: heap
+
+```
+
+```
+quote_sql_lab=# CREATE TABLE author_popularity
+quote_sql_lab-# (
+quote_sql_lab(#     author_id INTEGER,
+quote_sql_lab(#     popularity_points BIGINT
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ author_popularity;
+                                  Table "public.author_popularity"
+      Column       |  Type   | Collation | Nullable | Default | Storage | Stats target | Description
+-------------------+---------+-----------+----------+---------+---------+--------------+-------------
+ author_id         | integer |           |          |         | plain   |              |
+ popularity_points | bigint  |           |          |         | plain   |              |
+Access method: heap
+
+quote_sql_lab=# ALTER TABLE author_popularity
+quote_sql_lab-#     ADD CONSTRAINT id_pk PRIMARY KEY (author_id);
+ALTER TABLE
+quote_sql_lab=# \d+ author_popularity;
+                                  Table "public.author_popularity"
+      Column       |  Type   | Collation | Nullable | Default | Storage | Stats target | Description
+-------------------+---------+-----------+----------+---------+---------+--------------+-------------
+ author_id         | integer |           | not null |         | plain   |              |
+ popularity_points | bigint  |           |          |         | plain   |              |
+Indexes:
+    "id_pk" PRIMARY KEY, btree (author_id)
+Access method: heap
+
+```
+
+##### Removing *primary key* constraint
+
+```
+quote_sql_lab=# CREATE TABLE author_popularity
+quote_sql_lab-# (
+quote_sql_lab(#     author_id INTEGER PRIMARY KEY,
+quote_sql_lab(#     popularity_points BIGINT
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ author_popularity;
+                                  Table "public.author_popularity"
+      Column       |  Type   | Collation | Nullable | Default | Storage | Stats target | Description
+-------------------+---------+-----------+----------+---------+---------+--------------+-------------
+ author_id         | integer |           | not null |         | plain   |              |
+ popularity_points | bigint  |           |          |         | plain   |              |
+Indexes:
+    "author_popularity_pkey" PRIMARY KEY, btree (author_id)
+Access method: heap
+
+quote_sql_lab=# ALTER TABLE author_popularity
+quote_sql_lab-#     DROP CONSTRAINT author_popularity_pkey;
+ALTER TABLE
+quote_sql_lab=# \d+ author_popularity;
+                                  Table "public.author_popularity"
+      Column       |  Type   | Collation | Nullable | Default | Storage | Stats target | Description
+-------------------+---------+-----------+----------+---------+---------+--------------+-------------
+ author_id         | integer |           | not null |         | plain   |              |
+ popularity_points | bigint  |           |          |         | plain   |              |
+Access method: heap
+
+```
