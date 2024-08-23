@@ -128,4 +128,7 @@ DESCRIBE author_popularity;
 ALTER TABLE author_popularity
     DROP PRIMARY KEY;
 
+ALTER TABLE author_popularity
+    DROP CONSTRAINT id_pk;
+
 DESCRIBE author_popularity;
