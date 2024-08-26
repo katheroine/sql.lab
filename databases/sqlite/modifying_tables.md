@@ -79,3 +79,175 @@ sqlite> DROP TABLE document;
 sqlite> CREATE TABLE document AS SELECT * FROM document_temp;
 sqlite> DROP TABLE document_temp;
 ```
+
+##### Adding *not NULL* constraint
+
+```
+sqlite> CREATE TABLE quote_usage
+   ...> (
+   ...>     id BIGINT PRIMARY KEY,
+   ...>     quote_id INTEGER NOT NULL,
+   ...>     user_id INTEGER NOT NULL,
+   ...>     document_id INTEGER
+   ...> );
+sqlite> CREATE TABLE quote_usage_temp
+   ...> (
+   ...>     id BIGINT PRIMARY KEY,
+   ...>     quote_id INTEGER NOT NULL,
+   ...>     user_id INTEGER NOT NULL,
+   ...>     document_id INTEGER NOT NULL
+   ...> );
+sqlite> INSERT INTO quote_usage_temp (id, quote_id, user_id, document_id) SELECT id, quote_id, user_id, document_id FROM quote_usage_temp;
+sqlite> DROP TABLE quote_usage;
+sqlite> CREATE TABLE quote_usage AS SELECT * FROM quote_usage_temp;
+sqlite> DROP TABLE quote_usage_temp;
+```
+
+##### Removing *not NULL* constraint
+
+```
+sqlite> CREATE TABLE quote_usage
+   ...> (
+   ...>     id BIGINT PRIMARY KEY,
+   ...>     quote_id INTEGER NOT NULL,
+   ...>     user_id INTEGER NOT NULL,
+   ...>     document_id INTEGER NOT NULL
+   ...> );
+sqlite> CREATE TABLE quote_usage_temp
+   ...> (
+   ...>     id BIGINT PRIMARY KEY,
+   ...>     quote_id INTEGER NOT NULL,
+   ...>     user_id INTEGER NOT NULL,
+   ...>     document_id INTEGER
+   ...> );
+sqlite> INSERT INTO quote_usage_temp (id, quote_id, user_id, document_id) SELECT id, quote_id, user_id, document_id FROM quote_usage_temp;
+sqlite> DROP TABLE quote_usage;
+sqlite> CREATE TABLE quote_usage AS SELECT * FROM quote_usage_temp;
+sqlite> DROP TABLE quote_usage_temp;
+```
+
+##### Adding *unique* constraint
+
+```
+sqlite> CREATE TABLE quote_collection
+   ...> (
+   ...>     id INTEGER PRIMARY KEY,
+   ...>     codename VARCHAR(256),
+   ...>     name VARCHAR(256)
+   ...> );
+sqlite> CREATE TABLE quote_collection_temp
+   ...> (
+   ...>     id INTEGER PRIMARY KEY,
+   ...>     codename VARCHAR(256) UNIQUE,
+   ...>     name VARCHAR(256)
+   ...> );
+sqlite> INSERT INTO quote_collection_temp (id, codename, name) SELECT id, codename, name FROM quote_collection;
+sqlite> DROP TABLE quote_collection;
+sqlite> CREATE TABLE quote_collection AS SELECT * FROM quote_collection_temp;
+sqlite> DROP TABLE quote_collection_temp;
+```
+
+##### Removing *unique* constraint
+
+```
+sqlite> CREATE TABLE quote_collection
+   ...> (
+   ...>     id INTEGER PRIMARY KEY,
+   ...>     codename VARCHAR(256) UNIQUE,
+   ...>     name VARCHAR(256)
+   ...> );
+sqlite> CREATE TABLE quote_collection_temp
+   ...> (
+   ...>     id INTEGER PRIMARY KEY,
+   ...>     codename VARCHAR(256),
+   ...>     name VARCHAR(256)
+   ...> );
+sqlite> INSERT INTO quote_collection_temp (id, codename, name) SELECT id, codename, name FROM quote_collection;
+sqlite> DROP TABLE quote_collection;
+sqlite> CREATE TABLE quote_collection AS SELECT * FROM quote_collection_temp;
+sqlite> DROP TABLE quote_collection_temp;
+```
+
+##### Adding *default* constraint
+
+```
+sqlite> CREATE TABLE favourities
+   ...> (
+   ...>     id INTEGER PRIMARY KEY,
+   ...>     author_id INTEGER,
+   ...>     item_type VARCHAR(128),
+   ...>     item_id INTEGER
+   ...> );
+sqlite> CREATE TABLE favourities_temp
+   ...> (
+   ...>     id INTEGER PRIMARY KEY,
+   ...>     author_id INTEGER,
+   ...>     item_type VARCHAR(128) DEFAULT 'quote',
+   ...>     item_id INTEGER
+   ...> );
+sqlite> INSERT INTO favourities_temp (id, author_id, item_type, item_id) SELECT id, author_id, item_type, item_id FROM favourities;
+sqlite> DROP TABLE favourities;
+sqlite> CREATE TABLE favourities AS SELECT * FROM favourities_temp;
+sqlite> DROP TABLE favourities_temp;
+```
+
+##### Removing *default* constraint
+
+```
+sqlite> CREATE TABLE favourities
+   ...> (
+   ...>     id INTEGER PRIMARY KEY,
+   ...>     author_id INTEGER,
+   ...>     item_type VARCHAR(128) DEFAULT 'quote',
+   ...>     item_id INTEGER
+   ...> );
+sqlite> CREATE TABLE favourities_temp
+   ...> (
+   ...>     id INTEGER PRIMARY KEY,
+   ...>     author_id INTEGER,
+   ...>     item_type VARCHAR(128) DEFAULT 'quote',
+   ...>     item_id INTEGER
+   ...> );
+sqlite> INSERT INTO favourities_temp (id, author_id, item_type, item_id) SELECT id, author_id, item_type, item_id FROM favourities;
+sqlite> DROP TABLE favourities;
+sqlite> CREATE TABLE favourities AS SELECT * FROM favourities_temp;
+sqlite> DROP TABLE favourities_temp;
+```
+
+##### Adding *primary key* constraint
+
+```
+sqlite> CREATE TABLE author_popularity
+   ...> (
+   ...>     author_id INTEGER,
+   ...>     popularity_points BIGINT
+   ...> );
+sqlite> CREATE TABLE author_popularity_temp
+   ...> (
+   ...>     author_id INTEGER PRIMARY KEY,
+   ...>     popularity_points BIGINT
+   ...> );
+sqlite> INSERT INTO author_popularity_temp (author_id, popularity_points) SELECT author_id, popularity_points FROM author_popularity;
+sqlite> DROP TABLE author_popularity;
+sqlite> CREATE TABLE author_popularity AS SELECT * FROM author_popularity_temp;
+sqlite> DROP TABLE author_popularity_temp;
+```
+
+##### Removing *primary key* constraint
+
+```
+sqlite> CREATE TABLE author_popularity
+   ...> (
+   ...>     author_id INTEGER PRIMARY KEY,
+   ...>     popularity_points BIGINT
+   ...> );
+sqlite> CREATE TABLE author_popularity_temp
+   ...> (
+   ...>     author_id INTEGER,
+   ...>     popularity_points BIGINT
+   ...> );
+sqlite> INSERT INTO author_popularity_temp (author_id, popularity_points) SELECT author_id, popularity_points FROM author_popularity;
+sqlite> DROP TABLE author_popularity;
+sqlite> CREATE TABLE author_popularity AS SELECT * FROM author_popularity_temp;
+sqlite> DROP TABLE author_popularity_temp;
+```
