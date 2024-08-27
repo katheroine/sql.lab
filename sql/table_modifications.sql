@@ -132,3 +132,36 @@ ALTER TABLE author_popularity
     DROP CONSTRAINT id_pk;
 
 DESCRIBE author_popularity;
+
+CREATE TABLE author
+(
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(256),
+    surname VARCHAR(256),
+    penname VARCHAR(256)
+);
+
+CREATE INDEX penname_idx ON author (penname);
+
+SHOW INDEXES FROM author;
+
+DROP INDEX penname_idx ON author;
+DROP INDEX penname_idx;
+
+SHOW INDEXES FROM author;
+
+CREATE TABLE translator
+(
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(256),
+    surname VARCHAR(256)
+);
+
+CREATE INDEX fullname_idx ON translator (name, surname);
+
+SHOW INDEXES FROM translator;
+
+DROP INDEX fullname_idx ON translator;
+DROP INDEX fullname_idx;
+
+SHOW INDEXES FROM translator;

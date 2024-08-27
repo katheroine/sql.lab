@@ -487,3 +487,80 @@ MariaDB [quote_sql_lab]> DESCRIBE author_popularity;
 2 rows in set (0,002 sec)
 
 ```
+
+##### Creating *index*
+
+**Single-column index**
+
+```
+MariaDB [quote_sql_lab]> CREATE TABLE author
+    -> (
+    ->     id INTEGER PRIMARY KEY,
+    ->     name VARCHAR(256),
+    ->     surname VARCHAR(256),
+    ->     penname VARCHAR(256)
+    -> );
+Query OK, 0 rows affected (0,023 sec)
+
+MariaDB [quote_sql_lab]> CREATE INDEX penname_idx ON author (penname);
+Query OK, 0 rows affected (0,023 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [quote_sql_lab]> SHOW INDEXES;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [quote_sql_lab]> SHOW INDEXES FROM author;
++--------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table  | Non_unique | Key_name    | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++--------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| author |          0 | PRIMARY     |            1 | id          | A         |           0 |     NULL | NULL   |      | BTREE      |         |               |
+| author |          1 | penname_idx |            1 | penname     | A         |           0 |     NULL | NULL   | YES  | BTREE      |         |               |
++--------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+2 rows in set (0,001 sec)
+
+```
+
+**Multiple-column index**
+
+```
+MariaDB [quote_sql_lab]> CREATE TABLE translator
+    -> (
+    ->     id INTEGER PRIMARY KEY,
+    ->     name VARCHAR(256),
+    ->     surname VARCHAR(256)
+    -> );
+Query OK, 0 rows affected (0,019 sec)
+
+MariaDB [quote_sql_lab]> CREATE INDEX fullname_idx ON translator (name, surname);
+Query OK, 0 rows affected (0,023 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [quote_sql_lab]> SHOW INDEXES FROM translator;
++------------+------------+--------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table      | Non_unique | Key_name     | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++------------+------------+--------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| translator |          0 | PRIMARY      |            1 | id          | A         |           0 |     NULL | NULL   |      | BTREE      |         |               |
+| translator |          1 | fullname_idx |            1 | name        | A         |           0 |     NULL | NULL   | YES  | BTREE      |         |               |
+| translator |          1 | fullname_idx |            2 | surname     | A         |           0 |     NULL | NULL   | YES  | BTREE      |         |               |
++------------+------------+--------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+3 rows in set (0,001 sec)
+
+```
+
+##### Removing *index*
+
+**Single-column index**
+
+```
+MariaDB [quote_sql_lab]> DROP INDEX penname_idx ON author;
+Query OK, 0 rows affected (0,014 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [quote_sql_lab]> SHOW INDEXES FROM author;
++--------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table  | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++--------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| author |          0 | PRIMARY  |            1 | id          | A         |           0 |     NULL | NULL   |      | BTREE      |         |               |
++--------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+1 row in set (0,001 sec)
+
+```

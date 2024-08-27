@@ -251,3 +251,76 @@ sqlite> DROP TABLE author_popularity;
 sqlite> CREATE TABLE author_popularity AS SELECT * FROM author_popularity_temp;
 sqlite> DROP TABLE author_popularity_temp;
 ```
+
+##### Creating *index*
+
+**Single-column index**
+
+```
+sqlite> CREATE TABLE author
+   ...> (
+   ...>     id INTEGER PRIMARY KEY,
+   ...>     name VARCHAR(256),
+   ...>     surname VARCHAR(256),
+   ...>     penname VARCHAR(256)
+   ...> );
+sqlite> CREATE INDEX penname_idx ON author (penname);
+sqlite> .schema author
+CREATE TABLE author
+(
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(256),
+    surname VARCHAR(256),
+    penname VARCHAR(256)
+);
+CREATE INDEX penname_idx ON author (penname);
+```
+
+**Multiple-column index**
+
+```
+sqlite> CREATE TABLE translator
+   ...> (
+   ...>     id INTEGER PRIMARY KEY,
+   ...>     name VARCHAR(256),
+   ...>     surname VARCHAR(256)
+   ...> );
+sqlite> CREATE INDEX fullname_idx ON translator (name, surname);
+sqlite> .schema translator
+CREATE TABLE translator
+(
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(256),
+    surname VARCHAR(256)
+);
+CREATE INDEX fullname_idx ON translator (name, surname);
+```
+
+##### Removing *index*
+
+**Single-column index**
+
+```
+sqlite> DROP INDEX penname_idx;
+sqlite> .schema author
+CREATE TABLE author
+(
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(256),
+    surname VARCHAR(256),
+    penname VARCHAR(256)
+);
+```
+
+**Multiple-column index**
+
+```
+sqlite> DROP INDEX fullname_idx;
+sqlite> .schema translator
+CREATE TABLE translator
+(
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(256),
+    surname VARCHAR(256)
+);
+```

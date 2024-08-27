@@ -460,3 +460,98 @@ quote_sql_lab=# \d+ author_popularity;
 Access method: heap
 
 ```
+
+##### Creating *index*
+
+**Single-column index**
+
+```
+quote_sql_lab=# CREATE TABLE author
+quote_sql_lab-# (
+quote_sql_lab(#     id INTEGER PRIMARY KEY,
+quote_sql_lab(#     name VARCHAR(256),
+quote_sql_lab(#     surname VARCHAR(256),
+quote_sql_lab(#     penname VARCHAR(256)
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# CREATE INDEX penname_idx ON author (penname);
+CREATE INDEX
+quote_sql_lab=# \d+ author;
+                                           Table "public.author"
+ Column  |          Type          | Collation | Nullable | Default | Storage  | Stats target | Description
+---------+------------------------+-----------+----------+---------+----------+--------------+-------------
+ id      | integer                |           | not null |         | plain    |              |
+ name    | character varying(256) |           |          |         | extended |              |
+ surname | character varying(256) |           |          |         | extended |              |
+ penname | character varying(256) |           |          |         | extended |              |
+Indexes:
+    "author_pkey" PRIMARY KEY, btree (id)
+    "penname_idx" btree (penname)
+Access method: heap
+
+```
+
+**Multiple-column index**
+
+```
+quote_sql_lab=# CREATE TABLE translator
+quote_sql_lab-# (
+quote_sql_lab(#     id INTEGER PRIMARY KEY,
+quote_sql_lab(#     name VARCHAR(256),
+quote_sql_lab(#     surname VARCHAR(256)
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# CREATE INDEX fullname_idx ON translator (name, surname);
+CREATE INDEX
+quote_sql_lab=# \d+ translator;
+                                         Table "public.translator"
+ Column  |          Type          | Collation | Nullable | Default | Storage  | Stats target | Description
+---------+------------------------+-----------+----------+---------+----------+--------------+-------------
+ id      | integer                |           | not null |         | plain    |              |
+ name    | character varying(256) |           |          |         | extended |              |
+ surname | character varying(256) |           |          |         | extended |              |
+Indexes:
+    "translator_pkey" PRIMARY KEY, btree (id)
+    "fullname_idx" btree (name, surname)
+Access method: heap
+
+```
+
+##### Removing *index*
+
+**Single-column index**
+
+```
+quote_sql_lab=# DROP INDEX penname_idx;
+DROP INDEX
+quote_sql_lab=# \d+ author;
+                                           Table "public.author"
+ Column  |          Type          | Collation | Nullable | Default | Storage  | Stats target | Description
+---------+------------------------+-----------+----------+---------+----------+--------------+-------------
+ id      | integer                |           | not null |         | plain    |              |
+ name    | character varying(256) |           |          |         | extended |              |
+ surname | character varying(256) |           |          |         | extended |              |
+ penname | character varying(256) |           |          |         | extended |              |
+Indexes:
+    "author_pkey" PRIMARY KEY, btree (id)
+Access method: heap
+
+```
+
+**Multiple-column index**
+
+```
+quote_sql_lab=# DROP INDEX fullname_idx;
+DROP INDEX
+quote_sql_lab=# \d+ translator;
+                                         Table "public.translator"
+ Column  |          Type          | Collation | Nullable | Default | Storage  | Stats target | Description
+---------+------------------------+-----------+----------+---------+----------+--------------+-------------
+ id      | integer                |           | not null |         | plain    |              |
+ name    | character varying(256) |           |          |         | extended |              |
+ surname | character varying(256) |           |          |         | extended |              |
+Indexes:
+    "translator_pkey" PRIMARY KEY, btree (id)
+Access method: heap
+
+```
