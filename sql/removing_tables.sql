@@ -1,0 +1,12 @@
+CREATE TABLE note
+(
+    id INTEGER PRIMARY KEY,
+    author_id INTEGER,
+    content VARCHAR(1024)
+);
+
+SHOW TABLES;
+
+DROP TABLE note;
+
+SHOW TABLES;
