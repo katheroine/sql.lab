@@ -44,6 +44,19 @@ ALTER TABLE document
 
 DESCRIBE document;
 
+CREATE TABLE cover_type
+(
+    codename VARCHAR(128),
+    description CHAR(128)
+);
+
+DESCRIBE cover_type;
+
+ALTER TABLE cover_type MODIFY COLUMN description VARCHAR(256);
+ALTER TABLE cover_type ALTER COLUMN description TYPE VARCHAR(256);
+
+DESCRIBE cover_type;
+
 CREATE TABLE quote_usage
 (
     id BIGINT PRIMARY KEY,

@@ -145,6 +145,40 @@ mysql> DESCRIBE document;
 
 ```
 
+##### Changing column type
+
+```
+mysql> CREATE TABLE cover_type
+    -> (
+    ->     codename VARCHAR(128),
+    ->     description CHAR(128)
+    -> );
+Query OK, 0 rows affected (0,019 sec)
+
+mysql> DESCRIBE cover_type;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| codename    | varchar(128) | YES  |     | NULL    |       |
+| description | char(128)    | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+2 rows in set (0,005 sec)
+
+mysql> ALTER TABLE cover_type MODIFY COLUMN description VARCHAR(256);
+Query OK, 0 rows affected (0,045 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE cover_type;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| codename    | varchar(128) | YES  |     | NULL    |       |
+| description | varchar(256) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+2 rows in set (0,003 sec)
+
+```
+
 ##### Adding *not NULL* constraint
 
 ```

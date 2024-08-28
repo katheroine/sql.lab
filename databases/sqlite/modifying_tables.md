@@ -80,6 +80,25 @@ sqlite> CREATE TABLE document AS SELECT * FROM document_temp;
 sqlite> DROP TABLE document_temp;
 ```
 
+##### Changing column type
+
+```
+sqlite> CREATE TABLE cover_type
+   ...> (
+   ...>     codename VARCHAR(128),
+   ...>     description CHAR(128)
+   ...> );
+sqlite> CREATE TABLE cover_type_temp
+   ...> (
+   ...>     codename VARCHAR(128),
+   ...>     description VARCHAR(256)
+   ...> );
+sqlite> INSERT INTO cover_type_temp (codename, description) SELECT codename, description FROM cover_type;
+sqlite> DROP TABLE cover_type;
+sqlite> CREATE TABLE cover_type AS SELECT * FROM cover_type_temp;
+sqlite> DROP TABLE cover_type_temp;
+```
+
 ##### Adding *not NULL* constraint
 
 ```

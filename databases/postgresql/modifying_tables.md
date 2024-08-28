@@ -131,6 +131,35 @@ Access method: heap
 
 ```
 
+##### Changing column type
+
+```
+quote_sql_lab=# CREATE TABLE cover_type
+quote_sql_lab-# (
+quote_sql_lab(#     codename VARCHAR(128),
+quote_sql_lab(#     description CHAR(128)
+quote_sql_lab(# );
+CREATE TABLE
+quote_sql_lab=# \d+ cover_type;
+                                           Table "public.cover_type"
+   Column    |          Type          | Collation | Nullable | Default | Storage  | Stats target | Description
+-------------+------------------------+-----------+----------+---------+----------+--------------+-------------
+ codename    | character varying(128) |           |          |         | extended |              |
+ description | character(128)         |           |          |         | extended |              |
+Access method: heap
+
+quote_sql_lab=# ALTER TABLE cover_type ALTER COLUMN description TYPE VARCHAR(256);
+ALTER TABLE
+quote_sql_lab=# \d+ cover_type;
+                                           Table "public.cover_type"
+   Column    |          Type          | Collation | Nullable | Default | Storage  | Stats target | Description
+-------------+------------------------+-----------+----------+---------+----------+--------------+-------------
+ codename    | character varying(128) |           |          |         | extended |              |
+ description | character varying(256) |           |          |         | extended |              |
+Access method: heap
+
+```
+
 ##### Adding *not NULL* constraint
 
 ```
