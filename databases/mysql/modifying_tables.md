@@ -546,6 +546,80 @@ mysql> SHOW INDEXES FROM translator;
 
 ```
 
+##### Adding *autoincrement*
+
+```
+mysql> CREATE TABLE personal_data
+    -> (
+    ->     id INTEGER PRIMARY KEY,
+    ->     name VARCHAR(256),
+    ->     surname VARCHAR(256)
+    -> );
+Query OK, 0 rows affected (0,024 sec)
+
+mysql> DESCRIBE personal_data;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | NO   | PRI | NULL    |       |
+| name    | varchar(256) | YES  |     | NULL    |       |
+| surname | varchar(256) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0,010 sec)
+
+mysql> ALTER TABLE personal_data MODIFY id INTEGER AUTO_INCREMENT;
+Query OK, 0 rows affected (0,056 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE personal_data;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(256) | YES  |     | NULL    |                |
+| surname | varchar(256) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+3 rows in set (0,002 sec)
+
+```
+
+##### Removing *autoincrement*
+
+```
+mysql> CREATE TABLE personal_data
+    -> (
+    ->     id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    ->     name VARCHAR(256),
+    ->     surname VARCHAR(256)
+    -> );
+Query OK, 0 rows affected (0,017 sec)
+
+mysql> DESCRIBE personal_data;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(256) | YES  |     | NULL    |                |
+| surname | varchar(256) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+3 rows in set (0,002 sec)
+
+mysql> ALTER TABLE personal_data MODIFY id INTEGER;
+Query OK, 0 rows affected (0,054 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE personal_data;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | NO   | PRI | NULL    |       |
+| name    | varchar(256) | YES  |     | NULL    |       |
+| surname | varchar(256) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0,002 sec)
+
+```
+
 ##### Removing *index*
 
 **Single-column index**

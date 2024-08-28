@@ -133,6 +133,17 @@ ALTER TABLE author_popularity
 
 DESCRIBE author_popularity;
 
+CREATE TABLE personal_data
+(
+    id INTEGER PRIMARY KEY,
+    name VARCHAR(256),
+    surname VARCHAR(256)
+);
+
+DESCRIBE personal_data;
+
+ALTER TABLE personal_data MODIFY id INTEGER AUTO_INCREMENT;
+
 CREATE TABLE author
 (
     id INTEGER PRIMARY KEY,

@@ -488,6 +488,80 @@ MariaDB [quote_sql_lab]> DESCRIBE author_popularity;
 
 ```
 
+##### Adding *autoincrement*
+
+```
+MariaDB [quote_sql_lab]> CREATE TABLE personal_data
+    -> (
+    ->     id INTEGER PRIMARY KEY,
+    ->     name VARCHAR(256),
+    ->     surname VARCHAR(256)
+    -> );
+Query OK, 0 rows affected (0,024 sec)
+
+MariaDB [quote_sql_lab]> DESCRIBE personal_data;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | NO   | PRI | NULL    |       |
+| name    | varchar(256) | YES  |     | NULL    |       |
+| surname | varchar(256) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0,010 sec)
+
+MariaDB [quote_sql_lab]> ALTER TABLE personal_data MODIFY id INTEGER AUTO_INCREMENT;
+Query OK, 0 rows affected (0,056 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [quote_sql_lab]> DESCRIBE personal_data;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(256) | YES  |     | NULL    |                |
+| surname | varchar(256) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+3 rows in set (0,002 sec)
+
+```
+
+Removing *autoincrement*
+
+```
+MariaDB [quote_sql_lab]> CREATE TABLE personal_data
+    -> (
+    ->     id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    ->     name VARCHAR(256),
+    ->     surname VARCHAR(256)
+    -> );
+Query OK, 0 rows affected (0,017 sec)
+
+MariaDB [quote_sql_lab]> DESCRIBE personal_data;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(256) | YES  |     | NULL    |                |
+| surname | varchar(256) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+3 rows in set (0,002 sec)
+
+MariaDB [quote_sql_lab]> ALTER TABLE personal_data MODIFY id INTEGER;
+Query OK, 0 rows affected (0,054 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [quote_sql_lab]> DESCRIBE personal_data;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | NO   | PRI | NULL    |       |
+| name    | varchar(256) | YES  |     | NULL    |       |
+| surname | varchar(256) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0,002 sec)
+
+```
+
 ##### Creating *index*
 
 **Single-column index**
@@ -561,6 +635,23 @@ MariaDB [quote_sql_lab]> SHOW INDEXES FROM author;
 +--------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
 | author |          0 | PRIMARY  |            1 | id          | A         |           0 |     NULL | NULL   |      | BTREE      |         |               |
 +--------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+1 row in set (0,001 sec)
+
+```
+
+**Multiple-column index**
+
+```
+MariaDB [quote_sql_lab]> DROP INDEX fullname_idx ON translator;
+Query OK, 0 rows affected (0,018 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [quote_sql_lab]> SHOW INDEXES FROM translator;
++------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table      | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| translator |          0 | PRIMARY  |            1 | id          | A         |           0 |     NULL | NULL   |      | BTREE      |         |               |
++------------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
 1 row in set (0,001 sec)
 
 ```
