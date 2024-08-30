@@ -1,6 +1,7 @@
 [⌂ Home](../../README.md)
 [⬆ Up: Managing tables](managing_tables.md)
 [▲ Previous: Modifying tables](modifying_tables.md)
+[▼ Next: Inserting into tables](inserting_into_tables.md)
 
 ### Removing tables
 
