@@ -19,3 +19,7 @@ UPDATE storage_conditions SET
 WHERE medium_id = 1;
 
 SELECT * FROM storage_conditions;
+
+UPDATE storage_conditions SET
+    humidity = 41.5
+WHERE humidity >= 40 AND humidity < 43;

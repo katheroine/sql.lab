@@ -30,3 +30,19 @@ sqlite> SELECT * FROM storage_conditions;
 2|42|20|1014
 4|41|18|1012.25
 ```
+
+#### Updating multiple records
+
+```
+sqlite> SELECT * FROM storage_conditions;
+1|38|22.3|1013
+2|42|20|1014
+4|41|18|1012.25
+sqlite> UPDATE storage_conditions SET
+   ...>     humidity = 41.5
+   ...> WHERE humidity >= 40 AND humidity < 43;
+sqlite> SELECT * FROM storage_conditions;
+1|38|22.3|1013
+2|41.5|20|1014
+4|41.5|18|1012.25
+```
