@@ -4,7 +4,7 @@
 
 ### Updating into table
 
-#### Updating single record
+#### Updating multiple columns in single record
 
 ```
 sqlite> CREATE TABLE storage_conditions
@@ -31,7 +31,7 @@ sqlite> SELECT * FROM storage_conditions;
 4|41|18|1012.25
 ```
 
-#### Updating multiple records
+#### Updating single column in multiple records
 
 ```
 sqlite> SELECT * FROM storage_conditions;

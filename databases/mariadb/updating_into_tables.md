@@ -4,7 +4,7 @@
 
 ### Updating into table
 
-#### Updating single record
+#### Updating multiple columns in single record
 
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE storage_conditions
@@ -52,7 +52,7 @@ MariaDB [quote_sql_lab]> SELECT * FROM storage_conditions;
 
 ```
 
-#### Updating multiple records
+#### Updating single column in multiple records
 
 ```
 MariaDB [quote_sql_lab]> SELECT * FROM storage_conditions;

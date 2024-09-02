@@ -4,7 +4,7 @@
 
 ### Updating into table
 
-#### Updating single record
+#### Updating multiple columns in single record
 
 ```
 mysql> CREATE TABLE storage_conditions
@@ -52,7 +52,7 @@ mysql> SELECT * FROM storage_conditions;
 
 ```
 
-#### Updating multiple records
+#### Updating single column in multiple records
 
 ```
 mysql> SELECT * FROM storage_conditions;
