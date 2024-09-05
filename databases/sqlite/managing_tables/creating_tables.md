@@ -5,6 +5,14 @@
 
 ### Creating tables
 
+```sql
+CREATE TABLE table_name (
+    column_1_name column_1_type column_1_attributes,
+    column_2_name column_2_type column_2_attributes,
+    column_3_name column_3_type column_3_attributes
+);
+```
+
 ```
 sqlite> CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
 sqlite> .tables
@@ -48,6 +56,18 @@ A storage class is more general than a datatype. The INTEGER storage class, for 
 
 ##### Boolean & bit
 
+```sql
+CREATE TABLE table_name (
+    column_name BOOLEAN column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name BIT column_attributes
+);
+```
+
 ```
 sqlite> CREATE TABLE user
    ...> (
@@ -65,6 +85,12 @@ CREATE TABLE user
 ```
 
 ##### Integer
+
+```sql
+CREATE TABLE table_name (
+    column_name INTEGER column_attributes
+);
+```
 
 ```
 sqlite> CREATE TABLE rating
@@ -85,6 +111,42 @@ CREATE TABLE rating
 ```
 
 ##### Decimal
+
+```sql
+CREATE TABLE table_name (
+    column_name DECIMAL column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name NUMERIC column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name DECIMAL(precision) column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name NUMERIC(precision) column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name DECIMAL(precision, scale) column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name NUMERIC(precision, scale) column_attributes
+);
+```
 
 ```
 sqlite> CREATE TABLE physical_property
@@ -108,6 +170,20 @@ CREATE TABLE physical_property
 
 ##### Floating point
 
+```sql
+CREATE TABLE table_name (
+    column_name FLOAT column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name FLOAT(precision) column_attributes
+);
+```
+
+**Precision** is the number of digits in a number.
+
 ```
 sqlite> CREATE TABLE storage_conditions
    ...> (
@@ -128,6 +204,12 @@ CREATE TABLE storage_conditions
 
 ###### Binary
 
+```sql
+CREATE TABLE table_name (
+    column_name BINARY(digits_number) column_attributes
+);
+```
+
 ```
 sqlite> CREATE TABLE file
    ...> (
@@ -144,6 +226,18 @@ CREATE TABLE file
 
 ##### Character
 
+```sql
+CREATE TABLE table_name (
+    column_name CHAR(characters_number) column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name VARCHAR(characters_number) column_attributes
+);
+```
+
 ```
 sqlite> CREATE TABLE medium_type
    ...> (
@@ -159,6 +253,12 @@ CREATE TABLE medium_type
 ```
 
 ###### Date & time
+
+```sql
+CREATE TABLE table_name (
+    column_name DATETIME column_attributes
+);
+```
 
 ```
 sqlite> CREATE TABLE points
@@ -188,6 +288,12 @@ CREATE TABLE points
 
 ##### JSON
 
+```sql
+CREATE TABLE table_name (
+    column_name JSON column_attributes
+);
+```
+
 ```
 sqlite> CREATE TABLE structured_data
    ...> (
@@ -205,6 +311,12 @@ CREATE TABLE structured_data
 #### Constraints
 
 ##### NOT NULL
+
+```sql
+CREATE TABLE table_name (
+    column_name column_type NOT NULL
+);
+```
 
 ```
 sqlite> CREATE TABLE medium_type
@@ -231,6 +343,12 @@ DVD|
 
 ##### Unique
 
+```sql
+CREATE TABLE table_name (
+    column_name column_type UNIQUE
+);
+```
+
 ```
 sqlite> CREATE TABLE user
    ...> (
@@ -249,6 +367,12 @@ sqlite> SELECT * FROM user;
 ```
 
 ##### Default
+
+```sql
+CREATE TABLE table_name (
+    column_name column_type DEFAULT default_value
+);
+```
 
 ```
 sqlite> CREATE TABLE storage_conditions
@@ -291,6 +415,12 @@ sqlite> SELECT * FROM physical_property;
 
 **Single-column primary key**
 
+```sql
+CREATE TABLE table_name (
+    column_name column_type PRIMARY KEY
+);
+```
+
 ```
 sqlite> CREATE TABLE quote
    ...> (
@@ -303,6 +433,14 @@ sqlite> CREATE TABLE quote
 ```
 
 **Multiple-column primary key**
+
+```sql
+CREATE TABLE table_name (
+    column_1_name column_1_type,
+    column_2_name column_2_type,
+    PRIMARY KEY (column_1_name, column_2_name)
+);
+```
 
 ```
 sqlite> CREATE TABLE points

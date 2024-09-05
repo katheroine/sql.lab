@@ -5,6 +5,14 @@
 
 ### Creating tables
 
+```sql
+CREATE TABLE table_name (
+    column_1_name column_1_type column_1_attributes,
+    column_2_name column_2_type column_2_attributes,
+    column_3_name column_3_type column_3_attributes
+);
+```
+
 ```
 quote_sql_lab=# CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
 CREATE TABLE
@@ -242,6 +250,18 @@ The PostgreSQL type system contains a number of special-purpose entries that are
 
 ##### Boolean & bit
 
+```sql
+CREATE TABLE table_name (
+    column_name BOOLEAN column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name BIT column_attributes
+);
+```
+
 ```
 quote_sql_lab=# CREATE TABLE user_account
 (
@@ -263,6 +283,12 @@ Access method: heap
 ```
 
 ##### Integer
+
+```sql
+CREATE TABLE table_name (
+    column_name INTEGER column_attributes
+);
+```
 
 ```
 quote_sql_lab=# CREATE TABLE rating
@@ -287,6 +313,42 @@ Access method: heap
 ```
 
 ##### Decimal
+
+```sql
+CREATE TABLE table_name (
+    column_name DECIMAL column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name NUMERIC column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name DECIMAL(precision) column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name NUMERIC(precision) column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name DECIMAL(precision, scale) column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name NUMERIC(precision, scale) column_attributes
+);
+```
 
 ```
 quote_sql_lab=# CREATE TABLE physical_property
@@ -314,6 +376,20 @@ Access method: heap
 
 ##### Floating point
 
+```sql
+CREATE TABLE table_name (
+    column_name FLOAT column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name FLOAT(precision) column_attributes
+);
+```
+
+**Precision** is the number of digits in a number.
+
 ```
 quote_sql_lab=# CREATE TABLE storage_conditions
 quote_sql_lab-# (
@@ -338,6 +414,12 @@ Access method: heap
 
 ##### Binary
 
+```sql
+CREATE TABLE table_name (
+    column_name BYTEA column_attributes
+);
+```
+
 ```
 quote_sql_lab=# CREATE TABLE file
 (
@@ -358,6 +440,18 @@ Access method: heap
 
 ##### Character
 
+```sql
+CREATE TABLE table_name (
+    column_name CHAR(characters_number) column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name VARCHAR(characters_number) column_attributes
+);
+```
+
 ```
 quote_sql_lab=# CREATE TABLE medium_type
 quote_sql_lab-# (
@@ -377,6 +471,24 @@ Access method: heap
 ```
 
 ###### Date & time
+
+```sql
+CREATE TABLE table_name (
+    column_name DATE column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name TIME column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name TIMESTAMP column_attributes
+);
+```
 
 ```
 quote_sql_lab=# CREATE TABLE points (
@@ -406,6 +518,12 @@ Access method: heap
 
 ##### JSON
 
+```sql
+CREATE TABLE table_name (
+    column_name JSON column_attributes
+);
+```
+
 ```
 quote_sql_lab=# CREATE TABLE structured_data
 quote_sql_lab-# (
@@ -427,6 +545,12 @@ Access method: heap
 #### Constraints
 
 ##### Not NULL
+
+```sql
+CREATE TABLE table_name (
+    column_name column_type NOT NULL
+);
+```
 
 ```
 quote_sql_lab=# CREATE TABLE medium_type
@@ -478,6 +602,12 @@ quote_sql_lab=# SELECT * FROM medium_type;
 
 ##### Unique
 
+```sql
+CREATE TABLE table_name (
+    column_name column_type UNIQUE
+);
+```
+
 ```
 quote_sql_lab=# CREATE TABLE user_account
 quote_sql_lab-# (
@@ -517,6 +647,12 @@ quote_sql_lab=# SELECT * FROM user_account;
 
 ##### Default
 
+```sql
+CREATE TABLE table_name (
+    column_name column_type DEFAULT default_value
+);
+```
+
 ```
 quote_sql_lab=# CREATE TABLE storage_conditions
 quote_sql_lab-# (
@@ -548,6 +684,12 @@ quote_sql_lab=# SELECT * FROM storage_conditions;
 ```
 
 ##### Check
+
+```sql
+CREATE TABLE table_name (
+    column_name column_type CHECK condition
+);
+```
 
 ```
 quote_sql_lab=# CREATE TABLE physical_property
@@ -597,6 +739,12 @@ quote_sql_lab=# SELECT * FROM physical_property;
 
 **Single-column primary key**
 
+```sql
+CREATE TABLE table_name (
+    column_name column_type PRIMARY KEY
+);
+```
+
 ```
 quote_sql_lab=# CREATE TABLE quote
 quote_sql_lab-# (
@@ -610,6 +758,14 @@ CREATE TABLE
 ```
 
 **Multiple-column primary key**
+
+```sql
+CREATE TABLE table_name (
+    column_1_name column_1_type,
+    column_2_name column_2_type,
+    PRIMARY KEY (column_1_name, column_2_name)
+);
+```
 
 ```
 quote_sql_lab=# CREATE TABLE points (
@@ -656,6 +812,12 @@ CREATE TABLE
 ```
 
 ##### Autoincrement
+
+```sql
+CREATE TABLE table_name (
+    column_name SERIAL PRIMARY KEY
+);
+```
 
 **PostgreSQL has the data types SMALLSERIAL, SERIAL and BIGSERIAL; these are not true types, but merely a notational convenience for creating unique identifier columns. These are similar to AUTO_INCREMENT property supported by some other databases.**
 

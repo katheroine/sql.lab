@@ -274,6 +274,10 @@ sqlite> DROP TABLE author_popularity_temp;
 
 ##### Creating *index*
 
+```sql
+CREATE INDEX index_name ON table_name (column1_name, column_2_name, column_3_name);
+```
+
 **Single-column index**
 
 ```
@@ -317,6 +321,11 @@ CREATE INDEX fullname_idx ON translator (name, surname);
 ```
 
 ##### Removing *index*
+
+
+```sql
+DROP INDEX index_name;
+```
 
 **Single-column index**
 

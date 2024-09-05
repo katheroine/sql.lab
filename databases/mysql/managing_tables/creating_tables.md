@@ -5,6 +5,14 @@
 
 ### Creating tables
 
+```sql
+CREATE TABLE table_name (
+    column_1_name column_1_type column_1_attributes,
+    column_2_name column_2_type column_2_attributes,
+    column_3_name column_3_type column_3_attributes
+);
+```
+
 ```
 mysql> CREATE TABLE cover_type (codename VARCHAR(128), description VARCHAR(256));
 Query OK, 0 rows affected (0,07 sec)
@@ -102,6 +110,18 @@ The spatial data types and functions are available for MyISAM, InnoDB, NDB, and 
 
 ##### Boolean & bit
 
+```sql
+CREATE TABLE table_name (
+    column_name BOOLEAN column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name BIT column_attributes
+);
+```
+
 ```
 mysql> CREATE TABLE user
     -> (
@@ -124,6 +144,12 @@ mysql> DESCRIBE user;
 ```
 
 ##### Integer
+
+```sql
+CREATE TABLE table_name (
+    column_name INTEGER column_attributes
+);
+```
 
 ```
 mysql> CREATE TABLE rating
@@ -149,6 +175,46 @@ mysql> DESCRIBE rating;
 ```
 
 ##### Decimal
+
+```sql
+CREATE TABLE table_name (
+    column_name DECIMAL column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name NUMERIC column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name DECIMAL(precision) column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name NUMERIC(precision) column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name DECIMAL(precision, scale) column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name NUMERIC(precision, scale) column_attributes
+);
+```
+
+**Precision** is the number of digits in a number.
+
+**Scale** is the number of digits to the right of the decimal point in a number.
 
 ```
 mysql> CREATE TABLE physical_property
@@ -177,6 +243,20 @@ mysql> DESCRIBE physical_property;
 
 ##### Floating point
 
+```sql
+CREATE TABLE table_name (
+    column_name FLOAT column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name FLOAT(precision) column_attributes
+);
+```
+
+**Precision** is the number of digits in a number.
+
 ```
 mysql> CREATE TABLE storage_conditions
     -> (
@@ -202,6 +282,12 @@ mysql> DESCRIBE storage_conditions;
 
 ##### Binary
 
+```sql
+CREATE TABLE table_name (
+    column_name BINARY(digits_number) column_attributes
+);
+```
+
 ```
 mysql> CREATE TABLE file
     -> (
@@ -223,6 +309,18 @@ mysql> DESCRIBE file;
 
 ##### Character
 
+```sql
+CREATE TABLE table_name (
+    column_name CHAR(characters_number) column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name VARCHAR(characters_number) column_attributes
+);
+```
+
 ```
 mysql> CREATE TABLE medium_type
     -> (
@@ -243,6 +341,30 @@ mysql> DESCRIBE medium_type;
 ```
 
 ###### Date & time
+
+```sql
+CREATE TABLE table_name (
+    column_name DATE column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name TIME column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name DATETIME column_attributes
+);
+```
+
+```sql
+CREATE TABLE table_name (
+    column_name TIMESTAMP column_attributes
+);
+```
 
 ```
 mysql> CREATE TABLE points
@@ -274,6 +396,12 @@ mysql> DESCRIBE points;
 
 ##### JSON
 
+```sql
+CREATE TABLE table_name (
+    column_name JSON column_attributes
+);
+```
+
 ```
 mysql> INSERT INTO structured_data VALUES
     ->     (1, '{"genre": "thriller", "rating": 5}'),
@@ -296,6 +424,12 @@ mysql> DESCRIBE structured_data;
 #### Constraints
 
 ##### Not NULL
+
+```sql
+CREATE TABLE table_name (
+    column_name column_type NOT NULL
+);
+```
 
 ```
 mysql> CREATE TABLE medium_type
@@ -357,6 +491,12 @@ mysql> SELECT * FROM medium_type;
 
 ##### Unique
 
+```sql
+CREATE TABLE table_name (
+    column_name column_type UNIQUE
+);
+```
+
 ```
 mysql> CREATE TABLE user
     -> (
@@ -402,6 +542,12 @@ mysql> SELECT * FROM user;
 
 ##### Default
 
+```sql
+CREATE TABLE table_name (
+    column_name column_type DEFAULT default_value
+);
+```
+
 ```
 mysql> CREATE TABLE storage_conditions
     -> (
@@ -437,6 +583,12 @@ mysql> SELECT * FROM storage_conditions;
 ```
 
 ##### Check
+
+```sql
+CREATE TABLE table_name (
+    column_name column_type CHECK condition
+);
+```
 
 **It doesn't work in MySQL when reference other column.**
 
@@ -491,6 +643,12 @@ mysql> SELECT * FROM physical_property;
 
 **Single-column primary key**
 
+```sql
+CREATE TABLE table_name (
+    column_name column_type PRIMARY KEY
+);
+```
+
 ```
 mysql> CREATE TABLE quote
     -> (
@@ -505,6 +663,14 @@ Query OK, 0 rows affected (0,09 sec)
 ```
 
 **Multiple-column primary key**
+
+```sql
+CREATE TABLE table_name (
+    column_1_name column_1_type,
+    column_2_name column_2_type,
+    PRIMARY KEY (column_1_name, column_2_name)
+);
+```
 
 ```
 mysql> CREATE TABLE points
@@ -560,6 +726,12 @@ Query OK, 0 rows affected (0,021 sec)
 
 ##### Autoincrement
 
+```sql
+CREATE TABLE table_name (
+    column_name INTEGER PRIMARY KEY AUTO_INCREMENT
+);
+```
+
 ```
 mysql> CREATE TABLE personal_data
     -> (
@@ -599,6 +771,14 @@ mysql> SELECT * FROM personal_data;
 ```
 
 ##### Indexes
+
+```sql
+CREATE TABLE table_name (
+    column_1_name column_1_type,
+    column_2_name column_2_type,
+    INDEX (column_1_name, column_2_name)
+);
+```
 
 **Single-column index**
 
