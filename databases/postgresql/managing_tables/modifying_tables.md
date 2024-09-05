@@ -9,6 +9,10 @@
 
 ##### Renaming table
 
+```sql
+ALTER TABLE table_name RENAME TO new_table_name;
+```
+
 ```
 quote_sql_lab=# \dt
                List of relations
@@ -36,6 +40,10 @@ quote_sql_lab=# \dt
 #### Columns
 
 ##### Adding column
+
+```sql
+ALTER TABLE table_name ADD COLUMN column_name column_type column_attributes;
+```
 
 ```
 quote_sql_lab=# CREATE TABLE book
@@ -68,6 +76,10 @@ Access method: heap
 
 ##### Removing column
 
+```sql
+ALTER TABLE table_name DROP COLUMN column_name;
+```
+
 ```
 quote_sql_lab=# CREATE TABLE article
 quote_sql_lab-# (
@@ -99,6 +111,10 @@ Access method: heap
 ```
 
 ##### Renaming column
+
+```sql
+ALTER TABLE table_name RENAME CULUMN column_name TO new_column_name;
+```
 
 ```
 quote_sql_lab=# CREATE TABLE document
@@ -134,6 +150,10 @@ Access method: heap
 
 ##### Changing column type
 
+```sql
+ALTER TABLE table_name ALTER COLUMN column_name TYPE new_column_type;
+```
+
 ```
 quote_sql_lab=# CREATE TABLE cover_type
 quote_sql_lab-# (
@@ -162,6 +182,10 @@ Access method: heap
 ```
 
 ##### Adding *not NULL* constraint
+
+```sql
+ALTER TABLE table_name ALTER COLUMN column_name SET NOT NULL;
+```
 
 ```
 quote_sql_lab=# CREATE TABLE quote_usage
@@ -203,6 +227,10 @@ Access method: heap
 
 ##### Removing *not NULL* constraint
 
+```sql
+ALTER TABLE table_name ALTER COLUMN column_name DROP NOT NULL;
+```
+
 ```
 quote_sql_lab=# CREATE TABLE quote_usage
 quote_sql_lab-# (
@@ -243,6 +271,10 @@ Access method: heap
 
 ##### Adding *unique* constraint
 
+```sql
+ALTER TABLE table_name ADD CONSTRAINT constraint_name UNIQUE (column_name);
+```
+
 ```
 quote_sql_lab=# CREATE TABLE quote_collection
 quote_sql_lab-# (
@@ -281,6 +313,10 @@ Access method: heap
 
 ##### Removing *unique* constraint
 
+```sql
+ALTER TABLE table_name DROP CONSTRAINT constraint_name;
+```
+
 ```
 quote_sql_lab=# CREATE TABLE quote_collection
 quote_sql_lab-# (
@@ -318,6 +354,10 @@ Access method: heap
 ```
 
 ##### Adding *default* constraint
+
+```sql
+ALTER TABLE table_name ALTER COLUMN column_name SET DEFAULT default_value;
+```
 
 ```
 quote_sql_lab=# CREATE TABLE favourities
@@ -359,6 +399,10 @@ Access method: heap
 
 ##### Removing *default* constraint
 
+```sql
+ALTER TABLE table_name ALTER COLUMN column_name DROP DEFAULT;
+```
+
 ```
 quote_sql_lab=# CREATE TABLE favourities
 quote_sql_lab-# (
@@ -399,6 +443,12 @@ Access method: heap
 
 ##### Adding *primary key* constraint
 
+**First version**
+
+```sql
+ALTER TABLE table_name ADD PRIMARY KEY (column_name);
+```
+
 ```
 quote_sql_lab=# CREATE TABLE author_popularity
 quote_sql_lab-# (
@@ -427,6 +477,12 @@ Indexes:
     "author_popularity_pkey" PRIMARY KEY, btree (author_id)
 Access method: heap
 
+```
+
+**Second version**
+
+```sql
+ALTER TABLE table_name ADD PRIMARY KEY (column_name);
 ```
 
 ```
@@ -461,6 +517,10 @@ Access method: heap
 
 ##### Removing *primary key* constraint
 
+```sql
+ALTER TABLE table_name DROP CONSTRAINT constraint_name;
+```
+
 ```
 quote_sql_lab=# CREATE TABLE author_popularity
 quote_sql_lab-# (
@@ -492,6 +552,10 @@ Access method: heap
 ```
 
 ##### Creating *index*
+
+```sql
+CREATE INDEX index_name ON table_name (column1_name, column_2_name, column_3_name);
+```
 
 **Single-column index**
 
@@ -548,6 +612,10 @@ Access method: heap
 ```
 
 ##### Removing *index*
+
+```sql
+DROP INDEX index_name;
+```
 
 **Single-column index**
 

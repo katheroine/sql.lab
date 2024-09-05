@@ -4,6 +4,14 @@
 
 ### Displaying databases
 
+```sql
+\db
+```
+
+```sql
+\list
+```
+
 ```bash
 postgres=# \db
        List of tablespaces

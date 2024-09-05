@@ -9,6 +9,10 @@
 
 ##### Renaming table
 
+```sql
+ALTER TABLE table_name RENAME TO new_table_name;
+```
+
 ```
 MariaDB [quote_sql_lab]> SHOW TABLES;
 +-------------------------+
@@ -39,6 +43,10 @@ MariaDB [quote_sql_lab]> SHOW TABLES;
 #### Columns
 
 ##### Adding column
+
+```sql
+ALTER TABLE table_name ADD COLUMN column_name column_type column_attributes;
+```
 
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE book
@@ -75,6 +83,10 @@ MariaDB [quote_sql_lab]> DESCRIBE book;
 ```
 
 ##### Removing column
+
+```sql
+ALTER TABLE table_name DROP COLUMN column_name;
+```
 
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE article
@@ -113,6 +125,10 @@ MariaDB [quote_sql_lab]> DESCRIBE article;
 
 ##### Renaming column
 
+```sql
+ALTER TABLE table_name CHANGE COLUMN column_name new_column_name column_type column_attributes;
+```
+
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE document
     -> (
@@ -148,6 +164,10 @@ MariaDB [quote_sql_lab]> DESCRIBE document;
 
 ##### Changing column type
 
+```sql
+ALTER TABLE table_name MODIFY COLUMN column_name new_column_type;
+```
+
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE cover_type
     -> (
@@ -181,6 +201,10 @@ MariaDB [quote_sql_lab]> DESCRIBE cover_type;
 ```
 
 ##### Adding *not NULL* constraint
+
+```sql
+ALTER TABLE table_name MODIFY COLUMN column_name column_type NOT NULL remaining_column_attributes;
+```
 
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE quote_usage
@@ -223,6 +247,10 @@ MariaDB [quote_sql_lab]> DESCRIBE quote_usage;
 
 ##### Removing *not NULL* constraint
 
+```sql
+ALTER TABLE table_name MODIFY COLUMN column_name column_type remaining_column_attributes;
+```
+
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE quote_usage
     -> (
@@ -264,6 +292,10 @@ MariaDB [quote_sql_lab]> DESCRIBE quote_usage;
 
 ##### Adding *unique* constraint
 
+```sql
+ALTER TABLE table_name ADD CONSTRAINT constraint_name UNIQUE (column_name);
+```
+
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE quote_collection
     -> (
@@ -302,6 +334,10 @@ MariaDB [quote_sql_lab]> DESCRIBE quote_collection;
 
 ##### Removing *unique* constraint
 
+```sql
+ALTER TABLE table_name DROP CONSTRAINT constraint_name;
+```
+
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE quote_collection
     -> (
@@ -339,6 +375,10 @@ MariaDB [quote_sql_lab]> DESCRIBE quote_collection;
 ```
 
 ##### Adding *default* constraint
+
+```sql
+ALTER TABLE table_name ALTER COLUMN column_name SET DEFAULT default_value;
+```
 
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE favourities
@@ -381,6 +421,10 @@ MariaDB [quote_sql_lab]> DESCRIBE favourities;
 
 ##### Removing *default* constraint
 
+```sql
+ALTER TABLE table_name ALTER COLUMN column_name DROP DEFAULT;
+```
+
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE favourities
     -> (
@@ -422,6 +466,12 @@ MariaDB [quote_sql_lab]> DESCRIBE favourities;
 
 ##### Adding *primary key* constraint
 
+**First version**
+
+```sql
+ALTER TABLE table_name ADD CONSTRAINT constraint_name PRIMARY KEY (column_name);
+```
+
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE author_popularity
     -> (
@@ -453,6 +503,12 @@ MariaDB [quote_sql_lab]> DESCRIBE author_popularity;
 +-------------------+------------+------+-----+---------+-------+
 2 rows in set (0,002 sec)
 
+```
+
+**Second version**
+
+```sql
+ALTER TABLE table_name ADD PRIMARY KEY (column_name);
 ```
 
 ```
@@ -490,6 +546,10 @@ MariaDB [quote_sql_lab]> DESCRIBE author_popularity;
 
 ##### Removing *primary key* constraint
 
+```sql
+ALTER TABLE table_name DROP PRIMARY KEY;
+```
+
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE author_popularity
     -> (
@@ -524,6 +584,10 @@ MariaDB [quote_sql_lab]> DESCRIBE author_popularity;
 ```
 
 ##### Adding *autoincrement*
+
+```sql
+ALTER TABLE table_name MODIFY column_name column_type column_attributes AUTO_INCREMENT;
+```
 
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE personal_data
@@ -562,6 +626,10 @@ MariaDB [quote_sql_lab]> DESCRIBE personal_data;
 
 ##### Removing *autoincrement*
 
+```sql
+ALTER TABLE table_name MODIFY column_name column_type column_attributes;
+```
+
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE personal_data
     -> (
@@ -598,6 +666,10 @@ MariaDB [quote_sql_lab]> DESCRIBE personal_data;
 ```
 
 ##### Creating *index*
+
+```sql
+CREATE INDEX index_name ON table_name (column1_name, column_2_name, column_3_name);
+```
 
 **Single-column index**
 
@@ -656,6 +728,10 @@ MariaDB [quote_sql_lab]> SHOW INDEXES FROM translator;
 ```
 
 ##### Removing *index*
+
+```sql
+DROP INDEX index_name ON table_name;
+```
 
 **Single-column index**
 

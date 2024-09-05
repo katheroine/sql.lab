@@ -4,6 +4,10 @@
 
 ### Displaying databases
 
+```sql
+SHOW DATABASES;
+```
+
 ```bash
 mysql> SHOW DATABASES;
 +-------------------------+

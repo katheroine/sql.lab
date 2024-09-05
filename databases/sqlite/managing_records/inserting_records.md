@@ -8,6 +8,11 @@
 
 **SQLite doesn't handle multipe inserts in one statement.**
 
+```sql
+INSERT INTO table_name VALUES
+    (value_of_column_1, value_of_column_2, value_of_column_3);
+```
+
 ```
 sqlite> CREATE TABLE medium_type
    ...> (
@@ -24,6 +29,11 @@ VHS|A VHS tape
 ```
 
 #### Inserting into chosen columns
+
+```sql
+INSERT INTO table_name (column_1_name, column_3_name) VALUES
+    (value_of_column_1, value_of_column_3);
+```
 
 ```
 sqlite> CREATE TABLE user

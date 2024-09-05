@@ -9,6 +9,10 @@
 
 ##### Renaming table
 
+```sql
+ALTER TABLE table_name RENAME TO new_table_name;
+```
+
 ```
 mysql> SHOW TABLES;
 +-------------------------+
@@ -39,6 +43,10 @@ mysql> SHOW TABLES;
 #### Columns
 
 ##### Adding column
+
+```sql
+ALTER TABLE table_name ADD COLUMN column_name column_type column_attributes;
+```
 
 ```
 mysql> CREATE TABLE book
@@ -75,6 +83,10 @@ mysql> DESCRIBE book;
 ```
 
 ##### Removing column
+
+```sql
+ALTER TABLE table_name DROP COLUMN column_name;
+```
 
 ```
 mysql> CREATE TABLE article
@@ -113,6 +125,10 @@ mysql> DESCRIBE article;
 
 ##### Renaming column
 
+```sql
+ALTER TABLE table_name RENAME CULUMN column_name TO new_column_name;
+```
+
 ```
 mysql> CREATE TABLE document
     -> (
@@ -148,6 +164,10 @@ mysql> DESCRIBE document;
 
 ##### Changing column type
 
+```sql
+ALTER TABLE table_name MODIFY COLUMN column_name new_column_type;
+```
+
 ```
 mysql> CREATE TABLE cover_type
     -> (
@@ -181,6 +201,10 @@ mysql> DESCRIBE cover_type;
 ```
 
 ##### Adding *not NULL* constraint
+
+```sql
+ALTER TABLE table_name MODIFY COLUMN column_name column_type remaining_column_attributes;
+```
 
 ```
 mysql> CREATE TABLE quote_usage
@@ -223,6 +247,10 @@ mysql> DESCRIBE quote_usage;
 
 ##### Removing *not NULL* constraint
 
+```sql
+ALTER TABLE table_name MODIFY COLUMN column_name column_type NOT NULL remaining_column_attributes;
+```
+
 ```
 mysql> CREATE TABLE quote_usage
     -> (
@@ -264,6 +292,10 @@ mysql> DESCRIBE quote_usage;
 
 ##### Adding *unique* constraint
 
+```sql
+ALTER TABLE table_name ADD CONSTRAINT constraint_name UNIQUE (column_name);
+```
+
 ```
 mysql> CREATE TABLE quote_collection
     -> (
@@ -302,6 +334,10 @@ mysql> DESCRIBE quote_collection;
 
 ##### Removing *unique* constraint
 
+```sql
+ALTER TABLE table_name DROP CONSTRAINT constraint_name;
+```
+
 ```
 mysql> CREATE TABLE quote_collection
     -> (
@@ -339,6 +375,10 @@ mysql> DESCRIBE quote_collection;
 ```
 
 ##### Adding *default* constraint
+
+```sql
+ALTER TABLE table_name ALTER COLUMN column_name SET DEFAULT default_value;
+```
 
 ```
 mysql> CREATE TABLE favourities
@@ -381,6 +421,10 @@ mysql> DESCRIBE favourities;
 
 ##### Removing *default* constraint
 
+```sql
+ALTER TABLE table_name ALTER COLUMN column_name DROP DEFAULT;
+```
+
 ```
 mysql> CREATE TABLE favourities
     -> (
@@ -422,6 +466,12 @@ mysql> DESCRIBE favourities;
 
 ##### Adding *primary key* constraint
 
+**First version**
+
+```sql
+ALTER TABLE table_name ADD CONSTRAINT constraint_name PRIMARY KEY (column_name);
+```
+
 ```
 mysql> CREATE TABLE author_popularity
     -> (
@@ -453,6 +503,12 @@ mysql> DESCRIBE author_popularity;
 +-------------------+------------+------+-----+---------+-------+
 2 rows in set (0,002 sec)
 
+```
+
+**Second version**
+
+```sql
+ALTER TABLE table_name ADD PRIMARY KEY (column_name);
 ```
 
 ```
@@ -490,6 +546,10 @@ mysql> DESCRIBE author_popularity;
 
 ##### Removing *primary key* constraint
 
+```sql
+ALTER TABLE table_name DROP PRIMARY KEY;
+```
+
 ```
 mysql> CREATE TABLE author_popularity
     -> (
@@ -523,7 +583,93 @@ mysql> DESCRIBE author_popularity;
 
 ```
 
+##### Adding *autoincrement*
+
+```sql
+ALTER TABLE table_name MODIFY column_name column_type column_attributes AUTO_INCREMENT;
+```
+
+```
+mysql> CREATE TABLE personal_data
+    -> (
+    ->     id INTEGER PRIMARY KEY,
+    ->     name VARCHAR(256),
+    ->     surname VARCHAR(256)
+    -> );
+Query OK, 0 rows affected (0,024 sec)
+
+mysql> DESCRIBE personal_data;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | NO   | PRI | NULL    |       |
+| name    | varchar(256) | YES  |     | NULL    |       |
+| surname | varchar(256) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0,010 sec)
+
+mysql> ALTER TABLE personal_data MODIFY id INTEGER AUTO_INCREMENT;
+Query OK, 0 rows affected (0,056 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE personal_data;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(256) | YES  |     | NULL    |                |
+| surname | varchar(256) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+3 rows in set (0,002 sec)
+
+```
+
+##### Removing *autoincrement*
+
+```sql
+ALTER TABLE table_name MODIFY column_name column_type column_attributes;
+```
+
+```
+mysql> CREATE TABLE personal_data
+    -> (
+    ->     id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    ->     name VARCHAR(256),
+    ->     surname VARCHAR(256)
+    -> );
+Query OK, 0 rows affected (0,017 sec)
+
+mysql> DESCRIBE personal_data;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(256) | YES  |     | NULL    |                |
+| surname | varchar(256) | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+3 rows in set (0,002 sec)
+
+mysql> ALTER TABLE personal_data MODIFY id INTEGER;
+Query OK, 0 rows affected (0,054 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE personal_data;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | NO   | PRI | NULL    |       |
+| name    | varchar(256) | YES  |     | NULL    |       |
+| surname | varchar(256) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+3 rows in set (0,002 sec)
+
+```
+
 ##### Creating *index*
+
+```sql
+CREATE INDEX index_name ON table_name (column1_name, column_2_name, column_3_name);
+```
 
 **Single-column index**
 
@@ -581,81 +727,11 @@ mysql> SHOW INDEXES FROM translator;
 
 ```
 
-##### Adding *autoincrement*
-
-```
-mysql> CREATE TABLE personal_data
-    -> (
-    ->     id INTEGER PRIMARY KEY,
-    ->     name VARCHAR(256),
-    ->     surname VARCHAR(256)
-    -> );
-Query OK, 0 rows affected (0,024 sec)
-
-mysql> DESCRIBE personal_data;
-+---------+--------------+------+-----+---------+-------+
-| Field   | Type         | Null | Key | Default | Extra |
-+---------+--------------+------+-----+---------+-------+
-| id      | int(11)      | NO   | PRI | NULL    |       |
-| name    | varchar(256) | YES  |     | NULL    |       |
-| surname | varchar(256) | YES  |     | NULL    |       |
-+---------+--------------+------+-----+---------+-------+
-3 rows in set (0,010 sec)
-
-mysql> ALTER TABLE personal_data MODIFY id INTEGER AUTO_INCREMENT;
-Query OK, 0 rows affected (0,056 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> DESCRIBE personal_data;
-+---------+--------------+------+-----+---------+----------------+
-| Field   | Type         | Null | Key | Default | Extra          |
-+---------+--------------+------+-----+---------+----------------+
-| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
-| name    | varchar(256) | YES  |     | NULL    |                |
-| surname | varchar(256) | YES  |     | NULL    |                |
-+---------+--------------+------+-----+---------+----------------+
-3 rows in set (0,002 sec)
-
-```
-
-##### Removing *autoincrement*
-
-```
-mysql> CREATE TABLE personal_data
-    -> (
-    ->     id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    ->     name VARCHAR(256),
-    ->     surname VARCHAR(256)
-    -> );
-Query OK, 0 rows affected (0,017 sec)
-
-mysql> DESCRIBE personal_data;
-+---------+--------------+------+-----+---------+----------------+
-| Field   | Type         | Null | Key | Default | Extra          |
-+---------+--------------+------+-----+---------+----------------+
-| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
-| name    | varchar(256) | YES  |     | NULL    |                |
-| surname | varchar(256) | YES  |     | NULL    |                |
-+---------+--------------+------+-----+---------+----------------+
-3 rows in set (0,002 sec)
-
-mysql> ALTER TABLE personal_data MODIFY id INTEGER;
-Query OK, 0 rows affected (0,054 sec)
-Records: 0  Duplicates: 0  Warnings: 0
-
-mysql> DESCRIBE personal_data;
-+---------+--------------+------+-----+---------+-------+
-| Field   | Type         | Null | Key | Default | Extra |
-+---------+--------------+------+-----+---------+-------+
-| id      | int(11)      | NO   | PRI | NULL    |       |
-| name    | varchar(256) | YES  |     | NULL    |       |
-| surname | varchar(256) | YES  |     | NULL    |       |
-+---------+--------------+------+-----+---------+-------+
-3 rows in set (0,002 sec)
-
-```
-
 ##### Removing *index*
+
+```sql
+DROP INDEX index_name ON table_name;
+```
 
 **Single-column index**
 

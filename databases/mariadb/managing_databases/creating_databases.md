@@ -5,6 +5,10 @@
 
 ### Creating databases
 
+```sql
+CREATE DATABASE dababase_name;
+```
+
 ```bash
 MariaDB [(none)]> SHOW DATABASES;
 +--------------------+

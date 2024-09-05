@@ -4,6 +4,14 @@
 
 ### Updating records
 
+```sql
+UPDATE table_name SET
+    column_1_name = column_1_value,
+    column_2_name = column_2_value,
+    column_3_name = column_3_value
+WHERE conditions;
+```
+
 #### Updating multiple columns in single record
 
 ```

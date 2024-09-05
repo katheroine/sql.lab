@@ -6,6 +6,13 @@
 
 #### Inserting into all columns
 
+```sql
+INSERT INTO table_name VALUES
+    (value_1_of_column_1, value_1_of_column_2, value_1_of_column_3),
+    (value_2_of_column_1, value_2_of_column_2, value_2_of_column_3),
+    (value_3_of_column_1, value_3_of_column_2, value_3_of_column_3);
+```
+
 ```
 quote_sql_lab=# CREATE TABLE medium_type
 quote_sql_lab-# (
@@ -26,6 +33,13 @@ quote_sql_lab=# SELECT * FROM medium_type;
 ```
 
 #### Inserting into chosen columns
+
+```sql
+INSERT INTO table_name (column_1_name, column_3_name) VALUES
+    (value_1_of_column_1, value_1_of_column_3),
+    (value_2_of_column_1, value_2_of_column_3),
+    (value_3_of_column_1, value_3_of_column_3);
+```
 
 ```
 quote_sql_lab=# CREATE TABLE user_account

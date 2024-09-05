@@ -4,6 +4,10 @@
 
 ### Displaying tables
 
+```sql
+SHOW TABLES;
+```
+
 ```
 mysql> SHOW TABLES;
 Empty set (0,00 sec)

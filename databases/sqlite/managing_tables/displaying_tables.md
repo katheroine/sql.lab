@@ -4,6 +4,10 @@
 
 ### Displaying tables
 
+```sql
+.tables
+```
+
 ```
 sqlite> .tables
 ```

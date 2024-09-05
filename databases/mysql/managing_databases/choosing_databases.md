@@ -4,6 +4,10 @@
 
 ### Choosing databases
 
+```sql
+USE database_name;
+```
+
 ```bash
 mysql> USE quote_sql_lab;
 Database changed

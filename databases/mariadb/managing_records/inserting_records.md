@@ -6,6 +6,13 @@
 
 #### Inserting into all columns
 
+```sql
+INSERT INTO table_name VALUES
+    (value_1_of_column_1, value_1_of_column_2, value_1_of_column_3),
+    (value_2_of_column_1, value_2_of_column_2, value_2_of_column_3),
+    (value_3_of_column_1, value_3_of_column_2, value_3_of_column_3);
+```
+
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE medium_type
     -> (
@@ -36,6 +43,13 @@ MariaDB [quote_sql_lab]> SELECT * FROM medium_type;
 #### Inserting into chosen columns
 
 **First version**
+
+```sql
+INSERT INTO table_name (column_1_name, column_3_name) VALUES
+    (value_1_of_column_1, value_1_of_column_3),
+    (value_2_of_column_1, value_2_of_column_3),
+    (value_3_of_column_1, value_3_of_column_3);
+```
 
 ```
 MariaDB [quote_sql_lab]> CREATE TABLE user
@@ -69,6 +83,12 @@ MariaDB [quote_sql_lab]> SELECT * FROM user;
 **Second version**
 
 **In this version inserting multiple rows is not possible.**
+
+```sql
+INSERT INTO table_name SET
+    column_1_name = value_of_column_1,
+    column_3_name = value_of_column_3;
+```
 
 ```
 MariaDB [quote_sql_lab]> INSERT INTO user SET ID = 4, personal_data_id = 4;

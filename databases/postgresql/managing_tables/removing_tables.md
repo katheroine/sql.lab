@@ -5,6 +5,10 @@
 
 ### Removing tables
 
+```sql
+DROP TABLE table_name;
+```
+
 ```
 quote_sql_lab=# CREATE TABLE note
 quote_sql_lab-# (

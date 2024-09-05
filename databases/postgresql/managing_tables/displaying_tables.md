@@ -4,6 +4,10 @@
 
 ### Displaying tables
 
+```sql
+\dt
+```
+
 ```
 quote_sql_lab=# \dt
 Did not find any relations.

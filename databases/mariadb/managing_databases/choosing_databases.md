@@ -4,7 +4,11 @@
 
 ### Choosing databases
 
-```bash
+```sql
+USE database_name;
+```
+
+```
 MariaDB [(none)]> USE quote_sql_lab;
 Database changed
 ```

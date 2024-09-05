@@ -4,6 +4,10 @@
 
 ### Displaying tables
 
+```sql
+SHOW TABLES;
+```
+
 ```
 MariaDB [quote_sql_lab]> SHOW TABLES;
 Empty set (0,001 sec)

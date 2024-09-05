@@ -4,6 +4,10 @@
 
 ### Displaying databases
 
+```sql
+SHOW DATABASES;
+```
+
 ```bash
 MariaDB [(none)]> SHOW DATABASES;
 +--------------------+

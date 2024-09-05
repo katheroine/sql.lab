@@ -5,6 +5,10 @@
 
 ### Removing tables
 
+```sql
+DROP TABLE table_name;
+```
+
 ```
 sqlite> CREATE TABLE note
    ...> (
