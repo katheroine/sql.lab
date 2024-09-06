@@ -62,6 +62,7 @@ Laboratory of SQL & most popular SQL databases:
 |**Managing records**|[✤](databases/sqlite/managing_records/README.md)|[✤](databases/mysql/managing_records/README.md)|[✤](databases/mariadb/managing_records/README.md)|[✤](databases/postgresql/managing_records/README.md)|
 |Inserting records|[✤](databases/sqlite/managing_records/inserting_records.md)|[✤](databases/mysql/managing_records/inserting_records.md)|[✤](databases/mariadb/managing_records/inserting_records.md)|[✤](databases/postgresql/managing_records/inserting_records.md)|
 |Updating records|[✤](databases/sqlite/managing_records/updating_records.md)|[✤](databases/mysql/managing_records/updating_records.md)|[✤](databases/mariadb/managing_records/updating_records.md)|[✤](databases/postgresql/managing_records/updating_records.md)|
+|Removing records|[✤](databases/sqlite/managing_records/removing_records.md)|[✤](databases/mysql/managing_records/removing_records.md)|[✤](databases/mariadb/managing_records/removing_records.md)|[✤](databases/postgresql/managing_records/removing_records.md)|
 
 ## Basic commands
 

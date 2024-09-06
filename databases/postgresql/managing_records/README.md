@@ -5,4 +5,5 @@
 ## Managing records
 
 1. [Inserting records](inserting_records.md)
-2. [Updating records](updatin_records.md)
+2. [Updating records](updating_records.md)
+3. [Removing records](removing_records.md)
