@@ -1,6 +1,7 @@
 [⌂ Home](../../../README.md)
 [⬆ Up: MariaDB](../README.md)
 [▲ Previous: Managing tables](../managing_tables/README.md)
+[▼ Next: Querying databases](../querying_databases/README.md)
 
 ## Managing records
 
