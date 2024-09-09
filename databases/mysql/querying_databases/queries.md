@@ -131,3 +131,31 @@ mysql> SELECT author, source, rating
 8 rows in set (0,011 sec)
 
 ```
+
+#### Column aliases
+
+```sql
+SELECT column_1_name AS column_1_alias, column_2_name AS column_2_alias, column_3_name AS column_3_alias
+FROM table_name;
+```
+
+```
+mysql> SELECT author AS creator, source, rating AS popularity
+    -> FROM quote;
++---------------------+----------------------------------------+------------+
+| creator             | source                                 | popularity |
++---------------------+----------------------------------------+------------+
+| William Shakespeare | Hamlet                                 |          5 |
+| Jane Austen         | Pride and Prejudice                    |          4 |
+| Albert Einstein     | Speech to the German Physical Society  |          5 |
+| Maya Angelou        | I Know Why the Caged Bird Sings        |          4 |
+| Friedrich Nietzsche | Thus Spoke Zarathustra                 |          3 |
+| Oscar Wilde         | The Picture of Dorian Gray             |          4 |
+| Mahatma Gandhi      | The Story of My Experiments with Truth |          5 |
+| Virginia Woolf      | A Room of One's Own                    |          3 |
+| Mark Twain          | The Adventures of Huckleberry Finn     |          3 |
+| Aristotle           | Nicomachean Ethics                     |          5 |
++---------------------+----------------------------------------+------------+
+10 rows in set (0,001 sec)
+
+```

@@ -72,3 +72,6 @@ WHERE owner_id = 106;
 SELECT author, source, rating
 FROM quote
 WHERE rating >= 4;
+
+SELECT author AS creator, source, rating AS popularity
+FROM quote;
