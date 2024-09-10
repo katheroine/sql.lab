@@ -8,7 +8,7 @@
 ```sql
 CREATE TABLE quote
 (
-    ID INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     owner_id INTEGER NOT NULL,
     content_id INTEGER NOT NULL UNIQUE,
     author VARCHAR(256),
@@ -16,7 +16,7 @@ CREATE TABLE quote
     rating INTEGER
 );
 
-INSERT INTO quote (ID, owner_id, content_id, author, source, rating) VALUES
+INSERT INTO quote (id, owner_id, content_id, author, source, rating) VALUES
     (1, 101, 1, 'William Shakespeare', 'Hamlet', 5),
     (2, 102, 2, 'Jane Austen', 'Pride and Prejudice', 4),
     (3, 103, 4, 'Albert Einstein', 'Speech to the German Physical Society', 5),
@@ -27,6 +27,26 @@ INSERT INTO quote (ID, owner_id, content_id, author, source, rating) VALUES
     (8, 108, 11, 'Virginia Woolf', 'A Room of One''s Own', 3),
     (9, 109, 12, 'Mark Twain', 'The Adventures of Huckleberry Finn', 3),
     (10, 110, 14, 'Aristotle', 'Nicomachean Ethics', 5);
+
+CREATE TABLE owner
+(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(256),
+    surname VARCHAR(256),
+    login VARCHAR(256) NOT NULL UNIQUE
+);
+
+INSERT INTO owner (id, name, surname, login) VALUES
+    (101, 'John', 'Doe', 'johnd'),
+    (102, 'Jane', 'Smith', 'janes'),
+    (103, NULL, 'Johnson', 'anonymous_j'),
+    (104, 'Michael', NULL, 'mike_m'),
+    (105, 'Emily', 'Brown', 'emily_b'),
+    (106, NULL, NULL, 'mystery_user'),
+    (107, 'David', 'Wilson', 'david_w'),
+    (108, 'Sarah', 'Taylor', 'sarah_t'),
+    (109, 'Robert', NULL, 'rob_123'),
+    (110, 'Lisa', 'Anderson', 'lisa_a');
 ```
 
 #### Scope
@@ -40,7 +60,7 @@ SELECT * FROM table_name;
 ```
 MariaDB [quote_sql_lab]> SELECT * FROM quote;
 +----+----------+------------+---------------------+----------------------------------------+--------+
-| ID | owner_id | content_id | author              | source                                 | rating |
+| id | owner_id | content_id | author              | source                                 | rating |
 +----+----------+------------+---------------------+----------------------------------------+--------+
 |  1 |      101 |          1 | William Shakespeare | Hamlet                                 |      5 |
 |  2 |      102 |          2 | Jane Austen         | Pride and Prejudice                    |      4 |
@@ -96,7 +116,7 @@ WHERE conditions;
 MariaDB [quote_sql_lab]> SELECT * FROM quote
     -> WHERE owner_id = 106;
 +----+----------+-------------+----------------------------+--------+
-| ID | owner_id | author      | source                     | rating |
+| id | owner_id | author      | source                     | rating |
 +----+----------+-------------+----------------------------+--------+
 |  6 |      106 | Oscar Wilde | The Picture of Dorian Gray |      4 |
 +----+----------+-------------+----------------------------+--------+
@@ -157,5 +177,305 @@ MariaDB [quote_sql_lab]> SELECT author AS creator, source, rating AS popularity
 | Aristotle           | Nicomachean Ethics                     |          5 |
 +---------------------+----------------------------------------+------------+
 10 rows in set (0,001 sec)
+
+```
+
+#### Select criteria
+
+##### Relational operators
+
+**Equal `=`**
+
+```sql
+SELECT columns FROM table_name WHERE column_name = value;
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT author, source, rating FROM quote WHERE rating = 5;
++---------------------+----------------------------------------+--------+
+| author              | source                                 | rating |
++---------------------+----------------------------------------+--------+
+| William Shakespeare | Hamlet                                 |      5 |
+| Albert Einstein     | Speech to the German Physical Society  |      5 |
+| Mahatma Gandhi      | The Story of My Experiments with Truth |      5 |
+| Aristotle           | Nicomachean Ethics                     |      5 |
++---------------------+----------------------------------------+--------+
+4 rows in set (0,004 sec)
+
+```
+
+**Different `<>`, `!=`**
+
+```sql
+SELECT columns FROM table_name WHERE column_name <> value;
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT author, source, rating FROM quote WHERE rating <> 5;
++---------------------+------------------------------------+--------+
+| author              | source                             | rating |
++---------------------+------------------------------------+--------+
+| Jane Austen         | Pride and Prejudice                |      4 |
+| Maya Angelou        | I Know Why the Caged Bird Sings    |      4 |
+| Friedrich Nietzsche | Thus Spoke Zarathustra             |      3 |
+| Oscar Wilde         | The Picture of Dorian Gray         |      4 |
+| Virginia Woolf      | A Room of One's Own                |      3 |
+| Mark Twain          | The Adventures of Huckleberry Finn |      3 |
++---------------------+------------------------------------+--------+
+6 rows in set (0,001 sec)
+
+```
+
+```sql
+SELECT columns FROM table_name WHERE column_name != value;
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT author, source, rating FROM quote WHERE rating != 5;
++---------------------+------------------------------------+--------+
+| author              | source                             | rating |
++---------------------+------------------------------------+--------+
+| Jane Austen         | Pride and Prejudice                |      4 |
+| Maya Angelou        | I Know Why the Caged Bird Sings    |      4 |
+| Friedrich Nietzsche | Thus Spoke Zarathustra             |      3 |
+| Oscar Wilde         | The Picture of Dorian Gray         |      4 |
+| Virginia Woolf      | A Room of One's Own                |      3 |
+| Mark Twain          | The Adventures of Huckleberry Finn |      3 |
++---------------------+------------------------------------+--------+
+6 rows in set (0,001 sec)
+
+```
+
+**Smaller than `<`**
+
+```sql
+SELECT columns FROM table_name WHERE column_name < value;
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT author, source, rating FROM quote WHERE rating < 4;
++---------------------+------------------------------------+--------+
+| author              | source                             | rating |
++---------------------+------------------------------------+--------+
+| Friedrich Nietzsche | Thus Spoke Zarathustra             |      3 |
+| Virginia Woolf      | A Room of One's Own                |      3 |
+| Mark Twain          | The Adventures of Huckleberry Finn |      3 |
++---------------------+------------------------------------+--------+
+3 rows in set (0,001 sec)
+
+```
+
+**Smaller than or equals `<=`**
+
+```sql
+SELECT columns FROM table_name WHERE column_name <= value;
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT author, source, rating FROM quote WHERE rating <= 4;
++---------------------+------------------------------------+--------+
+| author              | source                             | rating |
++---------------------+------------------------------------+--------+
+| Jane Austen         | Pride and Prejudice                |      4 |
+| Maya Angelou        | I Know Why the Caged Bird Sings    |      4 |
+| Friedrich Nietzsche | Thus Spoke Zarathustra             |      3 |
+| Oscar Wilde         | The Picture of Dorian Gray         |      4 |
+| Virginia Woolf      | A Room of One's Own                |      3 |
+| Mark Twain          | The Adventures of Huckleberry Finn |      3 |
++---------------------+------------------------------------+--------+
+6 rows in set (0,001 sec)
+
+```
+
+**Greater than `>`**
+
+```sql
+SELECT columns FROM table_name WHERE column_name > value;
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT author, source, rating FROM quote WHERE rating > 4;
++---------------------+----------------------------------------+--------+
+| author              | source                                 | rating |
++---------------------+----------------------------------------+--------+
+| William Shakespeare | Hamlet                                 |      5 |
+| Albert Einstein     | Speech to the German Physical Society  |      5 |
+| Mahatma Gandhi      | The Story of My Experiments with Truth |      5 |
+| Aristotle           | Nicomachean Ethics                     |      5 |
++---------------------+----------------------------------------+--------+
+4 rows in set (0,001 sec)
+
+```
+
+**Greater than or equals `>=`**
+
+```sql
+SELECT columns FROM table_name WHERE column_name >= value;
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT author, source, rating FROM quote WHERE rating >= 4;
++---------------------+----------------------------------------+--------+
+| author              | source                                 | rating |
++---------------------+----------------------------------------+--------+
+| William Shakespeare | Hamlet                                 |      5 |
+| Jane Austen         | Pride and Prejudice                    |      4 |
+| Albert Einstein     | Speech to the German Physical Society  |      5 |
+| Maya Angelou        | I Know Why the Caged Bird Sings        |      4 |
+| Oscar Wilde         | The Picture of Dorian Gray             |      4 |
+| Mahatma Gandhi      | The Story of My Experiments with Truth |      5 |
+| Aristotle           | Nicomachean Ethics                     |      5 |
++---------------------+----------------------------------------+--------+
+7 rows in set (0,001 sec)
+
+```
+
+**`IS NULL`**
+
+```sql
+SELECT columns FROM table_name WHERE column_name IS NULL;
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT surname, login FROM owner WHERE name IS NULL;
++---------+--------------+
+| surname | login        |
++---------+--------------+
+| Johnson | anonymous_j  |
+| NULL    | mystery_user |
++---------+--------------+
+2 rows in set (0,004 sec)
+
+```
+
+It doesn't work with the equals operator `=`.
+
+```
+MariaDB [quote_sql_lab]> SELECT surname, login FROM owner WHERE name = NULL;
+Empty set (0,003 sec)
+
+```
+
+**`IS NOT NULL`**
+
+```sql
+SELECT columns FROM table_name WHERE column_name IS NOT NULL;
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT surname, login FROM owner WHERE surname IS NOT NULL;
++----------+-------------+
+| surname  | login       |
++----------+-------------+
+| Doe      | johnd       |
+| Smith    | janes       |
+| Johnson  | anonymous_j |
+| Brown    | emily_b     |
+| Wilson   | david_w     |
+| Taylor   | sarah_t     |
+| Anderson | lisa_a      |
++----------+-------------+
+7 rows in set (0,001 sec)
+
+```
+
+It doesn't work with the not equals operators `<>`, `!=`.
+
+```
+MariaDB [quote_sql_lab]> SELECT surname, login FROM owner WHERE surname <> NULL;
+Empty set (0,001 sec)
+
+MariaDB [quote_sql_lab]> SELECT surname, login FROM owner WHERE surname != NULL;
+Empty set (0,001 sec)
+
+```
+
+**Inside the scope `BETWEEN`**
+
+```sql
+SELECT columns FROM table_name WHERE column_name BETWEEN value_1 AND value_2;
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT author, source, rating
+    -> FROM quote
+    -> WHERE rating BETWEEN 3 AND 4;
++---------------------+------------------------------------+--------+
+| author              | source                             | rating |
++---------------------+------------------------------------+--------+
+| Jane Austen         | Pride and Prejudice                |      4 |
+| Maya Angelou        | I Know Why the Caged Bird Sings    |      4 |
+| Friedrich Nietzsche | Thus Spoke Zarathustra             |      3 |
+| Oscar Wilde         | The Picture of Dorian Gray         |      4 |
+| Virginia Woolf      | A Room of One's Own                |      3 |
+| Mark Twain          | The Adventures of Huckleberry Finn |      3 |
++---------------------+------------------------------------+--------+
+6 rows in set (0,004 sec)
+
+```
+
+**Outside the scope `NOT BETWEEN`**
+
+```sql
+SELECT columns FROM table_name WHERE column_name NOT BETWEEN value_1 AND value_2;
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT author, source, rating
+    -> FROM quote
+    -> WHERE rating NOT BETWEEN 3 AND 4;
++---------------------+----------------------------------------+--------+
+| author              | source                                 | rating |
++---------------------+----------------------------------------+--------+
+| William Shakespeare | Hamlet                                 |      5 |
+| Albert Einstein     | Speech to the German Physical Society  |      5 |
+| Mahatma Gandhi      | The Story of My Experiments with Truth |      5 |
+| Aristotle           | Nicomachean Ethics                     |      5 |
++---------------------+----------------------------------------+--------+
+4 rows in set (0,000 sec)
+
+```
+
+**Inside the set `IN`**
+
+```sql
+SELECT columns FROM table_name WHERE column_name IN (value_1, value_2, value_3);
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT author, source, rating
+    -> FROM quote
+    -> WHERE rating IN (3, 5);
++---------------------+----------------------------------------+--------+
+| author              | source                                 | rating |
++---------------------+----------------------------------------+--------+
+| William Shakespeare | Hamlet                                 |      5 |
+| Albert Einstein     | Speech to the German Physical Society  |      5 |
+| Friedrich Nietzsche | Thus Spoke Zarathustra                 |      3 |
+| Mahatma Gandhi      | The Story of My Experiments with Truth |      5 |
+| Virginia Woolf      | A Room of One's Own                    |      3 |
+| Mark Twain          | The Adventures of Huckleberry Finn     |      3 |
+| Aristotle           | Nicomachean Ethics                     |      5 |
++---------------------+----------------------------------------+--------+
+7 rows in set (0,001 sec)
+
+```
+
+**Outside the set `NOT IN`**
+
+```sql
+SELECT columns FROM table_name WHERE column_name NOT IN (value_1, value_2, value_3);
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT author, source, rating FROM quote WHERE rating NOT IN (3, 5);
++--------------+---------------------------------+--------+
+| author       | source                          | rating |
++--------------+---------------------------------+--------+
+| Jane Austen  | Pride and Prejudice             |      4 |
+| Maya Angelou | I Know Why the Caged Bird Sings |      4 |
+| Oscar Wilde  | The Picture of Dorian Gray      |      4 |
++--------------+---------------------------------+--------+
+3 rows in set (0,001 sec)
 
 ```
