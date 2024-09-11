@@ -570,3 +570,176 @@ postgres-# WHERE NOT owner_id = 106;
 (9 rows)
 
 ```
+
+#### Select results order
+
+```sql
+SELECT columns
+FROM table_name
+WHERE conditions
+ORDER BY column_1_name column_1_order, column_2_name column_2_order, column_3_name column_3_order;
+```
+
+Where **order** can be
+* `ASC` - ascending
+* `DESC` - descending
+
+If not defined - it is ascending by default.
+
+**Order by single column**
+
+```
+postgres=# SELECT * FROM quote
+postgres-# ORDER BY rating;
+ id | owner_id | content_id |       author        |                 source                 | rating
+----+----------+------------+---------------------+----------------------------------------+--------
+  8 |      108 |         11 | Virginia Woolf      | A Room of One's Own                    |      3
+  9 |      109 |         12 | Mark Twain          | The Adventures of Huckleberry Finn     |      3
+  5 |      105 |          7 | Friedrich Nietzsche | Thus Spoke Zarathustra                 |      3
+  2 |      102 |          2 | Jane Austen         | Pride and Prejudice                    |      4
+  4 |      104 |          6 | Maya Angelou        | I Know Why the Caged Bird Sings        |      4
+  6 |      106 |          9 | Oscar Wilde         | The Picture of Dorian Gray             |      4
+ 10 |      110 |         14 | Aristotle           | Nicomachean Ethics                     |      5
+  3 |      103 |          4 | Albert Einstein     | Speech to the German Physical Society  |      5
+  7 |      107 |         10 | Mahatma Gandhi      | The Story of My Experiments with Truth |      5
+  1 |      101 |          1 | William Shakespeare | Hamlet                                 |      5
+(10 rows)
+
+```
+
+**Order by multiple columns**
+
+```
+postgres=# SELECT * FROM quote
+postgres-# ORDER BY rating, author;
+ id | owner_id | content_id |       author        |                 source                 | rating
+----+----------+------------+---------------------+----------------------------------------+--------
+  5 |      105 |          7 | Friedrich Nietzsche | Thus Spoke Zarathustra                 |      3
+  9 |      109 |         12 | Mark Twain          | The Adventures of Huckleberry Finn     |      3
+  8 |      108 |         11 | Virginia Woolf      | A Room of One's Own                    |      3
+  2 |      102 |          2 | Jane Austen         | Pride and Prejudice                    |      4
+  4 |      104 |          6 | Maya Angelou        | I Know Why the Caged Bird Sings        |      4
+  6 |      106 |          9 | Oscar Wilde         | The Picture of Dorian Gray             |      4
+  3 |      103 |          4 | Albert Einstein     | Speech to the German Physical Society  |      5
+ 10 |      110 |         14 | Aristotle           | Nicomachean Ethics                     |      5
+  7 |      107 |         10 | Mahatma Gandhi      | The Story of My Experiments with Truth |      5
+  1 |      101 |          1 | William Shakespeare | Hamlet                                 |      5
+(10 rows)
+
+```
+
+**Ascending order `ASC`**
+
+```sql
+SELECT columns
+FROM table_name
+WHERE conditions
+ORDER BY column_name ASC;
+```
+
+
+```
+postgres=# SELECT * FROM quote
+ORDER BY rating ASC;
+ id | owner_id | content_id |       author        |                 source                 | rating
+----+----------+------------+---------------------+----------------------------------------+--------
+  8 |      108 |         11 | Virginia Woolf      | A Room of One's Own                    |      3
+  9 |      109 |         12 | Mark Twain          | The Adventures of Huckleberry Finn     |      3
+  5 |      105 |          7 | Friedrich Nietzsche | Thus Spoke Zarathustra                 |      3
+  2 |      102 |          2 | Jane Austen         | Pride and Prejudice                    |      4
+  4 |      104 |          6 | Maya Angelou        | I Know Why the Caged Bird Sings        |      4
+  6 |      106 |          9 | Oscar Wilde         | The Picture of Dorian Gray             |      4
+ 10 |      110 |         14 | Aristotle           | Nicomachean Ethics                     |      5
+  3 |      103 |          4 | Albert Einstein     | Speech to the German Physical Society  |      5
+  7 |      107 |         10 | Mahatma Gandhi      | The Story of My Experiments with Truth |      5
+  1 |      101 |          1 | William Shakespeare | Hamlet                                 |      5
+(10 rows)
+
+```
+
+```
+postgres=# SELECT * FROM quote
+ORDER BY rating ASC, author ASC;
+ id | owner_id | content_id |       author        |                 source                 | rating
+----+----------+------------+---------------------+----------------------------------------+--------
+  5 |      105 |          7 | Friedrich Nietzsche | Thus Spoke Zarathustra                 |      3
+  9 |      109 |         12 | Mark Twain          | The Adventures of Huckleberry Finn     |      3
+  8 |      108 |         11 | Virginia Woolf      | A Room of One's Own                    |      3
+  2 |      102 |          2 | Jane Austen         | Pride and Prejudice                    |      4
+  4 |      104 |          6 | Maya Angelou        | I Know Why the Caged Bird Sings        |      4
+  6 |      106 |          9 | Oscar Wilde         | The Picture of Dorian Gray             |      4
+  3 |      103 |          4 | Albert Einstein     | Speech to the German Physical Society  |      5
+ 10 |      110 |         14 | Aristotle           | Nicomachean Ethics                     |      5
+  7 |      107 |         10 | Mahatma Gandhi      | The Story of My Experiments with Truth |      5
+  1 |      101 |          1 | William Shakespeare | Hamlet                                 |      5
+(10 rows)
+
+```
+
+**Descending order `DESC`**
+
+```sql
+SELECT columns
+FROM table_name
+WHERE conditions
+ORDER BY column_name DESC;
+```
+
+```
+postgres=# SELECT * FROM quote
+ORDER BY rating DESC;
+ id | owner_id | content_id |       author        |                 source                 | rating
+----+----------+------------+---------------------+----------------------------------------+--------
+  1 |      101 |          1 | William Shakespeare | Hamlet                                 |      5
+  3 |      103 |          4 | Albert Einstein     | Speech to the German Physical Society  |      5
+  7 |      107 |         10 | Mahatma Gandhi      | The Story of My Experiments with Truth |      5
+ 10 |      110 |         14 | Aristotle           | Nicomachean Ethics                     |      5
+  6 |      106 |          9 | Oscar Wilde         | The Picture of Dorian Gray             |      4
+  2 |      102 |          2 | Jane Austen         | Pride and Prejudice                    |      4
+  4 |      104 |          6 | Maya Angelou        | I Know Why the Caged Bird Sings        |      4
+  5 |      105 |          7 | Friedrich Nietzsche | Thus Spoke Zarathustra                 |      3
+  9 |      109 |         12 | Mark Twain          | The Adventures of Huckleberry Finn     |      3
+  8 |      108 |         11 | Virginia Woolf      | A Room of One's Own                    |      3
+(10 rows)
+
+```
+
+```
+postgres=# SELECT * FROM quote
+ORDER BY rating DESC, author DESC;
+ id | owner_id | content_id |       author        |                 source                 | rating
+----+----------+------------+---------------------+----------------------------------------+--------
+  1 |      101 |          1 | William Shakespeare | Hamlet                                 |      5
+  7 |      107 |         10 | Mahatma Gandhi      | The Story of My Experiments with Truth |      5
+ 10 |      110 |         14 | Aristotle           | Nicomachean Ethics                     |      5
+  3 |      103 |          4 | Albert Einstein     | Speech to the German Physical Society  |      5
+  6 |      106 |          9 | Oscar Wilde         | The Picture of Dorian Gray             |      4
+  4 |      104 |          6 | Maya Angelou        | I Know Why the Caged Bird Sings        |      4
+  2 |      102 |          2 | Jane Austen         | Pride and Prejudice                    |      4
+  8 |      108 |         11 | Virginia Woolf      | A Room of One's Own                    |      3
+  9 |      109 |         12 | Mark Twain          | The Adventures of Huckleberry Finn     |      3
+  5 |      105 |          7 | Friedrich Nietzsche | Thus Spoke Zarathustra                 |      3
+(10 rows)
+
+```
+
+**Mixed order**
+
+```
+postgres=# SELECT * FROM quote
+postgres-# ORDER BY rating ASC, author DESC;
+ id | owner_id | content_id |       author        |                 source                 | rating
+----+----------+------------+---------------------+----------------------------------------+--------
+  8 |      108 |         11 | Virginia Woolf      | A Room of One's Own                    |      3
+  9 |      109 |         12 | Mark Twain          | The Adventures of Huckleberry Finn     |      3
+  5 |      105 |          7 | Friedrich Nietzsche | Thus Spoke Zarathustra                 |      3
+  6 |      106 |          9 | Oscar Wilde         | The Picture of Dorian Gray             |      4
+  4 |      104 |          6 | Maya Angelou        | I Know Why the Caged Bird Sings        |      4
+  2 |      102 |          2 | Jane Austen         | Pride and Prejudice                    |      4
+  1 |      101 |          1 | William Shakespeare | Hamlet                                 |      5
+  7 |      107 |         10 | Mahatma Gandhi      | The Story of My Experiments with Truth |      5
+ 10 |      110 |         14 | Aristotle           | Nicomachean Ethics                     |      5
+  3 |      103 |          4 | Albert Einstein     | Speech to the German Physical Society  |      5
+(10 rows)
+
+```

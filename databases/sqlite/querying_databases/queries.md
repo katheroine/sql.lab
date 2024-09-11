@@ -460,3 +460,147 @@ sqlite> SELECT * FROM quote
 9|109|12|Mark Twain|The Adventures of Huckleberry Finn|3
 10|110|14|Aristotle|Nicomachean Ethics|5
 ```
+
+#### Select results order
+
+```sql
+SELECT columns
+FROM table_name
+WHERE conditions
+ORDER BY column_1_name column_1_order, column_2_name column_2_order, column_3_name column_3_order;
+```
+
+Where **order** can be
+* `ASC` - ascending
+* `DESC` - descending
+
+If not defined - it is ascending by default.
+
+**Order by single column**
+
+```
+sqlite> SELECT * FROM quote
+   ...> ORDER BY rating;
+9|109|12|Mark Twain|The Adventures of Huckleberry Finn|3
+5|105|7|Friedrich Nietzsche|Thus Spoke Zarathustra|3
+8|108|11|Virginia Woolf|A Room of One's Own|4
+6|106|9|Oscar Wilde|The Picture of Dorian Gray|4
+4|104|6|Maya Angelou|I Know Why the Caged Bird Sings|4
+2|102|2|Jane Austen|Pride and Prejudice|4
+10|110|14|Aristotle|Nicomachean Ethics|5
+7|107|10|Mahatma Gandhi|The Story of My Experiments with Truth|5
+3|103|4|Albert Einstein|Speech to the German Physical Society|5
+1|101|1|William Shakespeare|Hamlet|5
+```
+
+**Order by multiple columns**
+
+```
+sqlite> SELECT * FROM quote
+   ...> ORDER BY rating, author;
+5|105|7|Friedrich Nietzsche|Thus Spoke Zarathustra|3
+9|109|12|Mark Twain|The Adventures of Huckleberry Finn|3
+2|102|2|Jane Austen|Pride and Prejudice|4
+4|104|6|Maya Angelou|I Know Why the Caged Bird Sings|4
+6|106|9|Oscar Wilde|The Picture of Dorian Gray|4
+8|108|11|Virginia Woolf|A Room of One's Own|4
+3|103|4|Albert Einstein|Speech to the German Physical Society|5
+10|110|14|Aristotle|Nicomachean Ethics|5
+7|107|10|Mahatma Gandhi|The Story of My Experiments with Truth|5
+1|101|1|William Shakespeare|Hamlet|5
+```
+
+**Ascending order `ASC`**
+
+```sql
+SELECT columns
+FROM table_name
+WHERE conditions
+ORDER BY column_name ASC;
+```
+
+```
+sqlite> SELECT * FROM quote
+   ...> ORDER BY rating ASC;
+9|109|12|Mark Twain|The Adventures of Huckleberry Finn|3
+5|105|7|Friedrich Nietzsche|Thus Spoke Zarathustra|3
+8|108|11|Virginia Woolf|A Room of One's Own|4
+6|106|9|Oscar Wilde|The Picture of Dorian Gray|4
+4|104|6|Maya Angelou|I Know Why the Caged Bird Sings|4
+2|102|2|Jane Austen|Pride and Prejudice|4
+10|110|14|Aristotle|Nicomachean Ethics|5
+7|107|10|Mahatma Gandhi|The Story of My Experiments with Truth|5
+3|103|4|Albert Einstein|Speech to the German Physical Society|5
+1|101|1|William Shakespeare|Hamlet|5
+```
+
+```
+sqlite> SELECT * FROM quote
+   ...> ORDER BY rating ASC, author ASC;
+5|105|7|Friedrich Nietzsche|Thus Spoke Zarathustra|3
+9|109|12|Mark Twain|The Adventures of Huckleberry Finn|3
+2|102|2|Jane Austen|Pride and Prejudice|4
+4|104|6|Maya Angelou|I Know Why the Caged Bird Sings|4
+6|106|9|Oscar Wilde|The Picture of Dorian Gray|4
+8|108|11|Virginia Woolf|A Room of One's Own|4
+3|103|4|Albert Einstein|Speech to the German Physical Society|5
+10|110|14|Aristotle|Nicomachean Ethics|5
+7|107|10|Mahatma Gandhi|The Story of My Experiments with Truth|5
+1|101|1|William Shakespeare|Hamlet|5
+```
+
+**Descending order `DESC`**
+
+```sql
+SELECT columns
+FROM table_name
+WHERE conditions
+ORDER BY column_name DESC;
+```
+
+```
+sqlite> SELECT * FROM quote
+   ...> ORDER BY rating DESC;
+10|110|14|Aristotle|Nicomachean Ethics|5
+7|107|10|Mahatma Gandhi|The Story of My Experiments with Truth|5
+3|103|4|Albert Einstein|Speech to the German Physical Society|5
+1|101|1|William Shakespeare|Hamlet|5
+8|108|11|Virginia Woolf|A Room of One's Own|4
+6|106|9|Oscar Wilde|The Picture of Dorian Gray|4
+4|104|6|Maya Angelou|I Know Why the Caged Bird Sings|4
+2|102|2|Jane Austen|Pride and Prejudice|4
+9|109|12|Mark Twain|The Adventures of Huckleberry Finn|3
+5|105|7|Friedrich Nietzsche|Thus Spoke Zarathustra|3
+```
+
+```
+sqlite> SELECT * FROM quote
+   ...> ORDER BY rating DESC, author DESC;
+1|101|1|William Shakespeare|Hamlet|5
+7|107|10|Mahatma Gandhi|The Story of My Experiments with Truth|5
+10|110|14|Aristotle|Nicomachean Ethics|5
+3|103|4|Albert Einstein|Speech to the German Physical Society|5
+8|108|11|Virginia Woolf|A Room of One's Own|4
+6|106|9|Oscar Wilde|The Picture of Dorian Gray|4
+4|104|6|Maya Angelou|I Know Why the Caged Bird Sings|4
+2|102|2|Jane Austen|Pride and Prejudice|4
+9|109|12|Mark Twain|The Adventures of Huckleberry Finn|3
+5|105|7|Friedrich Nietzsche|Thus Spoke Zarathustra|3
+```
+
+**Mixed order**
+
+```
+sqlite> SELECT * FROM quote
+   ...> ORDER BY rating ASC, author DESC;
+9|109|12|Mark Twain|The Adventures of Huckleberry Finn|3
+5|105|7|Friedrich Nietzsche|Thus Spoke Zarathustra|3
+8|108|11|Virginia Woolf|A Room of One's Own|4
+6|106|9|Oscar Wilde|The Picture of Dorian Gray|4
+4|104|6|Maya Angelou|I Know Why the Caged Bird Sings|4
+2|102|2|Jane Austen|Pride and Prejudice|4
+1|101|1|William Shakespeare|Hamlet|5
+7|107|10|Mahatma Gandhi|The Story of My Experiments with Truth|5
+10|110|14|Aristotle|Nicomachean Ethics|5
+3|103|4|Albert Einstein|Speech to the German Physical Society|5
+```

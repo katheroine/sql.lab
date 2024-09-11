@@ -159,6 +159,26 @@ SELECT name, surname, login
 FROM owner
 WHERE name IS NULL XOR surname IS NULL;
 
-SELECT id, author, source, rating
-FROM quote
-WHERE NOT id = 106;
+SELECT * FROM quote
+WHERE NOT owner_id = 106;
+
+SELECT * FROM quote
+ORDER BY rating;
+
+SELECT * FROM quote
+ORDER BY rating, author;
+
+SELECT * FROM quote
+ORDER BY rating ASC;
+
+SELECT * FROM quote
+ORDER BY rating ASC, author ASC;
+
+SELECT * FROM quote
+ORDER BY rating DESC;
+
+SELECT * FROM quote
+ORDER BY rating DESC, author DESC;
+
+SELECT * FROM quote
+ORDER BY rating ASC, author DESC;
