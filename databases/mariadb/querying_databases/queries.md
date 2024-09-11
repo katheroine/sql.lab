@@ -479,3 +479,141 @@ MariaDB [quote_sql_lab]> SELECT author, source, rating FROM quote WHERE rating N
 3 rows in set (0,001 sec)
 
 ```
+
+##### Logical operators
+
+**Logical product `AND`**
+
+```sql
+SELECT columns FROM table_name WHERE condition_1 AND condition_2;
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT name, surname, login
+    -> FROM owner
+    -> WHERE name IS NOT NULL AND surname IS NOT NULL;
+ERROR 2006 (HY000): MySQL server has gone away
+No connection. Trying to reconnect...
+Connection id:    18
+Current database: quote_sql_lab
+
++-------+----------+---------+
+| name  | surname  | login   |
++-------+----------+---------+
+| John  | Doe      | johnd   |
+| Jane  | Smith    | janes   |
+| Emily | Brown    | emily_b |
+| David | Wilson   | david_w |
+| Sarah | Taylor   | sarah_t |
+| Lisa  | Anderson | lisa_a  |
++-------+----------+---------+
+6 rows in set (0,011 sec)
+
+```
+
+`AND` operator with comparison operators can be used instead of `BETWEEN` operator:
+
+```
+MariaDB [quote_sql_lab]> SELECT author, source, rating
+    -> FROM quote
+    -> WHERE rating > 2 AND rating < 5;
++---------------------+------------------------------------+--------+
+| author              | source                             | rating |
++---------------------+------------------------------------+--------+
+| Jane Austen         | Pride and Prejudice                |      4 |
+| Maya Angelou        | I Know Why the Caged Bird Sings    |      4 |
+| Friedrich Nietzsche | Thus Spoke Zarathustra             |      3 |
+| Oscar Wilde         | The Picture of Dorian Gray         |      4 |
+| Virginia Woolf      | A Room of One's Own                |      3 |
+| Mark Twain          | The Adventures of Huckleberry Finn |      3 |
++---------------------+------------------------------------+--------+
+6 rows in set (0,004 sec)
+
+```
+
+**Logical sum `OR`**
+
+```sql
+SELECT columns FROM table_name WHERE condition_1 OR condition_2;
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT login
+    -> FROM owner
+    -> WHERE name IS NULL OR surname IS NULL;
++--------------+
+| login        |
++--------------+
+| anonymous_j  |
+| mike_m       |
+| mystery_user |
+| rob_123      |
++--------------+
+4 rows in set (0,001 sec)
+
+```
+
+`OR` operator with comparison operators can be used instead of `NOT BETWEEN` operator:
+
+```
+MariaDB [quote_sql_lab]> SELECT author, source, rating
+    -> FROM quote
+    -> WHERE rating < 3 OR rating > 4;
++---------------------+----------------------------------------+--------+
+| author              | source                                 | rating |
++---------------------+----------------------------------------+--------+
+| William Shakespeare | Hamlet                                 |      5 |
+| Albert Einstein     | Speech to the German Physical Society  |      5 |
+| Mahatma Gandhi      | The Story of My Experiments with Truth |      5 |
+| Aristotle           | Nicomachean Ethics                     |      5 |
++---------------------+----------------------------------------+--------+
+4 rows in set (0,001 sec)
+
+```
+
+**Logical disjunction (ezclusive OR) `XOR`**
+
+```sql
+SELECT columns FROM table_name WHERE condition_1 XOR condition_2;
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT name, surname, login
+    -> FROM owner
+    -> WHERE name IS NULL XOR surname IS NULL;
++---------+---------+-------------+
+| name    | surname | login       |
++---------+---------+-------------+
+| NULL    | Johnson | anonymous_j |
+| Michael | NULL    | mike_m      |
+| Robert  | NULL    | rob_123     |
++---------+---------+-------------+
+3 rows in set (0,001 sec)
+
+```
+
+**Logical negation `NOT`**
+
+```sql
+SELECT columns FROM table_name WHERE NOT condition;
+```
+
+```
+MariaDB [quote_sql_lab]> SELECT * FROM quote
+    -> WHERE NOT owner_id = 106;
++----+----------+------------+---------------------+----------------------------------------+--------+
+| ID | owner_id | content_id | author              | source                                 | rating |
++----+----------+------------+---------------------+----------------------------------------+--------+
+|  1 |      101 |          1 | William Shakespeare | Hamlet                                 |      5 |
+|  2 |      102 |          2 | Jane Austen         | Pride and Prejudice                    |      4 |
+|  3 |      103 |          4 | Albert Einstein     | Speech to the German Physical Society  |      5 |
+|  4 |      104 |          6 | Maya Angelou        | I Know Why the Caged Bird Sings        |      4 |
+|  5 |      105 |          7 | Friedrich Nietzsche | Thus Spoke Zarathustra                 |      3 |
+|  7 |      107 |         10 | Mahatma Gandhi      | The Story of My Experiments with Truth |      5 |
+|  8 |      108 |         11 | Virginia Woolf      | A Room of One's Own                    |      3 |
+|  9 |      109 |         12 | Mark Twain          | The Adventures of Huckleberry Finn     |      3 |
+| 10 |      110 |         14 | Aristotle           | Nicomachean Ethics                     |      5 |
++----+----------+------------+---------------------+----------------------------------------+--------+
+9 rows in set (0,004 sec)
+
+```

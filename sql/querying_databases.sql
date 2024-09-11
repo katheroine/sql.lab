@@ -138,3 +138,27 @@ WHERE rating IN (3, 5);
 SELECT author, source, rating
 FROM quote
 WHERE rating NOT IN (3, 5);
+
+SELECT name, surname, login
+FROM owner
+WHERE name IS NOT NULL AND surname IS NOT NULL;
+
+SELECT author, source, rating
+FROM quote
+WHERE rating > 2 AND rating < 5;
+
+SELECT login
+FROM owner
+WHERE name IS NULL OR surname IS NULL;
+
+SELECT author, source, rating
+FROM quote
+WHERE rating < 3 OR rating > 4;
+
+SELECT name, surname, login
+FROM owner
+WHERE name IS NULL XOR surname IS NULL;
+
+SELECT id, author, source, rating
+FROM quote
+WHERE NOT id = 106;

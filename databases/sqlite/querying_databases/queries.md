@@ -361,3 +361,102 @@ Maya Angelou|I Know Why the Caged Bird Sings|4
 Oscar Wilde|The Picture of Dorian Gray|4
 Virginia Woolf|A Room of One's Own|4
 ```
+
+##### Logical operators
+
+**Logical product `AND`**
+
+```sql
+SELECT columns FROM table_name WHERE condition_1 AND condition_2;
+```
+
+```
+sqlite> SELECT name, surname, login
+   ...> FROM owner
+   ...> WHERE name IS NOT NULL AND surname IS NOT NULL;
+John|Doe|johnd
+Jane|Smith|janes
+Emily|Brown|emily_b
+David|Wilson|david_w
+Sarah|Taylor|sarah_t
+Lisa|Anderson|lisa_a
+```
+
+`AND` operator with comparison operators can be used instead of `BETWEEN` operator:
+
+```
+sqlite> SELECT author, source, rating
+   ...> FROM quote
+   ...> WHERE rating > 2 AND rating < 5;
+Jane Austen|Pride and Prejudice|4
+Maya Angelou|I Know Why the Caged Bird Sings|4
+Friedrich Nietzsche|Thus Spoke Zarathustra|3
+Oscar Wilde|The Picture of Dorian Gray|4
+Virginia Woolf|A Room of One's Own|4
+Mark Twain|The Adventures of Huckleberry Finn|3
+```
+
+**Logical sum `OR`**
+
+```sql
+SELECT columns FROM table_name WHERE condition_1 OR condition_2;
+```
+
+```
+sqlite> SELECT name, surname, login
+   ...> FROM owner
+   ...> WHERE name IS NOT NULL AND surname IS NOT NULL;
+John|Doe|johnd
+Jane|Smith|janes
+Emily|Brown|emily_b
+David|Wilson|david_w
+Sarah|Taylor|sarah_t
+Lisa|Anderson|lisa_a
+```
+
+`OR` operator with comparison operators can be used instead of `NOT BETWEEN` operator:
+
+```
+sqlite> SELECT author, source, rating
+   ...> FROM quote
+   ...> WHERE rating < 3 OR rating > 4;
+William Shakespeare|Hamlet|5
+Albert Einstein|Speech to the German Physical Society|5
+Mahatma Gandhi|The Story of My Experiments with Truth|5
+Aristotle|Nicomachean Ethics|5
+```
+
+**Logical disjunction (ezclusive OR) `XOR`**
+
+```sql
+SELECT columns FROM table_name WHERE condition_1 XOR condition_2;
+```
+
+**`XOR` operator is not avaliable in SQLite.**
+
+```
+sqlite> SELECT name, surname, login
+   ...> FROM owner
+   ...> WHERE name IS NULL XOR surname IS NULL;
+SQL error: near "XOR": syntax error
+```
+
+**Logical negation `NOT`**
+
+```sql
+SELECT columns FROM table_name WHERE NOT condition;
+```
+
+```
+sqlite> SELECT * FROM quote
+   ...> WHERE NOT owner_id = 106;
+1|101|1|William Shakespeare|Hamlet|5
+2|102|2|Jane Austen|Pride and Prejudice|4
+3|103|4|Albert Einstein|Speech to the German Physical Society|5
+4|104|6|Maya Angelou|I Know Why the Caged Bird Sings|4
+5|105|7|Friedrich Nietzsche|Thus Spoke Zarathustra|3
+7|107|10|Mahatma Gandhi|The Story of My Experiments with Truth|5
+8|108|11|Virginia Woolf|A Room of One's Own|4
+9|109|12|Mark Twain|The Adventures of Huckleberry Finn|3
+10|110|14|Aristotle|Nicomachean Ethics|5
+```
