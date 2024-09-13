@@ -1,5 +1,6 @@
 [⌂ Home](../../../README.md)
 [⬆ Up: Querying databases](README.md)
+[▼ Next: Aggregete functions](aggregate_functions.md)
 
 ### Queries
 
