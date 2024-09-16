@@ -2,7 +2,9 @@
 [⬆ Up: Querying databases](README.md)
 [▲ Previous: Queries](queries.md)
 
-### Aggregate functions
+### Aggregations
+
+#### Aggregate functions
 
 **Database preparation**
 

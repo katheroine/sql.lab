@@ -5,4 +5,5 @@
 ## Querying databases
 
 1. [Queries](queries.md)
-2. [Aggregate functions](aggregate_functions.md)
+2. [Aggregations](aggregations.md)
+

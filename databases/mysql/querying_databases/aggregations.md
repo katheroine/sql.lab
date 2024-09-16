@@ -2,7 +2,9 @@
 [⬆ Up: Querying databases](README.md)
 [▲ Previous: Queries](queries.md)
 
-### Aggregate functions
+### Aggregations
+
+#### Aggregate functions
 
 **Database preparation**
 
@@ -45,7 +47,7 @@ SELECT COUNT(columns) FROM table_name;
 ```
 
 ```
-MariaDB [quote_sql_lab]> SELECT COUNT(*) FROM user;
+mysql> SELECT COUNT(*) FROM user;
 +----------+
 | COUNT(*) |
 +----------+
@@ -56,7 +58,7 @@ MariaDB [quote_sql_lab]> SELECT COUNT(*) FROM user;
 ```
 
 ```
-MariaDB [quote_sql_lab]> SELECT COUNT(*) FROM user WHERE group_name = "researchers";
+mysql> SELECT COUNT(*) FROM user WHERE group_name = "researchers";
 +----------+
 | COUNT(*) |
 +----------+
@@ -69,7 +71,7 @@ MariaDB [quote_sql_lab]> SELECT COUNT(*) FROM user WHERE group_name = "researche
 **Aliases** can be used.
 
 ```
-MariaDB [quote_sql_lab]> SELECT COUNT(*) AS "users number" FROM user;
+mysql> SELECT COUNT(*) AS "users number" FROM user;
 +--------------+
 | users number |
 +--------------+
@@ -86,7 +88,7 @@ SELECT MIN(column) FROM table_name;
 ```
 
 ```
-MariaDB [quote_sql_lab]> SELECT MIN(credits) FROM user;
+mysql> SELECT MIN(credits) FROM user;
 +--------------+
 | MIN(credits) |
 +--------------+
@@ -97,7 +99,7 @@ MariaDB [quote_sql_lab]> SELECT MIN(credits) FROM user;
 ```
 
 ```
-MariaDB [quote_sql_lab]> SELECT MIN(credits) FROM user WHERE group_name = "bloggers";
+mysql> SELECT MIN(credits) FROM user WHERE group_name = "bloggers";
 +--------------+
 | MIN(credits) |
 +--------------+
@@ -114,7 +116,7 @@ SELECT MAX(column) FROM table_name;
 ```
 
 ```
-MariaDB [quote_sql_lab]> SELECT MAX(credits) FROM user;
+mysql> SELECT MAX(credits) FROM user;
 +--------------+
 | MAX(credits) |
 +--------------+
@@ -125,7 +127,7 @@ MariaDB [quote_sql_lab]> SELECT MAX(credits) FROM user;
 ```
 
 ```
-MariaDB [quote_sql_lab]> SELECT MAX(credits) FROM user WHERE group_name = "journalists";
+mysql> SELECT MAX(credits) FROM user WHERE group_name = "journalists";
 +--------------+
 | MAX(credits) |
 +--------------+
@@ -142,7 +144,7 @@ SELECT SUM(column) FROM table_name;
 ```
 
 ```
-MariaDB [quote_sql_lab]> SELECT SUM(credits) FROM user;
+mysql> SELECT SUM(credits) FROM user;
 +--------------+
 | SUM(credits) |
 +--------------+
@@ -153,7 +155,7 @@ MariaDB [quote_sql_lab]> SELECT SUM(credits) FROM user;
 ```
 
 ```
-MariaDB [quote_sql_lab]> SELECT SUM(credits) FROM user WHERE group_name = "scientists";
+mysql> SELECT SUM(credits) FROM user WHERE group_name = "scientists";
 +--------------+
 | SUM(credits) |
 +--------------+
@@ -170,7 +172,7 @@ SELECT AVG(column) FROM table_name;
 ```
 
 ```
-MariaDB [quote_sql_lab]> SELECT AVG(credits) FROM user;
+mysql> SELECT AVG(credits) FROM user;
 +--------------+
 | AVG(credits) |
 +--------------+
@@ -181,7 +183,7 @@ MariaDB [quote_sql_lab]> SELECT AVG(credits) FROM user;
 ```
 
 ```
-MariaDB [quote_sql_lab]> SELECT AVG(credits) FROM user WHERE group_name = "students";
+mysql> SELECT AVG(credits) FROM user WHERE group_name = "students";
 +--------------+
 | AVG(credits) |
 +--------------+
@@ -198,7 +200,7 @@ SELECT STD(column) FROM table_name;
 ```
 
 ```
-MariaDB [quote_sql_lab]> SELECT STD(credits) FROM user;
+mysql> SELECT STD(credits) FROM user;
 +--------------+
 | STD(credits) |
 +--------------+
@@ -215,7 +217,7 @@ SELECT VARIANCE(column) FROM table_name;
 ```
 
 ```
-MariaDB [quote_sql_lab]> SELECT VARIANCE(credits) FROM user;
+mysql> SELECT VARIANCE(credits) FROM user;
 +-------------------+
 | VARIANCE(credits) |
 +-------------------+
