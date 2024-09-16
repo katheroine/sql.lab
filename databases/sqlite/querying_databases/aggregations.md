@@ -133,3 +133,75 @@ sqlite> SELECT AVG(credits) FROM user WHERE group_name = "students";
 **Variance**
 
 **Variance** is not available in SQLite.
+
+#### Groupings
+
+```sql
+SELECT columns
+FROM table_name
+WHERE column_conditions
+GROUP BY column_1, column_2, column_3
+ORDER BY columns_with_orders
+HAVING aggregate_conditions;
+```
+
+**Grouping by chosen column**
+
+```
+sqlite> SELECT group_name, COUNT(*) FROM user
+   ...> GROUP BY group_name;
+students|3
+journalists|3
+hobbyists|3
+scientists|4
+researchers|3
+bloggers|4
+```
+
+**Using alias for aggregate column**
+
+```
+sqlite> SELECT group_name, AVG(credits) AS "average credits" FROM user
+   ...> GROUP BY group_name
+   ...> ORDER BY "average credits";
+students|40
+hobbyists|75
+bloggers|102.5
+journalists|163.333333333333
+researchers|220
+scientists|275
+```
+
+**Using many aggregete functions**
+
+```
+sqlite> SELECT
+   ...>     group_name,
+   ...>     MIN(credits) AS "minimal credits",
+   ...>     MAX(credits) AS "maximal credits"
+   ...> FROM user
+   ...> GROUP BY group_name;
+students|30|50
+journalists|150|180
+hobbyists|60|90
+scientists|250|300
+researchers|200|240
+bloggers|80|120
+```
+
+**Selecting records with chosen aggregate values**
+
+```
+sqlite> SELECT
+   ...>     group_name,
+   ...>     MIN(credits) AS "minimal credits",
+   ...>     MAX(credits) AS "maximal credits"
+   ...> FROM user
+   ...> GROUP BY group_name
+   ...> HAVING AVG(credits) > 50;
+journalists|150|180
+hobbyists|60|90
+scientists|250|300
+researchers|200|240
+bloggers|80|120
+```

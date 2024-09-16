@@ -226,3 +226,99 @@ MariaDB [quote_sql_lab]> SELECT VARIANCE(credits) FROM user;
 1 row in set (0,001 sec)
 
 ```
+
+#### Groupings
+
+```sql
+SELECT columns
+FROM table_name
+WHERE column_conditions
+GROUP BY column_1, column_2, column_3
+ORDER BY columns_with_orders
+HAVING aggregate_conditions;
+```
+
+**Grouping by chosen column**
+
+```
+MariaDB [quote_sql_lab]> SELECT group_name, COUNT(*) FROM user
+    -> GROUP BY group_name;
++-------------+----------+
+| group_name  | COUNT(*) |
++-------------+----------+
+| bloggers    |        4 |
+| hobbyists   |        3 |
+| journalists |        3 |
+| researchers |        3 |
+| scientists  |        4 |
+| students    |        3 |
++-------------+----------+
+6 rows in set (0,000 sec)
+
+```
+
+**Using alias for aggregate column**
+
+```
+MariaDB [quote_sql_lab]> SELECT group_name, AVG(credits) AS "average credits" FROM user
+    -> GROUP BY group_name
+    -> ORDER BY AVG(credits);
++-------------+-----------------+
+| group_name  | average credits |
++-------------+-----------------+
+| students    |         40.0000 |
+| hobbyists   |         75.0000 |
+| bloggers    |        102.5000 |
+| journalists |        163.3333 |
+| researchers |        220.0000 |
+| scientists  |        275.0000 |
++-------------+-----------------+
+6 rows in set (0,001 sec)
+
+```
+
+**Using many aggregete functions**
+
+```
+MariaDB [quote_sql_lab]> SELECT
+    ->     group_name,
+    ->     MIN(credits) AS "minimal credits",
+    ->     MAX(credits) AS "maximal credits"
+    -> FROM user
+    -> GROUP BY group_name;
++-------------+-----------------+-----------------+
+| group_name  | minimal credits | maximal credits |
++-------------+-----------------+-----------------+
+| bloggers    |              80 |             120 |
+| hobbyists   |              60 |              90 |
+| journalists |             150 |             180 |
+| researchers |             200 |             240 |
+| scientists  |             250 |             300 |
+| students    |              30 |              50 |
++-------------+-----------------+-----------------+
+6 rows in set (0,005 sec)
+
+```
+
+**Selecting records with chosen aggregate values**
+
+```
+MariaDB [quote_sql_lab]> SELECT
+    ->     group_name,
+    ->     MIN(credits) AS "minimal credits",
+    ->     MAX(credits) AS "maximal credits"
+    -> FROM user
+    -> GROUP BY group_name
+    -> HAVING AVG(credits) > 50;
++-------------+-----------------+-----------------+
+| group_name  | minimal credits | maximal credits |
++-------------+-----------------+-----------------+
+| bloggers    |              80 |             120 |
+| hobbyists   |              60 |              90 |
+| journalists |             150 |             180 |
+| researchers |             200 |             240 |
+| scientists  |             250 |             300 |
++-------------+-----------------+-----------------+
+5 rows in set (0,005 sec)
+
+```

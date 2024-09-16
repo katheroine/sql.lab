@@ -200,3 +200,91 @@ postgres=# SELECT VARIANCE(credits) FROM user_account;
 (1 row)
 
 ```
+
+#### Groupings
+
+```sql
+SELECT columns
+FROM table_name
+WHERE column_conditions
+GROUP BY column_1, column_2, column_3
+ORDER BY columns_with_orders
+HAVING aggregate_conditions;
+```
+
+**Grouping by chosen column**
+
+```
+quote_sql_lab=# SELECT group_name, COUNT(*) FROM user_account
+quote_sql_lab-# GROUP BY group_name;
+ group_name  | count
+-------------+-------
+ researchers |     3
+ bloggers    |     4
+ scientists  |     4
+ hobbyists   |     3
+ journalists |     3
+ students    |     3
+(6 rows)
+
+```
+
+**Using alias for aggregate column**
+
+```
+quote_sql_lab=# SELECT group_name, AVG(credits) AS "average credits" FROM user_account
+quote_sql_lab-# GROUP BY group_name
+quote_sql_lab-# ORDER BY "average credits";
+ group_name  |   average credits
+-------------+----------------------
+ students    |  40.0000000000000000
+ hobbyists   |  75.0000000000000000
+ bloggers    | 102.5000000000000000
+ journalists | 163.3333333333333333
+ researchers | 220.0000000000000000
+ scientists  | 275.0000000000000000
+(6 rows)
+
+```
+
+**Using many aggregete functions**
+
+```
+quote_sql_lab=# SELECT
+quote_sql_lab-#     group_name,
+quote_sql_lab-#     MIN(credits) AS "minimal credits",
+quote_sql_lab-#     MAX(credits) AS "maximal credits"
+quote_sql_lab-# FROM user_account
+quote_sql_lab-# GROUP BY group_name;
+ group_name  | minimal credits | maximal credits
+-------------+-----------------+-----------------
+ researchers |             200 |             240
+ bloggers    |              80 |             120
+ scientists  |             250 |             300
+ hobbyists   |              60 |              90
+ journalists |             150 |             180
+ students    |              30 |              50
+(6 rows)
+
+```
+
+**Selecting records with chosen aggregate values**
+
+```
+quote_sql_lab=# SELECT
+quote_sql_lab-#     group_name,
+quote_sql_lab-#     MIN(credits) AS "minimal credits",
+quote_sql_lab-#     MAX(credits) AS "maximal credits"
+quote_sql_lab-# FROM user_account
+quote_sql_lab-# GROUP BY group_name
+quote_sql_lab-# HAVING AVG(credits) > 50;
+ group_name  | minimal credits | maximal credits
+-------------+-----------------+-----------------
+ researchers |             200 |             240
+ bloggers    |              80 |             120
+ scientists  |             250 |             300
+ hobbyists   |              60 |              90
+ journalists |             150 |             180
+(5 rows)
+
+```

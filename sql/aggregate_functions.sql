@@ -51,9 +51,33 @@ INSERT INTO user (login, group_name, credits) VALUES ('stamp_collector', 'hobbyi
 INSERT INTO user (login, group_name, credits) VALUES ('travel_guru', 'bloggers', 110);
 INSERT INTO user (login, group_name, credits) VALUES ('chem_whiz', 'scientists', 270);
 
--- MySQL / MariaDB / PostgreSQL
+-- MySQL / MariaDB
 
 INSERT INTO user (login, group_name, credits) VALUES
+    ('john_doe', 'bloggers', 100),
+    ('science_gal', 'scientists', 250),
+    ('news_hound', 'journalists', 150),
+    ('study_buddy', 'students', 50),
+    ('data_miner', 'researchers', 200),
+    ('craft_master', 'hobbyists', 75),
+    ('tech_blogger', 'bloggers', 120),
+    ('quantum_guy', 'scientists', 300),
+    ('truth_seeker', 'journalists', 180),
+    ('college_kid', 'students', 30),
+    ('lab_rat', 'researchers', 220),
+    ('diy_enthusiast', 'hobbyists', 90),
+    ('food_critic', 'bloggers', 80),
+    ('rocket_woman', 'scientists', 280),
+    ('roving_reporter', 'journalists', 160),
+    ('grad_student', 'students', 40),
+    ('book_worm', 'researchers', 240),
+    ('stamp_collector', 'hobbyists', 60),
+    ('travel_guru', 'bloggers', 110),
+    ('chem_whiz', 'scientists', 270);
+
+--  PostgreSQL
+
+INSERT INTO user_account (login, group_name, credits) VALUES
     ('john_doe', 'bloggers', 100),
     ('science_gal', 'scientists', 250),
     ('news_hound', 'journalists', 150),
