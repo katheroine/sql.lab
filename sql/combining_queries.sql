@@ -225,3 +225,17 @@ SELECT user_id AS "id", nick, group_name FROM author;
 SELECT user_id AS "id", nick, group_name FROM author
 EXCEPT
 SELECT id, login AS "nick", group_name FROM user_account;
+
+-- MySQL / MariaDB / SQLite
+
+SELECT login, nick FROM user, author;
+
+SELECT login, nick FROM user, author
+WHERE user.id = author.user_id;
+
+-- PostgreSQL
+
+SELECT login, nick FROM user_account, author;
+
+SELECT login, nick FROM user_account, author
+WHERE user_account.id = author.user_id;
