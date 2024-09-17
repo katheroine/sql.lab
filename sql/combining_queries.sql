@@ -239,3 +239,173 @@ SELECT login, nick FROM user_account, author;
 
 SELECT login, nick FROM user_account, author
 WHERE user_account.id = author.user_id;
+
+-- MySQL / MariaDB / SQLite
+
+SELECT
+    user.id as user_id,
+    author.id as author_id,
+    author.user_id as author_user_id,
+    login as user_login,
+    nick as author_nick,
+    user.group_name as user_group_name,
+    author.group_name as author_group_name,
+    user.credits as user_credits,
+    author.credits as author_credits
+FROM user CROSS JOIN author
+ORDER BY user.id, author.id;
+
+SELECT
+    user.id as user_id,
+    author.id as author_id,
+    author.user_id as author_user_id,
+    login as user_login,
+    nick as author_nick,
+    user.group_name as user_group_name,
+    author.group_name as author_group_name,
+    user.credits as user_credits,
+    author.credits as author_credits
+FROM user INNER JOIN author
+ON user.id = author.user_id
+ORDER BY user.id, author.id;
+
+SELECT
+    user.id as user_id,
+    author.id as author_id,
+    author.user_id as author_user_id,
+    login as user_login,
+    nick as author_nick,
+    user.group_name as user_group_name,
+    author.group_name as author_group_name,
+    user.credits as user_credits,
+    author.credits as author_credits
+FROM user LEFT JOIN author
+ON user.id = author.user_id
+ORDER BY user.id, author.id;
+
+SELECT
+    user.id as user_id,
+    author.id as author_id,
+    author.user_id as author_user_id,
+    login as user_login,
+    nick as author_nick,
+    user.group_name as user_group_name,
+    author.group_name as author_group_name,
+    user.credits as user_credits,
+    author.credits as author_credits
+FROM user LEFT OUTER JOIN author
+ON user.id = author.user_id
+ORDER BY user.id, author.id;
+
+SELECT
+    user.id as user_id,
+    author.id as author_id,
+    author.user_id as author_user_id,
+    login as user_login,
+    nick as author_nick,
+    user.group_name as user_group_name,
+    author.group_name as author_group_name,
+    user.credits as user_credits,
+    author.credits as author_credits
+FROM user RIGHT JOIN author
+ON user.id = author.user_id
+ORDER BY user.id, author.id;
+
+SELECT
+    user.id as user_id,
+    author.id as author_id,
+    author.user_id as author_user_id,
+    login as user_login,
+    nick as author_nick,
+    user.group_name as user_group_name,
+    author.group_name as author_group_name,
+    user.credits as user_credits,
+    author.credits as author_credits
+FROM user RIGHT OUTER JOIN author
+ON user.id = author.user_id
+ORDER BY user.id, author.id;
+
+-- PostgreSQL
+
+SELECT
+    user_account.id as user_id,
+    author.id as author_id,
+    author.user_id as author_user_id,
+    login as user_login,
+    nick as author_nick,
+    user_account.group_name as user_group_name,
+    author.group_name as author_group_name,
+    user_account.credits as user_credits,
+    author.credits as author_credits
+FROM user_account CROSS JOIN author
+ORDER BY user_account.id, author.id;
+
+SELECT
+    user_account.id as user_id,
+    author.id as author_id,
+    author.user_id as author_user_id,
+    login as user_login,
+    nick as author_nick,
+    user_account.group_name as user_group_name,
+    author.group_name as author_group_name,
+    user_account.credits as user_credits,
+    author.credits as author_credits
+FROM user_account INNER JOIN author
+ON user_account.id = author.user_id
+ORDER BY user_account.id, author.id;
+
+SELECT
+    user_account.id as user_id,
+    author.id as author_id,
+    author.user_id as author_user_id,
+    login as user_login,
+    nick as author_nick,
+    user_account.group_name as user_group_name,
+    author.group_name as author_group_name,
+    user_account.credits as user_credits,
+    author.credits as author_credits
+FROM user_account LEFT JOIN author
+ON user_account.id = author.user_id
+ORDER BY user_account.id, author.id;
+
+SELECT
+    user_account.id as user_id,
+    author.id as author_id,
+    author.user_id as author_user_id,
+    login as user_login,
+    nick as author_nick,
+    user_account.group_name as user_group_name,
+    author.group_name as author_group_name,
+    user_account.credits as user_credits,
+    author.credits as author_credits
+FROM user_account LEFT OUTER JOIN author
+ON user_account.id = author.user_id
+ORDER BY user_account.id, author.id;
+
+SELECT
+    user_account.id as user_id,
+    author.id as author_id,
+    author.user_id as author_user_id,
+    login as user_login,
+    nick as author_nick,
+    user_account.group_name as user_group_name,
+    author.group_name as author_group_name,
+    user_account.credits as user_credits,
+    author.credits as author_credits
+FROM user_account RIGHT JOIN author
+ON user_account.id = author.user_id
+ORDER BY user_account.id, author.id;
+
+SELECT
+    user_account.id as user_id,
+    author.id as author_id,
+    author.user_id as author_user_id,
+    login as user_login,
+    nick as author_nick,
+    user_account.group_name as user_group_name,
+    author.group_name as author_group_name,
+    user_account.credits as user_credits,
+    author.credits as author_credits
+FROM user_account RIGHT OUTER JOIN author
+ON user_account.id = author.user_id
+ORDER BY user_account.id, author.id;
