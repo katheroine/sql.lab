@@ -1211,3 +1211,119 @@ quote_sql_lab-# ORDER BY user_account.id, author.id;
 (16 rows)
 
 ```
+
+##### `FULL JOIN` / `FULL OUTER JOIN`
+
+```sql
+SELECT columns
+FROM table_1 FULL JOIN table_2
+ON condition
+ORDER BY columns_with_orders;
+```
+
+```
+quote_sql_lab=# SELECT
+quote_sql_lab-#     user_account.id as user_id,
+quote_sql_lab-#     author.id as author_id,
+quote_sql_lab-#     author.user_id as author_user_id,
+quote_sql_lab-#     login as user_login,
+quote_sql_lab-#     nick as author_nick,
+quote_sql_lab-#     user_account.group_name as user_group_name,
+quote_sql_lab-#     author.group_name as author_group_name,
+quote_sql_lab-#     user_account.credits as user_credits,
+quote_sql_lab-#     author.credits as author_credits
+quote_sql_lab-# FROM user_account FULL JOIN author
+quote_sql_lab-# ON user_account.id = author.user_id
+quote_sql_lab-# ORDER BY user_account.id, author.id;
+ user_id | author_id | author_user_id |   user_login    | author_nick | user_group_name | author_group_name | user_credits | author_credits
+---------+-----------+----------------+-----------------+-------------+-----------------+-------------------+--------------+----------------
+       1 |         1 |              1 | john_doe        | john_doe    | bloggers        | bloggers          |          100 |             20
+       2 |           |                | science_gal     |             | scientists      |                   |          250 |
+       3 |         3 |              3 | news_hound      | news_hound  | journalists     | journalists       |          150 |             15
+       4 |           |                | study_buddy     |             | students        |                   |           50 |
+       5 |         5 |              5 | data_miner      | data_miner  | researchers     | academics         |          200 |             15
+       6 |           |                | craft_master    |             | hobbyists       |                   |           75 |
+       7 |         6 |              7 | tech_blogger    | nerd        | bloggers        | bloggers          |          120 |             10
+       8 |           |                | quantum_guy     |             | scientists      |                   |          300 |
+       9 |           |                | truth_seeker    |             | journalists     |                   |          180 |
+      10 |           |                | college_kid     |             | students        |                   |           30 |
+      11 |        10 |             11 | lab_rat         | penguin     | researchers     | academics         |          220 |             20
+      12 |           |                | diy_enthusiast  |             | hobbyists       |                   |           90 |
+      13 |           |                | food_critic     |             | bloggers        |                   |           80 |
+      14 |           |                | rocket_woman    |             | scientists      |                   |          280 |
+      15 |           |                | roving_reporter |             | journalists     |                   |          160 |
+      16 |           |                | grad_student    |             | students        |                   |           40 |
+      17 |           |                | book_worm       |             | researchers     |                   |          240 |
+      18 |           |                | stamp_collector |             | hobbyists       |                   |           60 |
+      19 |        15 |             19 | travel_guru     | erwin       | bloggers        | writer            |          110 |             10
+      20 |           |                | chem_whiz       |             | scientists      |                   |          270 |
+         |         2 |                |                 | pinecone    |                 | bloggers          |              |              5
+         |         4 |                |                 | pumpkin     |                 | entrant           |              |              5
+         |         7 |                |                 | quarky      |                 | academics         |              |             30
+         |         8 |                |                 | yola        |                 | entrant           |              |              0
+         |         9 |                |                 | amelie      |                 | entrant           |              |              0
+         |        11 |                |                 | newton      |                 | entrant           |              |              0
+         |        12 |                |                 | pepper      |                 | journalists       |              |             50
+         |        13 |                |                 | jonny       |                 | writer            |              |             40
+         |        14 |                |                 | agate       |                 | writer            |              |             25
+         |        16 |                |                 | mateo       |                 | blogger           |              |              0
+(30 rows)
+
+```
+
+```sql
+SELECT columns
+FROM table_1 FULL OUTER JOIN table_2
+ON condition
+ORDER BY columns_with_orders;
+```
+
+```
+quote_sql_lab=# SELECT
+quote_sql_lab-#     user_account.id as user_id,
+quote_sql_lab-#     author.id as author_id,
+quote_sql_lab-#     author.user_id as author_user_id,
+quote_sql_lab-#     login as user_login,
+quote_sql_lab-#     nick as author_nick,
+quote_sql_lab-#     user_account.group_name as user_group_name,
+quote_sql_lab-#     author.group_name as author_group_name,
+quote_sql_lab-#     user_account.credits as user_credits,
+quote_sql_lab-#     author.credits as author_credits
+quote_sql_lab-# FROM user_account FULL OUTER JOIN author
+quote_sql_lab-# ON user_account.id = author.user_id
+quote_sql_lab-# ORDER BY user_account.id, author.id;
+ user_id | author_id | author_user_id |   user_login    | author_nick | user_group_name | author_group_name | user_credits | author_credits
+---------+-----------+----------------+-----------------+-------------+-----------------+-------------------+--------------+----------------
+       1 |         1 |              1 | john_doe        | john_doe    | bloggers        | bloggers          |          100 |             20
+       2 |           |                | science_gal     |             | scientists      |                   |          250 |
+       3 |         3 |              3 | news_hound      | news_hound  | journalists     | journalists       |          150 |             15
+       4 |           |                | study_buddy     |             | students        |                   |           50 |
+       5 |         5 |              5 | data_miner      | data_miner  | researchers     | academics         |          200 |             15
+       6 |           |                | craft_master    |             | hobbyists       |                   |           75 |
+       7 |         6 |              7 | tech_blogger    | nerd        | bloggers        | bloggers          |          120 |             10
+       8 |           |                | quantum_guy     |             | scientists      |                   |          300 |
+       9 |           |                | truth_seeker    |             | journalists     |                   |          180 |
+      10 |           |                | college_kid     |             | students        |                   |           30 |
+      11 |        10 |             11 | lab_rat         | penguin     | researchers     | academics         |          220 |             20
+      12 |           |                | diy_enthusiast  |             | hobbyists       |                   |           90 |
+      13 |           |                | food_critic     |             | bloggers        |                   |           80 |
+      14 |           |                | rocket_woman    |             | scientists      |                   |          280 |
+      15 |           |                | roving_reporter |             | journalists     |                   |          160 |
+      16 |           |                | grad_student    |             | students        |                   |           40 |
+      17 |           |                | book_worm       |             | researchers     |                   |          240 |
+      18 |           |                | stamp_collector |             | hobbyists       |                   |           60 |
+      19 |        15 |             19 | travel_guru     | erwin       | bloggers        | writer            |          110 |             10
+      20 |           |                | chem_whiz       |             | scientists      |                   |          270 |
+         |         2 |                |                 | pinecone    |                 | bloggers          |              |              5
+         |         4 |                |                 | pumpkin     |                 | entrant           |              |              5
+         |         7 |                |                 | quarky      |                 | academics         |              |             30
+         |         8 |                |                 | yola        |                 | entrant           |              |              0
+         |         9 |                |                 | amelie      |                 | entrant           |              |              0
+         |        11 |                |                 | newton      |                 | entrant           |              |              0
+         |        12 |                |                 | pepper      |                 | journalists       |              |             50
+         |        13 |                |                 | jonny       |                 | writer            |              |             40
+         |        14 |                |                 | agate       |                 | writer            |              |             25
+         |        16 |                |                 | mateo       |                 | blogger           |              |              0
+(30 rows)
+
+```

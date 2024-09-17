@@ -1240,3 +1240,7 @@ mysql> SELECT
 16 rows in set (0,001 sec)
 
 ```
+
+##### `FULL JOIN` / `FULL OUTER JOIN`
+
+**FULL (OUTER) JOIN** is not supported by MySQL.

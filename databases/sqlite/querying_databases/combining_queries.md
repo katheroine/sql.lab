@@ -1078,3 +1078,7 @@ sqlite> SELECT
 ##### `RIGHT JOIN` / `RIGHT OUTER JOIN`
 
 **RIGHT (OUTER) JOIN** is not supported by SQLite.
+
+##### `FULL JOIN` / `FULL OUTER JOIN`
+
+**FULL (OUTER) JOIN** is not supported by SQLite.
