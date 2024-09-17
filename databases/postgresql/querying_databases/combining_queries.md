@@ -212,3 +212,79 @@ quote_sql_lab-# SELECT user_id AS "id", nick, group_name FROM author;
 (36 rows)
 
 ```
+
+#### `INTERSECT`
+
+```sql
+query_1 INTERSECT query_2;
+```
+
+```
+quote_sql_lab=# SELECT id, login AS "nick", group_name FROM user_account
+quote_sql_lab-# INTERSECT
+quote_sql_lab-# SELECT user_id AS "id", nick, group_name FROM author;
+ id |    nick    | group_name
+----+------------+-------------
+  3 | news_hound | journalists
+  1 | john_doe   | bloggers
+(2 rows)
+
+```
+
+#### `EXCEPT`
+
+```sql
+query_1 EXCEPT query_2;
+```
+
+```
+quote_sql_lab=# SELECT id, login AS "nick", group_name FROM user_account
+quote_sql_lab-# EXCEPT
+quote_sql_lab-# SELECT user_id AS "id", nick, group_name FROM author;
+ id |      nick       | group_name
+----+-----------------+-------------
+ 19 | travel_guru     | bloggers
+ 14 | rocket_woman    | scientists
+  8 | quantum_guy     | scientists
+  6 | craft_master    | hobbyists
+ 11 | lab_rat         | researchers
+  5 | data_miner      | researchers
+  9 | truth_seeker    | journalists
+  4 | study_buddy     | students
+ 13 | food_critic     | bloggers
+  7 | tech_blogger    | bloggers
+ 16 | grad_student    | students
+ 17 | book_worm       | researchers
+ 20 | chem_whiz       | scientists
+ 15 | roving_reporter | journalists
+ 18 | stamp_collector | hobbyists
+ 12 | diy_enthusiast  | hobbyists
+ 10 | college_kid     | students
+  2 | science_gal     | scientists
+(18 rows)
+
+```
+
+```
+quote_sql_lab=# SELECT user_id AS "id", nick, group_name FROM author
+quote_sql_lab-# EXCEPT
+quote_sql_lab-# SELECT id, login AS "nick", group_name FROM user_account;
+ id |    nick    | group_name
+----+------------+-------------
+    | pumpkin    | entrant
+    | pepper     | journalists
+    | amelie     | entrant
+    | mateo      | blogger
+    | quarky     | academics
+    | jonny      | writer
+  7 | nerd       | bloggers
+ 19 | erwin      | writer
+    | yola       | entrant
+    | newton     | entrant
+    | pinecone   | bloggers
+ 11 | penguin    | academics
+  5 | data_miner | academics
+    | agate      | writer
+(14 rows)
+
+```

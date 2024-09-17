@@ -220,3 +220,85 @@ mysql> SELECT id, login AS "nick", group_name FROM user
 36 rows in set (0,001 sec)
 
 ```
+
+#### `INTERSECT`
+
+```sql
+query_1 INTERSECT query_2;
+```
+
+```
+mysql> SELECT id, login AS "nick", group_name FROM user
+    -> INTERSECT
+    -> SELECT user_id AS "id", nick, group_name FROM author;
++------+------------+-------------+
+| id   | nick       | group_name  |
++------+------------+-------------+
+|    1 | john_doe   | bloggers    |
+|    3 | news_hound | journalists |
++------+------------+-------------+
+2 rows in set (0,000 sec)
+
+```
+
+#### `EXCEPT`
+
+```sql
+query_1 EXCEPT query_2;
+```
+
+```
+mysql> SELECT id, login AS "nick", group_name FROM user
+    -> EXCEPT
+    -> SELECT user_id AS "id", nick, group_name FROM author;
++------+-----------------+-------------+
+| id   | nick            | group_name  |
++------+-----------------+-------------+
+|    2 | science_gal     | scientists  |
+|    4 | study_buddy     | students    |
+|    5 | data_miner      | researchers |
+|    6 | craft_master    | hobbyists   |
+|    7 | tech_blogger    | bloggers    |
+|    8 | quantum_guy     | scientists  |
+|    9 | truth_seeker    | journalists |
+|   10 | college_kid     | students    |
+|   11 | lab_rat         | researchers |
+|   12 | diy_enthusiast  | hobbyists   |
+|   13 | food_critic     | bloggers    |
+|   14 | rocket_woman    | scientists  |
+|   15 | roving_reporter | journalists |
+|   16 | grad_student    | students    |
+|   17 | book_worm       | researchers |
+|   18 | stamp_collector | hobbyists   |
+|   19 | travel_guru     | bloggers    |
+|   20 | chem_whiz       | scientists  |
++------+-----------------+-------------+
+18 rows in set (0,001 sec)
+
+```
+
+```
+mysql> SELECT user_id AS "id", nick, group_name FROM author
+    -> EXCEPT
+    -> SELECT id, login AS "nick", group_name FROM user;
++------+------------+-------------+
+| id   | nick       | group_name  |
++------+------------+-------------+
+| NULL | pinecone   | bloggers    |
+| NULL | pumpkin    | entrant     |
+|    5 | data_miner | academics   |
+|    7 | nerd       | bloggers    |
+| NULL | quarky     | academics   |
+| NULL | yola       | entrant     |
+| NULL | amelie     | entrant     |
+|   11 | penguin    | academics   |
+| NULL | newton     | entrant     |
+| NULL | pepper     | journalists |
+| NULL | jonny      | writer      |
+| NULL | agate      | writer      |
+|   19 | erwin      | writer      |
+| NULL | mateo      | blogger     |
++------+------------+-------------+
+14 rows in set (0,001 sec)
+
+```

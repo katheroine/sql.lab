@@ -193,3 +193,35 @@ SELECT user_id AS "id", nick, group_name FROM author;
 SELECT id, login AS "nick", group_name FROM user_account
 UNION ALL
 SELECT user_id AS "id", nick, group_name FROM author;
+
+-- MySQL / MariaDB / SQLite
+
+SELECT id, login AS "nick", group_name FROM user
+INTERSECT
+SELECT user_id AS "id", nick, group_name FROM author;
+
+-- PostgreSQL
+
+SELECT id, login AS "nick", group_name FROM user_account
+INTERSECT
+SELECT user_id AS "id", nick, group_name FROM author;
+
+-- MySQL / MariaDB / SQLite
+
+SELECT id, login AS "nick", group_name FROM user
+EXCEPT
+SELECT user_id AS "id", nick, group_name FROM author;
+
+SELECT user_id AS "id", nick, group_name FROM author
+EXCEPT
+SELECT id, login AS "nick", group_name FROM user;
+
+-- PostgreSQL
+
+SELECT id, login AS "nick", group_name FROM user_account
+EXCEPT
+SELECT user_id AS "id", nick, group_name FROM author;
+
+SELECT user_id AS "id", nick, group_name FROM author
+EXCEPT
+SELECT id, login AS "nick", group_name FROM user_account;

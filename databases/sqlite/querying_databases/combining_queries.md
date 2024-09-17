@@ -199,3 +199,67 @@ sqlite> SELECT id, login AS "nick", group_name FROM user
 19|erwin|writer
 |mateo|blogger
 ```
+
+#### `INTERSECT`
+
+```sql
+query_1 INTERSECT query_2;
+```
+
+```
+sqlite> SELECT id, login AS "nick", group_name FROM user
+   ...> INTERSECT
+   ...> SELECT user_id AS "id", nick, group_name FROM author;
+1|john_doe|bloggers
+3|news_hound|journalists
+```
+
+#### `EXCEPT`
+
+```sql
+query_1 EXCEPT query_2;
+```
+
+```
+sqlite> SELECT id, login AS "nick", group_name FROM user
+   ...> EXCEPT
+   ...> SELECT user_id AS "id", nick, group_name FROM author;
+5|data_miner|researchers
+4|study_buddy|students
+2|science_gal|scientists
+8|quantum_guy|scientists
+7|tech_blogger|bloggers
+6|craft_master|hobbyists
+9|truth_seeker|journalists
+11|lab_rat|researchers
+20|chem_whiz|scientists
+17|book_worm|researchers
+10|college_kid|students
+13|food_critic|bloggers
+19|travel_guru|bloggers
+16|grad_student|students
+14|rocket_woman|scientists
+12|diy_enthusiast|hobbyists
+18|stamp_collector|hobbyists
+15|roving_reporter|journalists
+```
+
+```
+sqlite> SELECT user_id AS "id", nick, group_name FROM author
+   ...> EXCEPT
+   ...> SELECT id, login AS "nick", group_name FROM user;
+|yola|entrant
+|agate|writer
+|jonny|writer
+|mateo|blogger
+|amelie|entrant
+|newton|entrant
+|quarky|academics
+|pepper|journalists
+|pumpkin|entrant
+|pinecone|bloggers
+7|nerd|bloggers
+5|data_miner|academics
+19|erwin|writer
+11|penguin|academics
+```
