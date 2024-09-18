@@ -64,6 +64,16 @@ Laboratory of SQL & most popular SQL databases:
 |Updating records|[✤](databases/sqlite/managing_records/updating_records.md)|[✤](databases/mysql/managing_records/updating_records.md)|[✤](databases/mariadb/managing_records/updating_records.md)|[✤](databases/postgresql/managing_records/updating_records.md)|
 |Removing records|[✤](databases/sqlite/managing_records/removing_records.md)|[✤](databases/mysql/managing_records/removing_records.md)|[✤](databases/mariadb/managing_records/removing_records.md)|[✤](databases/postgresql/managing_records/removing_records.md)|
 
+### Querying databases
+
+|-----------------------------------------------|SQLite -------|MySQL -------|MariaDB ------|PostgreSQL ---|
+|--|--|--|--|--|
+|**Querying databases**|[✤](databases/sqlite/querying_databases/README.md)|[✤](databases/mysql/querying_databases/README.md)|[✤](databases/mariadb/querying_databases/README.md)|[✤](databases/postgresql/querying_databases/README.md)|
+|Queries|[✤](databases/sqlite/querying_databases/queries.md)|[✤](databases/mysql/querying_databases/queries.md)|[✤](databases/mariadb/querying_databases/queries.md)|[✤](databases/postgresql/querying_databases/queries.md)|
+|Aggregations|[✤](databases/sqlite/querying_databases/aggregations.md)|[✤](databases/mysql/querying_databases/aggregations.md)|[✤](databases/mariadb/querying_databases/aggregations.md)|[✤](databases/postgresql/querying_databases/aggregations.md)|
+|Combining queries|[✤](databases/sqlite/querying_databases/combining_queries.md)|[✤](databases/mysql/querying_databases/combining_queries.md)|[✤](databases/mariadb/querying_databases/combining_queries.md)|[✤](databases/postgresql/querying_databases/combining_queries.md)|
+|Subqueries|[✤](databases/sqlite/querying_databases/subqueries.md)|[✤](databases/mysql/querying_databases/subqueries.md)|[✤](databases/mariadb/querying_databases/subqueries.md)|[✤](databases/postgresql/querying_databases/subqueries.md)|
+
 ## Basic commands
 
 Prompts:
