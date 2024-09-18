@@ -1,10 +1,11 @@
 [⌂ Home](../../../README.md)
 [⬆ Up: Querying databases](README.md)
 [▲ Previous: Aggregations](aggregations.md)
+[▼ Next: Subqueries](subqueries.md)
 
 ### Combining queries
 
-### `UNION`
+**Database preparation**
 
 ```sql
 CREATE TABLE user
