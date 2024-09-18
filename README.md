@@ -27,6 +27,12 @@ Laboratory of SQL & most popular SQL databases:
 6. [Managing records](#managing-records)
     1. Inserting records
     2. Updating records
+    3. Removing records
+7. [Querying databases](#querying-databases)
+    1. Queries
+    2. Aggregations
+    3. Combining queries
+    4. Subqueries
 
 ### Installation and running
 
