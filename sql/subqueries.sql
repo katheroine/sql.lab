@@ -106,10 +106,10 @@ SELECT * FROM (
     FROM author LEFT JOIN author_group
     ON author.group_id = author_group.id
 ) AS author_with_group
-WHERE group_name = "bloggers";
+WHERE group_name = 'bloggers';
 
 SELECT * FROM author
 WHERE group_id = (
     SELECT id FROM author_group
-    WHERE name = "writers"
+    WHERE name = 'writers'
 );
