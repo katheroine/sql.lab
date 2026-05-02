@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing tables](README.md)
 [▲ Previous: Displaying tables](displaying_tables.md)
 [▼ Next: Modifying tables](modifying_tables.md)
 
@@ -870,3 +869,8 @@ quote_sql_lab=# SELECT * FROM personal_data;
 ##### Indexes
 
 **There is no possibility of adding indexes in PostgreSQL during the database creation.**
+
+[▵ Up](#creating-tables)
+[⌂ Home](../../../README.md)
+[▲ Previous: Displaying tables](displaying_tables.md)
+[▼ Next: Modifying tables](modifying_tables.md)

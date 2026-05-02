@@ -1,5 +1,5 @@
 [⌂ Home](../../README.md)
-[⬆ Up: MySQL](README.md)
+[▲ Previous: MySQL](README.md)
 [▼ Next: Managing databases](managing_databases.md)
 
 ## Installation and running

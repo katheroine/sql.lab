@@ -1,5 +1,5 @@
 [⌂ Home](../../README.md)
-[⬆ Up: MariaDB](README.md)
+[▲ Previous: MariaDB](README.md)
 [▼ Next: Managing databases](managing_databases.md)
 
 ## Installation and running

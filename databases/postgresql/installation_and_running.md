@@ -1,6 +1,6 @@
 [⌂ Home](../../README.md)
-[⬆ Up: PostgreSQL](README.md)
-[▼ Next: Managing databases](managing_databases.md)
+[▲ Previous: PostgreSQL](README.md)
+[▼ Next: Displaying databases](managing_databases/displaying_databases.md)
 
 ## Installation and running
 
@@ -15,3 +15,8 @@ $ sudo aptitude install postgresql
 ```bash
 $ sudo -u postgres psql
 ```
+
+[▵ Up](#installation-and-running)
+[⌂ Home](../../README.md)
+[▲ Previous: PostgreSQL](README.md)
+[▼ Next: Displaying databases](managing_databases/displaying_databases.md)

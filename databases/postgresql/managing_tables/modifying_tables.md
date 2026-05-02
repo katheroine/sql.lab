@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing tables](README.md)
 [▲ Previous: Creating tables](creating_tables.md)
 [▼ Next: Removing tables](removing_tables.md)
 
@@ -653,3 +652,8 @@ Indexes:
 Access method: heap
 
 ```
+
+[▵ Up](#modifying-tables)
+[⌂ Home](../../../README.md)
+[▲ Previous: Creating tables](creating_tables.md)
+[▼ Next: Removing tables](removing_tables.md)

@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing records](README.md)
 [▲ Previous: Inserting records](inserting_records.md)
 [▼ Next: Removing records](removing_records.md)
 
@@ -76,3 +75,8 @@ quote_sql_lab=# SELECT * FROM storage_conditions;
 (3 rows)
 
 ```
+
+[▵ Up](#updating-records)
+[⌂ Home](../../../README.md)
+[▲ Previous: Inserting records](inserting_records.md)
+[▼ Next: Removing records](removing_records.md)

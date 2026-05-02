@@ -1,5 +1,5 @@
 [⌂ Home](../../README.md)
-[⬆ Up: SQLite](README.md)
+[▲ Previous: SQLite](README.md)
 [▼ Next: Managing databases](managing_databases.md)
 
 ## Installation and running

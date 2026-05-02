@@ -1,7 +1,6 @@
 [⌂ Home](../../README.md)
-[⬆ Up: Managing tables](managing_tables.md)
 [▲ Previous: Modifying tables](modifying_tables.md)
-[▼ Next: Inserting into tables](inserting_into_tables.md)
+[▼ Next: Inserting records](../managing_records/inserting_records.md)
 
 ### Removing tables
 
@@ -37,3 +36,8 @@ quote_sql_lab=# \dt
 (2 rows)
 
 ```
+
+[▵ Up](#removing-tables)
+[⌂ Home](../../README.md)
+[▲ Previous: Modifying tables](modifying_tables.md)
+[▼ Next: Inserting records](../managing_records/inserting_records.md)

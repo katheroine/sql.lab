@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Querying databases](README.md)
 [▲ Previous: Aggregations](aggregations.md)
 [▼ Next: Subqueries](subqueries.md)
 
@@ -1328,3 +1327,8 @@ quote_sql_lab-# ORDER BY user_account.id, author.id;
 (30 rows)
 
 ```
+
+[▵ Up](#combining-queries)
+[⌂ Home](../../../README.md)
+[▲ Previous: Aggregations](aggregations.md)
+[▼ Next: Subqueries](subqueries.md)

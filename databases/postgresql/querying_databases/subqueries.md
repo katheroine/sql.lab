@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Querying databases](README.md)
 [▲ Previous: Combining queries](combining_queries.md)
 
 ### Subqueries
@@ -99,3 +98,7 @@ quote_sql_lab(# );
 (3 rows)
 
 ```
+
+[▵ Up](#subqueries)
+[⌂ Home](../../../README.md)
+[▲ Previous: Combining queries](combining_queries.md)

@@ -1,4 +1,6 @@
 [⌂ Home](../../README.md)
+[▲ Previous: SQL](../../sql/sql.md)
+[▼ Next: Installation and running](installation_and_running.md)
 
 # PostgreSQL
 

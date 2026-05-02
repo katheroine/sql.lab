@@ -1,4 +1,5 @@
 [⌂ Home](../README.md)
+[▼ Next: SQL](../sql/sql.md)
 
 # Databases
 
@@ -108,3 +109,7 @@ Limitations:
 Remember: There's no one-size-fits-all answer. The best database depends on your specific application requirements. It's often helpful to prototype with different options to make an informed decision.
 
 -- [Gemini](https://g.co/gemini/share/6412becd3dd9)
+
+[▵ Up](#databases)
+[⌂ Home](../README.md)
+[▼ Next: SQL](../sql/sql.md)

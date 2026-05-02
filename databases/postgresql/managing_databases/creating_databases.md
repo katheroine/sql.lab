@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing databases](README.md)
 [▲ Previous: Displaying databases](displaying_databases.md)
 [▼ Next: Choosing databases](choosing_databases.md)
 
@@ -36,3 +35,8 @@ postgres=# \list
 (4 rows)
 
 ```
+
+[▵ Up](#creating-databases)
+[⌂ Home](../../../README.md)
+[▲ Previous: Displaying databases](displaying_databases.md)
+[▼ Next: Choosing databases](choosing_databases.md)

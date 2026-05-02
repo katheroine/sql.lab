@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Querying databases](README.md)
 [▲ Previous: Queries](queries.md)
 [▼ Next: Combining queries](combining_queries.md)
 
@@ -289,3 +288,8 @@ quote_sql_lab-# HAVING AVG(credits) > 50;
 (5 rows)
 
 ```
+
+[▵ Up](#aggregations)
+[⌂ Home](../../../README.md)
+[▲ Previous: Queries](queries.md)
+[▼ Next: Combining queries](combining_queries.md)

@@ -1,6 +1,6 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing records](README.md)
 [▲ Previous: Updating records](updating_records.md)
+[▼ Next: Queries](../querying_databases/queries.md)
 
 ### Removing records
 
@@ -27,3 +27,8 @@ quote_sql_lab=# SELECT * FROM storage_conditions;
 (2 rows)
 
 ```
+
+[▵ Up](#removing-records)
+[⌂ Home](../../../README.md)
+[▲ Previous: Updating records](updating_records.md)
+[▼ Next: Queries](../querying_databases/queries.md)

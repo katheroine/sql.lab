@@ -1,5 +1,5 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Querying databases](README.md)
+[▲ Previous: Removing records](../managing_records/removing_records.md)
 [▼ Next: Aggregations](aggregations.md)
 
 ### Queries
@@ -744,3 +744,8 @@ postgres-# ORDER BY rating ASC, author DESC;
 (10 rows)
 
 ```
+
+[▵ Up](#queries)
+[⌂ Home](../../../README.md)
+[▲ Previous: Removing records](../managing_records/removing_records.md)
+[▼ Next: Aggregations](aggregations.md)

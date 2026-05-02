@@ -1,5 +1,5 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing records](README.md)
+[▲ Previous: Removing tables](../managing_tables/removing_tables.md)
 [▼ Next: Updating records](updating_records.md)
 
 ### Inserting records
@@ -64,3 +64,8 @@ quote_sql_lab=# SELECT * FROM user_account;
   3 |                3 |           |
 
 ```
+
+[▵ Up](#inserting-records)
+[⌂ Home](../../../README.md)
+[▲ Previous: Removing tables](../managing_tables/removing_tables.md)
+[▼ Next: Updating records](updating_records.md)
