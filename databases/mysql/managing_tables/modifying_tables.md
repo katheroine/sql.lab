@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing tables](README.md)
 [▲ Previous: Creating tables](creating_tables.md)
 [▼ Next: Removing tables](removing_tables.md)
 
@@ -766,3 +765,8 @@ mysql> SHOW INDEXES FROM translator;
 1 row in set (0,001 sec)
 
 ```
+
+[▵ Up](#modifying-tables)
+[⌂ Home](../../../README.md)
+[▲ Previous: Creating tables](creating_tables.md)
+[▼ Next: Removing tables](removing_tables.md)

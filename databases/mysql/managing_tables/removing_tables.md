@@ -1,7 +1,6 @@
-[⌂ Home](../../../README.md)
-[⬆ Up: Managing tables](README.md)
+[⌂ Home](../../README.md)
 [▲ Previous: Modifying tables](modifying_tables.md)
-[▼ Next: Inserting into tables](inserting_into_tables.md)
+[▼ Next: Inserting records](../managing_records/inserting_records.md)
 
 ### Removing tables
 
@@ -41,3 +40,8 @@ mysql> SHOW TABLES;
 2 rows in set (0,001 sec)
 
 ```
+
+[▵ Up](#removing-tables)
+[⌂ Home](../../README.md)
+[▲ Previous: Modifying tables](modifying_tables.md)
+[▼ Next: Inserting records](../managing_records/inserting_records.md)

@@ -1,6 +1,6 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing databases](README.md)
 [▲ Previous: Creating databases](creating_databases.md)
+[▼ Next: Displaying tables](../managing_tables/displaying_tables.md)
 
 ### Choosing databases
 
@@ -16,3 +16,8 @@ seq  name             file
 0    main             /home/katheroine/quote_sql_lab.db
 1    temp             /var/tmp/sqlite_4bgECn3Em2x6p9V
 ```
+
+[▵ Up](#choosing-databases)
+[⌂ Home](../../../README.md)
+[▲ Previous: Creating databases](creating_databases.md)
+[▼ Next: Displaying tables](../managing_tables/displaying_tables.md)

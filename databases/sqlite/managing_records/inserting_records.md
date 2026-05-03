@@ -1,5 +1,5 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing records](README.md)
+[▲ Previous: Removing tables](../managing_tables/removing_tables.md)
 [▼ Next: Updating records](updating_records.md)
 
 ### Inserting records
@@ -51,3 +51,8 @@ sqlite> SELECT * FROM user;
 2|2||
 3|3||
 ```
+
+[▵ Up](#inserting-records)
+[⌂ Home](../../../README.md)
+[▲ Previous: Removing tables](../managing_tables/removing_tables.md)
+[▼ Next: Updating records](updating_records.md)

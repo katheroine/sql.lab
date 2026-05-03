@@ -1,6 +1,6 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing records](README.md)
 [▲ Previous: Updating records](updating_records.md)
+[▼ Next: Queries](../querying_databases/queries.md)
 
 ### Removing records
 
@@ -32,3 +32,8 @@ MariaDB [quote_sql_lab]> SELECT * FROM storage_conditions;
 2 rows in set (0,001 sec)
 
 ```
+
+[▵ Up](#removing-records)
+[⌂ Home](../../../README.md)
+[▲ Previous: Updating records](updating_records.md)
+[▼ Next: Queries](../querying_databases/queries.md)

@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing databases](README.md)
 [▲ Previous: Displaying databases](displaying_databases.md)
 [▼ Next: Choosing databases](choosing_databases.md)
 
@@ -33,3 +32,8 @@ MariaDB [(none)]> SHOW DATABASES;
 3 rows in set (0,010 sec)
 
 ```
+
+[▵ Up](#creating-databases)
+[⌂ Home](../../../README.md)
+[▲ Previous: Displaying databases](displaying_databases.md)
+[▼ Next: Choosing databases](choosing_databases.md)

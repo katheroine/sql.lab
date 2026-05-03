@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing records](README.md)
 [▲ Previous: Inserting records](inserting_records.md)
 [▼ Next: Removing records](removing_records.md)
 
@@ -55,3 +54,8 @@ sqlite> SELECT * FROM storage_conditions;
 2|41.5|20|1014
 4|41.5|18|1012.25
 ```
+
+[▵ Up](#updating-records)
+[⌂ Home](../../../README.md)
+[▲ Previous: Inserting records](inserting_records.md)
+[▼ Next: Removing records](removing_records.md)

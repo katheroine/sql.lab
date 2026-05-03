@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing tables](README.md)
 [▲ Previous: Creating tables](creating_tables.md)
 [▼ Next: Removing tables](removing_tables.md)
 
@@ -353,3 +352,8 @@ CREATE TABLE translator
     surname VARCHAR(256)
 );
 ```
+
+[▵ Up](#modifying-tables)
+[⌂ Home](../../../README.md)
+[▲ Previous: Creating tables](creating_tables.md)
+[▼ Next: Removing tables](removing_tables.md)

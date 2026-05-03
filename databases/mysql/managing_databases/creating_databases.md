@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing databases](README.md)
 [▲ Previous: Displaying databases](displaying_databases.md)
 [▼ Next: Choosing databases](choosing_databases.md)
 
@@ -37,3 +36,8 @@ mysql> show databases;
 5 rows in set (0,01 sec)
 
 ```
+
+[▵ Up](#creating-databases)
+[⌂ Home](../../../README.md)
+[▲ Previous: Displaying databases](displaying_databases.md)
+[▼ Next: Choosing databases](choosing_databases.md)

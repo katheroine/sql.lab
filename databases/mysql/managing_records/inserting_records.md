@@ -1,5 +1,5 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing records](README.md)
+[▲ Previous: Removing tables](../managing_tables/removing_tables.md)
 [▼ Next: Updating records](updating_records.md)
 
 ### Inserting records
@@ -106,3 +106,8 @@ mysql> SELECT * FROM user;
 4 rows in set (0,001 sec)
 
 ```
+
+[▵ Up](#inserting-records)
+[⌂ Home](../../../README.md)
+[▲ Previous: Removing tables](../managing_tables/removing_tables.md)
+[▼ Next: Updating records](updating_records.md)

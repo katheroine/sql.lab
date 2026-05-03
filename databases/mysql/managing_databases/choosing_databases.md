@@ -1,6 +1,6 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing databases](README.md)
 [▲ Previous: Creating databases](creating_databases.md)
+[▼ Next: Displaying tables](../managing_tables/displaying_tables.md)
 
 ### Choosing databases
 
@@ -12,3 +12,8 @@ USE database_name;
 mysql> USE quote_sql_lab;
 Database changed
 ```
+
+[▵ Up](#choosing-databases)
+[⌂ Home](../../../README.md)
+[▲ Previous: Creating databases](creating_databases.md)
+[▼ Next: Displaying tables](../managing_tables/displaying_tables.md)

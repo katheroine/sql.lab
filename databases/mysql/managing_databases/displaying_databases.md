@@ -1,5 +1,5 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing databases](README.md)
+[▲ Previous: Installation and running](../installation_and_running.md)
 [▼ Next: Creating databases](creating_databases.md)
 
 ### Displaying databases
@@ -21,3 +21,8 @@ mysql> SHOW DATABASES;
 4 rows in set (0,00 sec)
 
 ```
+
+[▵ Up](#displaying-databases)
+[⌂ Home](../../../README.md)
+[▲ Previous: Installation and running](../installation_and_running.md)
+[▼ Next: Creating databases](creating_databases.md)

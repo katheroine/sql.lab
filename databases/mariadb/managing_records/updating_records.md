@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Managing records](README.md)
 [▲ Previous: Inserting records](inserting_records.md)
 [▼ Next: Removing records](removing_records.md)
 
@@ -91,3 +90,8 @@ MariaDB [quote_sql_lab]> SELECT * FROM storage_conditions;
 3 rows in set (0,001 sec)
 
 ```
+
+[▵ Up](#updating-records)
+[⌂ Home](../../../README.md)
+[▲ Previous: Inserting records](inserting_records.md)
+[▼ Next: Removing records](removing_records.md)
