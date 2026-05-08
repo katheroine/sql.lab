@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Querying databases](README.md)
 [▲ Previous: Queries](queries.md)
 [▼ Next: Combining queries](combining_queries.md)
 
@@ -206,3 +205,8 @@ scientists|250|300
 researchers|200|240
 bloggers|80|120
 ```
+
+[▵ Up](#aggregations)
+[⌂ Home](../../../README.md)
+[▲ Previous: Queries](queries.md)
+[▼ Next: Combining queries](combining_queries.md)

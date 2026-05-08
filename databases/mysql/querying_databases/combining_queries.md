@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Querying databases](README.md)
 [▲ Previous: Aggregations](aggregations.md)
 [▼ Next: Subqueries](subqueries.md)
 
@@ -1245,3 +1244,8 @@ mysql> SELECT
 ##### `FULL JOIN` / `FULL OUTER JOIN`
 
 **FULL (OUTER) JOIN** is not supported by MySQL.
+
+[▵ Up](#combining-queries)
+[⌂ Home](../../../README.md)
+[▲ Previous: Aggregations](aggregations.md)
+[▼ Next: Subqueries](subqueries.md)

@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Querying databases](README.md)
 [▲ Previous: Combining queries](combining_queries.md)
 
 ### Subqueries
@@ -89,3 +88,7 @@ sqlite> SELECT * FROM author
 14||3|agate|25
 15|19|3|erwin|10
 ```
+
+[▵ Up](#subqueries)
+[⌂ Home](../../../README.md)
+[▲ Previous: Combining queries](combining_queries.md)

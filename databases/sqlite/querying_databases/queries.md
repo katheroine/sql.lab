@@ -1,5 +1,5 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Querying databases](README.md)
+[▲ Previous: Removing records](../managing_records/removing_records.md)
 [▼ Next: Aggregations](aggregations.md)
 
 ### Queries
@@ -605,3 +605,8 @@ sqlite> SELECT * FROM quote
 10|110|14|Aristotle|Nicomachean Ethics|5
 3|103|4|Albert Einstein|Speech to the German Physical Society|5
 ```
+
+[▵ Up](#queries)
+[⌂ Home](../../../README.md)
+[▲ Previous: Removing records](../managing_records/removing_records.md)
+[▼ Next: Aggregations](aggregations.md)

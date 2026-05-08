@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Querying databases](README.md)
 [▲ Previous: Combining queries](combining_queries.md)
 
 ### Subqueries
@@ -103,3 +102,7 @@ MariaDB [quote_sql_lab]> SELECT * FROM author
 3 rows in set (0,001 sec)
 
 ```
+
+[▵ Up](#subqueries)
+[⌂ Home](../../../README.md)
+[▲ Previous: Combining queries](combining_queries.md)

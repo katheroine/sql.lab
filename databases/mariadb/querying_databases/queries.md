@@ -1,5 +1,5 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Querying databases](README.md)
+[▲ Previous: Removing records](../managing_records/removing_records.md)
 [▼ Next: Aggregations](aggregations.md)
 
 ### Queries
@@ -804,3 +804,8 @@ MariaDB [quote_sql_lab]> SELECT * FROM quote
 10 rows in set (0,001 sec)
 
 ```
+
+[▵ Up](#queries)
+[⌂ Home](../../../README.md)
+[▲ Previous: Removing records](../managing_records/removing_records.md)
+[▼ Next: Aggregations](aggregations.md)

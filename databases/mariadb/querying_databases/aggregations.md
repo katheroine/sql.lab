@@ -1,5 +1,4 @@
 [⌂ Home](../../../README.md)
-[⬆ Up: Querying databases](README.md)
 [▲ Previous: Queries](queries.md)
 [▼ Next: Combining queries](combining_queries.md)
 
@@ -323,3 +322,8 @@ MariaDB [quote_sql_lab]> SELECT
 5 rows in set (0,005 sec)
 
 ```
+
+[▵ Up](#aggregations)
+[⌂ Home](../../../README.md)
+[▲ Previous: Queries](queries.md)
+[▼ Next: Combining queries](combining_queries.md)
